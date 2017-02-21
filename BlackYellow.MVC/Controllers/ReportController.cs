@@ -1,29 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace BlackYellow.MVC.Controllers
 {
-    public class ProductController : Controller
+    public class ReportController : Controller
     {
-        public IActionResult Details()
+        // GET: /<controller>/
+        public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Create()
+        public IActionResult Orders()
         {
             return View();
         }
 
-        public IActionResult Update()
+        public IActionResult Products()
         {
             return View();
         }
 
-        public IActionResult List()
+        public IActionResult Customers()
         {
             return View();
         }
