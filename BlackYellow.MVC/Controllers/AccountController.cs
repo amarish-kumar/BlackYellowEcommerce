@@ -13,7 +13,7 @@ namespace BlackYellow.MVC.Controllers
     {
 
         // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
-
+        
         public async Task<IActionResult> Logar(string email, string password)
         {
             // Aqui iremos pegar as infomações do usuário 
