@@ -2,11 +2,11 @@ namespace BlackYellow.MVC.Domain.Entites
 {
     public class GaleryProduct
     {
-        public GaleryProduct(string PathImage, string Name , bool isPrincipal)
+        public GaleryProduct(string Path, string Name , bool isPrincipal)
         {
             this.NameImage = Name;
             this.isPrincipal = isPrincipal;
-            this.PathImage = PathImage + Name;
+            this.PathImage = Path + Name;
             
         }
 

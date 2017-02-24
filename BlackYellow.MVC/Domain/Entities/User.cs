@@ -5,6 +5,7 @@ namespace BlackYellow.MVC.Domain.Entites
 {
     public class User
     {
+
         public int UserId { get; set; }
 
         public string Email{get; set;}
@@ -12,5 +13,10 @@ namespace BlackYellow.MVC.Domain.Entites
         public string Password { get; set; }
 
         public Profile Profile { get; set; }
+
+        //public bool isAdministrator()
+        //{
+            
+        //}
     }
 }

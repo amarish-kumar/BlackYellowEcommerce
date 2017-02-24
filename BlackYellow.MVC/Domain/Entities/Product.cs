@@ -16,14 +16,16 @@ namespace BlackYellow.MVC.Domain.Entites
         public List<GaleryProduct> GaleryProduct{get; set;}
 
 
+
+
         public bool GaleryIsFull()
         {
-           return GaleryProduct.Count >= 3;
+            return GaleryProduct.Count >= 4;
         }
 
-        public bool QuantityIsValid()
+        public bool isAvailable()
         {
-            return Quantity > 0 ;
+            return Quantity > 0;
         }
     }
 }

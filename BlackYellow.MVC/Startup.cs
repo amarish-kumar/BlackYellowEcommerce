@@ -8,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using BlackYellow.MVC.Domain.Interfaces.Services;
+using BlackYellow.MVC.Services;
+using BlackYellow.MVC.Domain.Interfaces.Repositories;
+using BlackYellow.MVC.Repositories;
 
 namespace BlackYellow.MVC
 {
@@ -35,6 +39,10 @@ namespace BlackYellow.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthorization();
+
+            // Aplicando injeção de dependencia 
+            services.AddSingleton<ICategoryService, CategoryService>();
+            services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);

@@ -6,24 +6,23 @@ namespace BlackYellow.MVC.Domain.Entites
     {
         public int CartId { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<ItemCart> Itens { get; set; }
 
-        public double TotalOrder { get; set; }
+        public double TotalOrder { get; private set; }
 
         public User User { get; set; }
 
 
         public int GetQtdProducts()
-
         {
-            return Products.Count;
+            return Itens.Count;
         }
 
         public double GetTotalOrder()
         {
-            foreach (var product in Products)
+            foreach (var item in Itens)
             {
-                this.TotalOrder += product.Price * product.Quantity;
+                this.TotalOrder += item.GetSubTotal();
             }
 
             return this.TotalOrder;
