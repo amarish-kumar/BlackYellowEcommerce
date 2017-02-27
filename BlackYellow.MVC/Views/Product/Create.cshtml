@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Cadastrar Produtos</h2>
+<form method="post" asp-action="CreateProduct" asp-controller="Product" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Produto </label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="product.name" id="product.Name" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="basic-url">Quantidade</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="product.Quantity" required aria-describedby="basic-addon3">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Preço Anterior </label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="product.LastPrice" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="basic-url">Preço Atual</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="product.Price" required aria-describedby="basic-addon3">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Categoria </label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="product.category.name" name="product.category.name" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Descriçao do Produto </label>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="product.Description" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Imagem Principal </label>
+                <div class="form-group">
+                    <input type="file" class="form-control" id="main_file" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Imagens Detalhes </label>
+                <div class="form-group">
+                    <input type="file" class="form-control" id="details_files" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button type="submit"  id="btn-cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
+    </div>
+
+</form>

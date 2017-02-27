@@ -45,6 +45,8 @@ namespace BlackYellow.MVC
             services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IProductRepository, ProductRepository>();
 
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);

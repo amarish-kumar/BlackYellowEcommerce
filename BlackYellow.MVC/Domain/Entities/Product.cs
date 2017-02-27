@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 
@@ -26,6 +27,17 @@ namespace BlackYellow.MVC.Domain.Entites
         public bool isAvailable()
         {
             return Quantity > 0;
+        }
+
+        public void fileGalery(IFormFile main_file, ICollection<IFormFile> details_files, string path)
+        {
+            GaleryProduct galeryPrincipal = new GaleryProduct(path, main_file.Name, true);
+            GaleryProduct.Add(galeryPrincipal);
+            foreach (var file in details_files)
+            {
+                GaleryProduct galeryDetails = new GaleryProduct(path, file.Name, false);
+                GaleryProduct.Add(galeryDetails);
+            }
         }
     }
 }
