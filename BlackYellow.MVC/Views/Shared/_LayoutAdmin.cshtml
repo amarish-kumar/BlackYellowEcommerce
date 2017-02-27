@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/admin/style.css" />
+
+
   
 </head>
 <body>
@@ -67,17 +69,17 @@
             </ul>
         </div>
     </nav>
+
     <div class="container" id="main">
         
         @RenderBody()
     </div>
 
-        
+
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/admin/_layoutAdmin/dashboard.js"></script>
-    <script src="~/js/admin/_layoutAdmin/general.js" ></script>
-   
+    <script src="~/js/admin/_layoutAdmin/general.js"></script>
+    <script src="~/js/admin/user/create.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.Authentication;
+﻿using BlackYellow.MVC.Domain.Entites;
+using BlackYellow.MVC.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,15 @@ namespace BlackYellow.MVC.Controllers
 {
     public  class AccountController : Controller
     {
+
+        readonly ICustomerService _customerService;
+        readonly IUserService _userService;
+
+        public AccountController(ICustomerService customerService, IUserService userService)
+        {
+            _customerService = customerService;
+            _userService = userService;
+        }
 
         // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
         
@@ -55,6 +66,22 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
+
+        public JsonResult RegisterCustomer([FromBody] Customer customer)
+        {
+            try
+            {
+                _customerService.Insert(customer);
+                return Json( new { success = "Cadastro realizado com sucesso" } );
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { error = "Erro ao realizar o cadastro " });
+            }
+        }
+
+      
         public async Task<IActionResult> Logout()
         {
             // remove o cookie

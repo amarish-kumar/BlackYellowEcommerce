@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Relatório de Clientes</h2>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label for="basic-url">E-mail </label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" aria-describedby="basic-addon3">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <label for="basic-url">Senha</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="password" aria-describedby="basic-addon3">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <label for="basic-url">Confirmar Senha</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="confirm_password" aria-describedby="basic-addon3">
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <button type="button" onclick="registerUser()" id="btn-cadastrar" class="btn btn-primary btn-lg">Cadastrar</button>
+</div>
+
+
