@@ -27,9 +27,7 @@ namespace BlackYellow.MVC.Controllers
 
         public IActionResult Create()
         {
-            Category category = new Category();
-            category.Name = " kasjdhjkashd";
-            _categoryService.Insert(category);
+           
             return View();
         }
 
@@ -37,5 +35,30 @@ namespace BlackYellow.MVC.Controllers
         {
             return View();
         }
+
+
+        public JsonResult List()
+        {
+            try
+            {
+                IEnumerable<Category> categories = new List<Category>();
+                Category category = new Category();
+                category.Name = "teste1";
+                Category category2 = new Category();
+                category2.Name = "teste2";
+                List<Category> lista = categories.ToList<Category>();
+                lista.Add(category);
+                lista.Add(category2);
+                return Json(new { categories = lista });
+            }
+            catch (Exception)
+            {
+
+                return Json(new { error = "Erro ao trazer as categorias" });
+            }
+            
+
+        }
+
     }
 }

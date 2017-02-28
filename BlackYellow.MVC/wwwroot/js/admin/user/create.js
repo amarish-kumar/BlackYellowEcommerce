@@ -11,7 +11,8 @@
             contentType : "application/json",
             url: '/User/RegisterUser',
             data: JSON.stringify(user),
-            success: function (data) {console.log(data) },
+            success: function (data) { console.log(data) },
+            error:function(data){ console.log(data)}
         });
         
     }
