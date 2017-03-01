@@ -11,8 +11,25 @@
             contentType : "application/json",
             url: '/User/RegisterUser',
             data: JSON.stringify(user),
-            success: function (data) { console.log(data) },
-            error:function(data){ console.log(data)}
+            success: function (data) {
+                if (data.success != null) {
+                    limpaCampos();
+                    $('#modal-success').modal();
+                    $('.modal-title').html("Sucesso!")
+                    $('.modal-body').html(data.success);
+                }
+                else {
+                    limpaCampos();
+                    $('#modal-warning').modal();
+                    $('.modal-title').html("Ooops!")
+                    $('.modal-body').html(data.error);
+                }
+
+            },
+            error: function (data) {
+
+               
+            }
         });
         
     }
@@ -29,4 +46,11 @@ function validaCampos()
     }
 
     return true;
+}
+
+function limpaCampos()
+{
+    $('#password').val("");
+    $('#confirm_password').val("")
+    $('#email').val("")
 }

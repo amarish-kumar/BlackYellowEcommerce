@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BlackYellow.MVC</title>
+    <title>BlackYellow</title>
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
@@ -34,13 +34,13 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> Minha Conta</a></li>
+                            <li><a href="/Account/MyAccount"><i class="fa fa-gift"></i> Minha Conta</a></li>
                             @*<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>*@
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Finalizar Compra</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Registrar-se</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Administração</a></li>
+                            <li><a href="/Order/Cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
+                            <li><a href="/Order/Checkout"><i class="fa fa-address-card"></i> Finalizar Compra</a></li>
+                            <li><a href="/Account/Login"><i class="fa fa-key"></i> Login</a></li>
+                            <li><a href="/Account/Login"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
+                            <li><a href="/Report/Dashboard"><i class="fa fa-gears"></i> Administração</a></li>
                         </ul>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Carrinho - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"></span></a>
                     </div>
                 </div>
             </div>
