@@ -8,6 +8,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 {
     public interface IUserService : IServiceBase<User>
     {
-
+        User GetUserByNamePassword(User user);
     }
 }

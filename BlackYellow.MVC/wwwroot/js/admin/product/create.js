@@ -8,7 +8,7 @@ function getCategories() {
         contentType: "application/json",
         method: "POST",
         url: "/Category/List",
-        success: function (data) { fillCategories(data) }
+        success: function (data) { fillCategories(data.categories) }
     });
 }
 
@@ -16,5 +16,9 @@ function getCategories() {
 function fillCategories(response)
 {
    
-    $("p").append("<option value="+ response.CategoryId+">"+response.Name+"</option> ");
+    $.each(response, function (item, value) {
+        $("#category").append("<option value=" + value.CategoryId + ">" + value.name + "</option> ");
+    });
+   
+   
 }

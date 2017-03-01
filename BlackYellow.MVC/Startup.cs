@@ -43,6 +43,7 @@ namespace BlackYellow.MVC
             // Aplicando injeção de dependencia 
             services.AddSingleton<ICategoryService, CategoryService>();
             services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IProductService, ProductService>();

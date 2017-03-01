@@ -25,28 +25,39 @@ namespace BlackYellow.MVC.Controllers
 
         // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
         
-        public async Task<IActionResult> Logar(string email, string password)
+        public async Task<JsonResult> Logar([FromBody]User user)
         {
             // Aqui iremos pegar as infomações do usuário 
+           
+          
+            user =_userService.GetUserByNamePassword(user);
+            
+            if(user.Email != null)
+            {
+                const string Issuer = "https://contoso.com";
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, Issuer));
+                claims.Add(new Claim(ClaimTypes.Role,user.Profile.ToString(), ClaimValueTypes.String, Issuer));
+                var userIdentity = new ClaimsIdentity("SuperSecureLogin");
+                userIdentity.AddClaims(claims);
+                var userPrincipal = new ClaimsPrincipal(userIdentity);
 
+                await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
+                    new AuthenticationProperties
+                    {
+                        ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                        IsPersistent = false,
+                        AllowRefresh = false
+                    });
 
-            const string Issuer = "https://contoso.com";
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, "barry", ClaimValueTypes.String, Issuer));
-            claims.Add(new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String, Issuer));
-            var userIdentity = new ClaimsIdentity("SuperSecureLogin");
-            userIdentity.AddClaims(claims);
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
+                return Json(new { success = "Usuario logado com sucesso" });
+            }
+            else
+            {
+                return Json(new { error = "Usuário ou senha inválidos" });
+            }
 
-            await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                new AuthenticationProperties
-                {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                    IsPersistent = false,
-                    AllowRefresh = false
-                });
-
-            return RedirectToAction("Index","Home");
+            
         }
 
         public IActionResult Login()

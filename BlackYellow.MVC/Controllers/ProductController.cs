@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -50,12 +49,13 @@ namespace BlackYellow.MVC.Controllers
             {
                 var path = string.Empty;
                 product.fileGalery(main_file, details_files, "uploads");
+                product.DateRegister = DateTime.Now;
                 _productService.uploadProductFiles(main_file, details_files, path);
                 _productService.Insert(product);
                 return Json( new { success =  "Produto cadastrado com sucesso"});
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return Json(new { error = "Erro ao cadastrar produto" });

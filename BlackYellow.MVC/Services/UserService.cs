@@ -10,8 +10,16 @@ namespace BlackYellow.MVC.Services
 {
     public class UserService : ServiceBase<User> , IUserService
     {
-        public UserService(IRepositoryBase<User> repository) : base(repository)
+
+        readonly IUserRepository _userRepository;
+        public UserService(IRepositoryBase<User> repository, IUserRepository userRepository) : base(repository)
         {
+            _userRepository = userRepository;
+        }
+
+        public User GetUserByNamePassword(User user)
+        {
+            return _userRepository.GetUserByNamePassword(user);
         }
     }
 }

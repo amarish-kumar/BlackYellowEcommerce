@@ -32,6 +32,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public void fileGalery(IFormFile main_file, ICollection<IFormFile> details_files, string path)
         {
             GaleryProduct galeryPrincipal = new GaleryProduct(path, main_file.Name, true);
+            GaleryProduct = new List<GaleryProduct>();
             GaleryProduct.Add(galeryPrincipal);
             foreach (var file in details_files)
             {

@@ -1,13 +1,13 @@
 ﻿<div class="container">
     <div class="col-xs-12 col-sm-6 col-md-8">
-        <form id="login-form-wrap" method="post">
+        <form id="login-form-wrap" >
             <h3> Identificação </h3>
             <p></p>
             <p class="form-row form-row-first">
                 <label for="username">
                    Email <span class="required">*</span>
                 </label>
-                <input type="text" id="email" name="email" type="email" class="input-text">
+                <input id="email" name="email" type="email" class="input-text">
             </p>
             <p class="form-row form-row-last">
                 <label for="password">
@@ -18,7 +18,7 @@
             <div class="clear"></div>
 
             <p class="form-row">
-                <input type="submit" value="Login" name="login" class="button">
+                <input type="button" value="Login" onclick="logar()" name="login" class="button">
               
             </p>
             <p class="lost_password">
@@ -28,3 +28,6 @@
         </form>
     </div>
 </div>
+
+
+<script src="~/js/account/general.js"></script>

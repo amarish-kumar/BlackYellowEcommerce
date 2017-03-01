@@ -42,9 +42,9 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="basic-url">Categoria </label>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="product.category.name" name="product.category.name" required aria-describedby="basic-addon3">
-                </div>
+                <select class="form-control" id="category" name="product.category.CategoryId">
+                    
+                </select>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="basic-url">Descriçao do Produto </label>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="product.Description" required aria-describedby="basic-addon3">
+                    <textarea type="text" class="form-control" id="product.Description" required aria-describedby="basic-addon3"></textarea>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <label for="basic-url">Imagem Principal </label>
                 <div class="form-group">
-                    <input type="file" class="form-control" id="main_file" required aria-describedby="basic-addon3">
+                    <input type="file" class="form-control" id="main_file" name="main_file" required aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <div class="form-group">
                 <label for="basic-url">Imagens Detalhes </label>
                 <div class="form-group">
-                    <input type="file" class="form-control" id="details_files" required aria-describedby="basic-addon3">
+                    <input type="file" class="form-control" id="details_files"  name="details_files"required aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>
