@@ -12,7 +12,8 @@ namespace BlackYellow.MVC.Domain.Entites
         public int  Quantity { get; set; }
         public double LastPrice { get; set; }
         public double Price { get; set; }
-        public Category Category{get; set;}
+        public virtual Category Category{get; set;}
+        public int CategoryId { get; set; }
         public DateTime DateRegister{get; set;}
         public List<GaleryProduct> GaleryProduct{get; set;}
 

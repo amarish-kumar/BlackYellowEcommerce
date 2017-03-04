@@ -31,7 +31,7 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-        []
+        
         public JsonResult RegisterUser([FromBody] User user)
         {
             try

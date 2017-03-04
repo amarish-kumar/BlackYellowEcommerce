@@ -16,7 +16,7 @@
         <div class="col-lg-6">
             <label for="basic-url">Quantidade</label>
             <div class="form-group">
-                <input type="text" class="form-control" id="product.Quantity" required aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="product.Quantity" name="product.Quantity" required aria-describedby="basic-addon3">
             </div>
         </div>
     </div>
@@ -26,14 +26,14 @@
             <div class="form-group">
                 <label for="basic-url">Preço Anterior </label>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="product.LastPrice" required aria-describedby="basic-addon3">
+                    <input type="text" class="form-control" id="product.LastPrice" name="product.LastPrice" required aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>
         <div class="col-lg-6">
             <label for="basic-url">Preço Atual</label>
             <div class="form-group">
-                <input type="text" class="form-control" id="product.Price" required aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="product.Price" name="product.Price" required aria-describedby="basic-addon3">
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="basic-url">Categoria </label>
-                <select class="form-control" id="category" name="product.category.CategoryId">
+                <select class="form-control" id="category" name="product.CategoryId">
                     
                 </select>
             </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="basic-url">Descriçao do Produto </label>
                 <div class="form-group">
-                    <textarea type="text" class="form-control" id="product.Description" required aria-describedby="basic-addon3"></textarea>
+                    <textarea type="text" class="form-control" id="product.Description" name="product.Description" required aria-describedby="basic-addon3"></textarea>
                 </div>
             </div>
         </div>
@@ -70,9 +70,25 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="basic-url">Imagens Detalhes </label>
+                <label for="basic-url">Imagens Detalhes 1 </label>
                 <div class="form-group">
-                    <input type="file" class="form-control" id="details_files"  name="details_files"required aria-describedby="basic-addon3">
+                    <input type="file" class="form-control" id="details_file1"  name="details_file1"required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Imagens Detalhes 2 </label>
+                <div class="form-group">
+                    <input type="file" class="form-control" id="details_file2" name="details_file2" required aria-describedby="basic-addon3">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="basic-url">Imagens Detalhes 3 </label>
+                <div class="form-group">
+                    <input type="file" class="form-control" id="details_file3" name="details_file3" required aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>

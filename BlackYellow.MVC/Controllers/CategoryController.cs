@@ -44,7 +44,9 @@ namespace BlackYellow.MVC.Controllers
                 IEnumerable<Category> categories = new List<Category>();
                 Category category = new Category();
                 category.Name = "teste1";
+                category.CategoryId = 1;
                 Category category2 = new Category();
+                category.CategoryId = 2;
                 category2.Name = "teste2";
                 List<Category> lista = categories.ToList<Category>();
                 lista.Add(category);
