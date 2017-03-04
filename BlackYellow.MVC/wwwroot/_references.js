@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="js/account/general.js" />
 /// <reference path="js/admin/_layoutadmin/general.js" />
+/// <reference path="js/admin/category/create.js" />
 /// <reference path="js/admin/product/create.js" />
 /// <reference path="js/admin/user/create.js" />
 /// <reference path="js/site.js" />

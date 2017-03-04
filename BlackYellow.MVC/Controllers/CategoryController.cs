@@ -60,5 +60,18 @@ namespace BlackYellow.MVC.Controllers
 
         }
 
+        public JsonResult RegisterCategory([FromBody] Category category) {
+            try
+            {
+                _categoryService.Insert(category);
+                return Json(new { success = "Cadastro realizado com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nErro ao realizar cadastro: " + ex + "\n");
+                return Json(new { error = "Erro ao realizar o cadastro " });
+            }
+
+        }
     }
 }
