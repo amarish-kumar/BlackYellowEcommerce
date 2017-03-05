@@ -15,6 +15,13 @@
         url: "/Account/Logar",
         success: function (data) {
             console.log(data);
+            if(data.success != null)
+            {
+                location.href = "/Home/Index";
+            }
+            else {
+
+            }
         },
 
         error: function () {

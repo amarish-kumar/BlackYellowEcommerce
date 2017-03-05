@@ -32,7 +32,7 @@ namespace BlackYellow.MVC.Controllers
           
             user =_userService.GetUserByNamePassword(user);
             
-            if(user.Email != null)
+            if(user  != null)
             {
                 const string Issuer = "https://contoso.com";
                 var claims = new List<Claim>();

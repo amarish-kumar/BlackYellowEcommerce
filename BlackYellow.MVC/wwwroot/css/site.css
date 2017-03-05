@@ -619,7 +619,20 @@ padding: 35px 0 180px;}
     padding: 7px 20px;
     text-transform: uppercase;border: 1px solid  #ead24c;
 }
+
+.newsletter-form input[type="button"] {
+    background: none repeat scroll 0 0  #ead24c;
+    border: medium none;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    padding: 7px 20px;
+    text-transform: uppercase;border: 1px solid  #ead24c;
+}
 .newsletter-form input[type="submit"]:hover {background: #222;border-color: #666}
+
+.newsletter-form input[type="button"]:hover {background: #222;border-color: #666}
+
 .newsletter-form {
     margin-top: 25px;
 }
@@ -724,6 +737,18 @@ input[type="submit"], button[type=submit] {
     padding: 11px 20px;
     text-transform: uppercase;
 }
+
+input[type="button"], button[type=button] {
+    background: none repeat scroll 0 0  #ead24c;
+    border: medium none;
+    color: #fff;
+    padding: 11px 20px;
+    text-transform: uppercase;
+}
+
+input[type="button"]:hover, button[type=button]:hover {background-color: #222}
+
+
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
     margin-bottom: 10px;

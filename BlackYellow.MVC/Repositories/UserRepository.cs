@@ -17,12 +17,19 @@ namespace BlackYellow.MVC.Repositories
             try
             {
                 var sql = " SELECT Email, Profile FROM USERS WHERE Email = @Email AND Password = @Password";
-                return db.Connection.Query<User>(sql, new { user.Email, user.Password }).First();
+                var row = db.Connection.Query<User>(sql, new { user.Email, user.Password });
+                if(row != null)
+                {
+                    return db.Connection.Query<User>(sql, new { user.Email, user.Password }).First();
+                }
+
+                return null;
+                
             }
             catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Message);
+                return null;
             }
           
             
