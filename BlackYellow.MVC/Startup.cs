@@ -12,6 +12,8 @@ using BlackYellow.MVC.Domain.Interfaces.Services;
 using BlackYellow.MVC.Services;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using BlackYellow.MVC.Repositories;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace BlackYellow.MVC
 {
@@ -40,6 +42,14 @@ namespace BlackYellow.MVC
         {
             services.AddAuthorization();
 
+
+
+            // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddMvc();
+
+
             // Aplicando injeção de dependencia 
             services.AddSingleton<ICategoryService, CategoryService>();
             services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
@@ -49,10 +59,13 @@ namespace BlackYellow.MVC
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IProductRepository, ProductRepository>();
 
-            // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+
+            //  Referencia importante para sessions----> http://benjii.me/2016/07/using-sessions-and-httpcontext-in-aspnetcore-and-mvc-core/
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,12 +100,18 @@ namespace BlackYellow.MVC
 
             app.UseStaticFiles();
 
+            // IMPORTANT: This session call MUST go before UseMvc()
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+
         }
     }
 }

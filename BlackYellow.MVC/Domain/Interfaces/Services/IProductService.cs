@@ -10,6 +10,8 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
     public interface IProductService : IServiceBase<Product>
     {
          void uploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path);
+
+        bool InsertProduct(Product product);
        
     }
 }

@@ -17,7 +17,8 @@ function fillCategories(response)
 {
    
     $.each(response, function (item, value) {
-        $("#category").append("<option value=" + value.CategoryId + ">" + value.name + "</option> ");
+        console.log(value);
+        $("#category").append("<option value=" + value.categoryId + ">" + value.name + "</option> ");
     });
    
    

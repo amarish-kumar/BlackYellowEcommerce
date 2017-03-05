@@ -12,8 +12,16 @@ namespace BlackYellow.MVC.Services
 {
     public class ProductService : ServiceBase<Product>, IProductService
     {
-        public ProductService(IRepositoryBase<Product> repository) : base(repository)
+        private readonly IProductRepository _productRepository;
+
+        public ProductService(IRepositoryBase<Product> repository, IProductRepository productRepository) : base(repository)
         {
+            _productRepository = productRepository;
+        }
+
+        public bool InsertProduct(Product product)
+        {
+            return _productRepository.InsertProduct(product);
         }
 
         public async void uploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)

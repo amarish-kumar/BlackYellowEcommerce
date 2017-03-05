@@ -2,6 +2,23 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@if (TempData["MsgSucesso"] != null)
+{
+
+    <div class="alert alert-success">
+        <strong>Sucesso!</strong> @TempData["MsgSucesso"]
+    </div>
+
+}
+@if(TempData["MsgErro"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Ops!</strong> @TempData["Erro"]
+    </div>
+
+}
+
+
 <h2>Cadastrar Produtos</h2>
 <form method="post" asp-action="CreateProduct" asp-controller="Product" enctype="multipart/form-data">
     <div class="row">
