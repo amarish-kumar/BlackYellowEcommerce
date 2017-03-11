@@ -4,6 +4,7 @@
 /// <reference path="js/admin/category/create.js" />
 /// <reference path="js/admin/product/create.js" />
 /// <reference path="js/admin/user/create.js" />
+/// <reference path="js/home/general.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
