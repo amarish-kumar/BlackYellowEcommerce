@@ -5,7 +5,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public GaleryProduct(string Path, string Name , bool isPrincipal)
         {
             this.NameImage = Name;
-            this.isPrincipal = isPrincipal;
+            this.IsPrincipal = isPrincipal;
             this.PathImage = Path + Name;
             
         }
@@ -13,11 +13,14 @@ namespace BlackYellow.MVC.Domain.Entites
         public int GaleryProductId { get; set; }
         public string NameImage{get; set;}
         public string PathImage {get;   set;}
-        public bool isPrincipal { get; set; }
-        
+        public bool IsPrincipal { get; set; }
+        public int ProductId { get; set; }
 
-        
+        public Product Product { get; set; }
 
-        
+
+
+
+
     }
 }

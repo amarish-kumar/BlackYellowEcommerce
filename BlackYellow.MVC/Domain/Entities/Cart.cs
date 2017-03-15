@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
@@ -8,26 +9,27 @@ namespace BlackYellow.MVC.Domain.Entites
 
         public List<ItemCart> Itens { get; set; }
 
-        public double TotalOrder { get; private set; }
+        public double TotalOrder
+        {
+            get
+            {
+                return Itens.Sum(i => i.SubTotal);
+            }
+        }
 
         public User User { get; set; }
 
 
-        public int GetQtdProducts()
+        public int Quantity
         {
-            return Itens.Count;
-        }
-
-        public double GetTotalOrder()
-        {
-            foreach (var item in Itens)
+            get
             {
-                this.TotalOrder += item.GetSubTotal();
+                return Itens.Count;
             }
-
-            return this.TotalOrder;
         }
 
-        
+
+
+
     }
 }

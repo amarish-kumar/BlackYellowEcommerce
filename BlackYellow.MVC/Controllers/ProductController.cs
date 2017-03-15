@@ -63,7 +63,7 @@ namespace BlackYellow.MVC.Controllers
                 files.Add(details_file2);
                 files.Add(details_file3);
 
-                product.fileGalery(main_file, files, path);
+                product.FileGalery(main_file, files, path);
                 product.DateRegister = DateTime.Now;
                 _productService.uploadProductFiles(main_file, files, path);
                 if (_productService.InsertProduct(product))
