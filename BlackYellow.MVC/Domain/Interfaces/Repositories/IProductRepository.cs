@@ -9,5 +9,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
    public  interface IProductRepository : IRepositoryBase<Product> 
     {
         bool InsertProduct(Product product);
+
+        List<Product> ListTop12();
     }
 }

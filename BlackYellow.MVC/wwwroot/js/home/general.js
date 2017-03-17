@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     getCategories();
-   
+    getProducts();
 });
 
 
@@ -48,6 +48,36 @@ function fillProducts(products)
     });
 }
 
+function fillCarrousel(products) {
+    var html = "";
+
+    $.each(products, function (item, value) {
+
+        html = '<div class="item active">'+
+               ' <div class="single-slide">'+
+                    '<div class="slide-bg slide-one"></div>'+
+                    '<div class="slide-text-wrapper">'+
+                       ' <div class="slide-text">'+
+                           ' <div class="container">'+
+                               ' <div class="row">'+
+                                    '<div class="col-md-6 col-md-offset-6">'+
+                                        '<div class="slide-content">'+
+                                           ' <h2>We are awesome</h2>'+
+                                           ' <p>'+value.Description +'</p>'+
+                                           ' <a href="" class="readmore">Detalhes</a>'+
+                                    '    </div>'+
+                                 '   </div>'+
+                               ' </div>'+
+                           ' </div>'+
+                       ' </div>'+
+                   ' </div>'+
+                '</div>'+
+                '</div>'
+
+        $("#carrousel").append(html);
+    });
+}
+
 
 function getCategories()
 {
@@ -65,10 +95,13 @@ function getProducts()
 {
     $.ajax({
         contentType: "application/json",
-        method: "POST",
-        url: "/Product/List",
+        method: "GET",
+        url: "/Product/ListTop12",
         success: function (data) {
-            fillProducts(data.products);
+            console.log(data);
         }
     })
 }
+
+
+

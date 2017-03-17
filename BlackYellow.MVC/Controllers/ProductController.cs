@@ -51,6 +51,21 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public JsonResult ListTop12()
+        {
+            try
+            {
+                List<Product> produtos = _productService.ListTop12();
+                return Json(produtos);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpPost]
         public RedirectResult CreateProduct([FromForm] Product product, [FromForm] IFormFile main_file, [FromForm] IFormFile details_file1, [FromForm] IFormFile details_file2, [FromForm] IFormFile details_file3)
         {

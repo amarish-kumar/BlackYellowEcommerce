@@ -48,5 +48,23 @@ namespace BlackYellow.MVC.Repositories
 
 
         }
+
+        public List<Product> ListTop12()
+        {
+            try
+            {
+                var sql = @"SELECT  p.ProductId, p.Name, p.Price
+                                FROM Products p 
+                                WHERE Quantity > 0";
+
+                return db.Connection.Query<Product>(sql).ToList();
+                        
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
