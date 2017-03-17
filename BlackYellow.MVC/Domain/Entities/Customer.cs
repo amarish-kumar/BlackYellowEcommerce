@@ -9,22 +9,24 @@ namespace BlackYellow.MVC.Domain.Entites
     {
         public int CustomerId { get; set; }
 
-        public string FirstName { get; set; } 
+        public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public DateTime Birthday {get; set;}
+        public DateTime Birthday { get; set; }
 
         public string Cpf { get; set; }
-
-        public Address Address{get; set;}
-
-        public User User{get; set;}
+        public string Phone { get; set; }
 
 
-        public string GetFullName()
+        public Address Address { get; set; }
+
+        public User User { get; set; }
+
+
+        public string FullName
         {
-            return FirstName + " " + LastName;
+            get { return FirstName + " " + LastName; }
         }
 
 

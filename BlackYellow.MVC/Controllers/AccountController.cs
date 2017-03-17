@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BlackYellow.MVC.Controllers
 {
-    public  class AccountController : Controller
+    public class AccountController : Controller
     {
 
         readonly ICustomerService _customerService;
@@ -24,20 +24,20 @@ namespace BlackYellow.MVC.Controllers
         }
 
         // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
-        
+
         public async Task<JsonResult> Logar([FromBody]User user)
         {
             // Aqui iremos pegar as infomações do usuário 
-           
-          
-            user =_userService.GetUserByNamePassword(user);
-            
-            if(user  != null)
+
+
+            user = _userService.GetUserByNamePassword(user);
+
+            if (user != null)
             {
                 const string Issuer = "https://contoso.com";
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, Issuer));
-                claims.Add(new Claim(ClaimTypes.Role,user.Profile.ToString(), ClaimValueTypes.String, Issuer));
+                claims.Add(new Claim(ClaimTypes.Role, user.Profile.ToString(), ClaimValueTypes.String, Issuer));
                 var userIdentity = new ClaimsIdentity("SuperSecureLogin");
                 userIdentity.AddClaims(claims);
                 var userPrincipal = new ClaimsPrincipal(userIdentity);
@@ -57,7 +57,7 @@ namespace BlackYellow.MVC.Controllers
                 return Json(new { error = "Usuário ou senha inválidos" });
             }
 
-            
+
         }
 
         public IActionResult Login()
@@ -71,9 +71,19 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-
         public IActionResult Register()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(Customer customer)
+        {
+
+            _customerService.Insert(customer);
+
+            ViewBag.Message = "Usuário cadastrado com sucesso.";
+
             return View();
         }
 
@@ -83,7 +93,7 @@ namespace BlackYellow.MVC.Controllers
             try
             {
                 _customerService.Insert(customer);
-                return Json( new { success = "Cadastro realizado com sucesso" } );
+                return Json(new { success = "Cadastro realizado com sucesso" });
             }
             catch (Exception ex)
             {
@@ -92,7 +102,7 @@ namespace BlackYellow.MVC.Controllers
             }
         }
 
-      
+
         public async Task<IActionResult> Logout()
         {
             // remove o cookie
