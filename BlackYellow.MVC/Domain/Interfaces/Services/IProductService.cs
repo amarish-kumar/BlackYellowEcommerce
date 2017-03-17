@@ -13,7 +13,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 
         bool InsertProduct(Product product);
 
-        List<Product> ListTop12();
+        IEnumerable<Product> ListTop12();
        
     }
 }

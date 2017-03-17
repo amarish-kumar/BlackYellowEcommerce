@@ -24,7 +24,7 @@ namespace BlackYellow.MVC.Services
             return _productRepository.InsertProduct(product);
         }
 
-        public List<Product> ListTop12()
+        public IEnumerable<Product> ListTop12()
         {
             return _productRepository.ListTop12();
         }

@@ -56,7 +56,7 @@ namespace BlackYellow.MVC.Controllers
         {
             try
             {
-                List<Product> produtos = _productService.ListTop12();
+                var produtos = _productService.ListTop12();
                 return Json(produtos);
             }
             catch (Exception)
