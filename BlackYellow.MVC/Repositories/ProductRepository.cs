@@ -49,15 +49,31 @@ namespace BlackYellow.MVC.Repositories
 
         }
 
-        public List<Product> ListTop12()
+        public IEnumerable<Product> ListTop12()
         {
             try
             {
-                var sql = @"SELECT  p.ProductId, p.Name, p.Price
-                                FROM Products p 
+                var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage
+                                FROM Products p INNER JOIN
+                                GaleryProducts g ON g.ProductId = p.ProductId
                                 WHERE Quantity > 0";
 
-                return db.Connection.Query<Product>(sql).ToList();
+                Dictionary<int, Product> produtos = new Dictionary<int, Product>();
+                db.Connection.Query<Product, GaleryProduct, Product>(sql,
+                                    splitOn:"PathImage",
+                                    map:(p, g) => {
+                                        Product pr;
+                                        if (!produtos.TryGetValue(p.ProductId, out pr))
+                                        {
+                                            pr = p;
+                                            produtos.Add(pr.ProductId, pr);
+                                        }
+                                        pr.GaleryProduct.Add(g);
+                                        return p; }
+                        
+                    ).ToList();
+
+                return produtos.Values;
                         
             }
             catch (Exception)

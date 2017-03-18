@@ -6,7 +6,12 @@ namespace BlackYellow.MVC.Domain.Entites
 {
     public class Product
     {
-        public string ProductId { get; set; }
+
+        public Product()
+        {
+            this.GaleryProduct = new List<GaleryProduct>();
+        }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }

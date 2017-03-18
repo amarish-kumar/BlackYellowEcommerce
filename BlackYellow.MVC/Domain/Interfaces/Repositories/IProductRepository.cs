@@ -10,6 +10,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
     {
         bool InsertProduct(Product product);
 
-        List<Product> ListTop12();
+        IEnumerable<Product> ListTop12();
     }
 }

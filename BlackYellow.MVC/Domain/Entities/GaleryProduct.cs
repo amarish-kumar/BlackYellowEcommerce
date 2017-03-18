@@ -2,6 +2,10 @@ namespace BlackYellow.MVC.Domain.Entites
 {
     public class GaleryProduct
     {
+        public GaleryProduct()
+        {
+
+        }
         public GaleryProduct(string Path, string Name , bool isPrincipal)
         {
             this.NameImage = Name;
