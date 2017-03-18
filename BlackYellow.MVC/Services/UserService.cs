@@ -17,9 +17,18 @@ namespace BlackYellow.MVC.Services
             _userRepository = userRepository;
         }
 
+        public User GetUserByMail(string email)
+        {
+            return _userRepository.GetUserByMail(email);
+        }
+
         public User GetUserByNamePassword(User user)
         {
             return _userRepository.GetUserByNamePassword(user);
         }
+
+
+
+
     }
 }

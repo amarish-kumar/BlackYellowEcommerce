@@ -6,8 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
-
+using BlackYellow.MVC.Helpers.Extensions;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -79,6 +78,19 @@ namespace BlackYellow.MVC.Controllers
         [HttpPost]
         public IActionResult Register(Customer customer)
         {
+
+
+            if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
+                throw new Exception("Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.");
+
+            if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
+                throw new Exception("Este cpf já foi utilizado em outro cadastro. Clique em recuperar senha caso tenha esquecido.");
+
+            if (string.IsNullOrEmpty(customer.Cpf) || !customer.Cpf.ValidCPF())
+                throw new Exception("Obrigatório fornecer um CPF válido.");
+
+
+            customer.User.Profile = Domain.Enum.Profile.User;
 
             _customerService.Insert(customer);
 

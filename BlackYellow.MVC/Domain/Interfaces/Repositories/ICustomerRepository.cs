@@ -8,5 +8,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
 {
     public interface ICustomerRepository : IRepositoryBase<Customer>
     {
+        Customer GetCustomerByDocument(string cpf);
     }
 }

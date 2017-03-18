@@ -9,5 +9,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
     public interface IUserRepository : IRepositoryBase<User>
     {
         User GetUserByNamePassword(User user);
+        User GetUserByMail(string email);
     }
 }

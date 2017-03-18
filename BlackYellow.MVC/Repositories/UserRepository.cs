@@ -11,29 +11,34 @@ namespace BlackYellow.MVC.Repositories
 {
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
+        public User GetUserByMail(string email)
+        {
+            var sql = "SELECT * FROM Users WHERE Email = @email";
+            return db.Connection.Query<User>(sql, param: email).SingleOrDefault();
+        }
 
         public User GetUserByNamePassword(User user)
         {
             try
             {
                 var sql = " SELECT Email, Profile FROM USERS WHERE Email = @Email AND Password = @Password";
-                var row = db.Connection.Query<User>(sql, new { user.Email, user.Password });
-                if(row != null)
+                var row = db.Connection.Query<User>(sql, param: user);
+                if (row != null)
                 {
-                    return db.Connection.Query<User>(sql, new { user.Email, user.Password }).First();
+                    return db.Connection.Query<User>(sql, param: user).First();
                 }
 
                 return null;
-                
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
             }
-          
-            
-           
+
+
+
         }
     }
 }
