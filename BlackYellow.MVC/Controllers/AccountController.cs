@@ -80,6 +80,8 @@ namespace BlackYellow.MVC.Controllers
         {
 
 
+            if (!ModelState.IsValid) throw new Exception("Os dados fornecidos são inválidos, preencha o cadastro corretamente");
+
             if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
                 throw new Exception("Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.");
 
@@ -88,6 +90,7 @@ namespace BlackYellow.MVC.Controllers
 
             if (string.IsNullOrEmpty(customer.Cpf) || !customer.Cpf.ValidCPF())
                 throw new Exception("Obrigatório fornecer um CPF válido.");
+
 
 
             customer.User.Profile = Domain.Enum.Profile.User;

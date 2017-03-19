@@ -10,7 +10,7 @@ namespace BlackYellow.MVC.Services
 
     private ICustomerRepository _customerRepository ;
 
-        public CustomerService(IRepositoryBase<Customer> repository, ICustomerRepository customerRepository) : base(repository)
+        public CustomerService(IRepositoryBase<Customer> repository , ICustomerRepository customerRepository) : base(repository)
         {
             _customerRepository = customerRepository;
         }

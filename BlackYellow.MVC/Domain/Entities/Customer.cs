@@ -1,6 +1,5 @@
 using System;
-
-
+using System.ComponentModel.DataAnnotations;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
@@ -8,14 +7,19 @@ namespace BlackYellow.MVC.Domain.Entites
     public class Customer
     {
         public int CustomerId { get; set; }
-
+        [Required]
         public string FirstName { get; set; }
+        [Required]
 
         public string LastName { get; set; }
+        [Required]
 
         public DateTime Birthday { get; set; }
+        [Required]
 
         public string Cpf { get; set; }
+        [Required]
+
         public string Phone { get; set; }
 
 
