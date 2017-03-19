@@ -14,7 +14,7 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+     
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BlackYellow.MVC.Domain.Interfaces.Services;
 using BlackYellow.MVC.Domain.Entites;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,12 +21,14 @@ namespace BlackYellow.MVC.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
