@@ -22,7 +22,8 @@ namespace BlackYellow.MVC.Domain.Entites
 
         public string Phone { get; set; }
 
-
+        public long UserId { get; set; }
+        
         public Address Address { get; set; }
 
         public User User { get; set; }

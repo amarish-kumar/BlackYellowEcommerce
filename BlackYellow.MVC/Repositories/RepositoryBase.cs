@@ -14,29 +14,29 @@ namespace BlackYellow.MVC.Repositories
     {
         public BlackYellowContext db = new BlackYellowContext();
 
-        public bool Delete(T obj)
+        public virtual bool Delete(T obj)
         {
             return  db.Connection.Delete(obj);
                     
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return db.Connection.Get<T>(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return db.Connection.GetAll<T>();
         }
 
-        public bool Insert(T obj)
+        public virtual bool Insert(T obj)
         {
             var rows = db.Connection.Insert(obj);
             return rows > 0;
         }
 
-        public bool Update(T obj)
+        public virtual bool Update(T obj)
         {
             return db.Connection.Update(obj);
         }
