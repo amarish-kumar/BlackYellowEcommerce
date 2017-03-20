@@ -7,6 +7,7 @@ using BlackYellow.MVC.Repositories;
 using BlackYellow.MVC.Domain.Entites;
 using BlackYellow.MVC.Domain.Interfaces.Services;
 using BlackYellow.MVC.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -19,18 +20,22 @@ namespace BlackYellow.MVC.Controllers
             _categoryService = categoryService;
         }
 
+
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
             
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
            
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Update()
         {
             return View();

@@ -1,5 +1,6 @@
 ﻿using BlackYellow.MVC.Domain.Entites;
 using BlackYellow.MVC.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace BlackYellow.MVC.Controllers
             _environment = environment;
         }
 
-
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
             return View();
@@ -36,6 +37,7 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
