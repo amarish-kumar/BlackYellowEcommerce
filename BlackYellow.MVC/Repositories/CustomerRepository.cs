@@ -13,23 +13,28 @@ namespace BlackYellow.MVC.Repositories
         public override bool Insert(Customer customer)
         {
 
-            using (var tran = base.db.Connection.BeginTransaction())
+            using (var cn = base.db.Connection)
             {
+                cn.Open();
+                using (var tran = cn.BeginTransaction())
+                {
 
-                var transactionResult =
-                ((customer.UserId = base.db.Connection.Insert(customer.User, tran)) > 0) &&
-                ((customer.Address.CustomerId = base.db.Connection.Insert(customer, tran)) > 0) &&
-                (base.db.Connection.Insert(customer.Address) > 0);
 
-                if (transactionResult)
-                    tran.Commit();
-                else
-                    tran.Rollback();
+                    var insertUser = ((customer.UserId = cn.Insert(customer.User, tran)) > 0);
+                    var insertCustomer = ((customer.CustomerId = customer.Address.CustomerId = cn.Insert(customer, tran)) > 0);
+                    var insertAddress = ((customer.Address.AddressId = cn.Insert(customer.Address, tran)) > 0);
 
-                return transactionResult;
+                    var transactionResult = insertUser && insertCustomer && insertAddress;
 
+                    if (transactionResult)
+                        tran.Commit();
+                    else
+                        tran.Rollback();
+
+                    return transactionResult;
+
+                }
             }
-
 
         }
 
@@ -37,7 +42,7 @@ namespace BlackYellow.MVC.Repositories
         public Customer GetCustomerByDocument(string cpf)
         {
             var sql = "select * from Customers where cpf = @cpf";
-            return base.db.Connection.Query<Customer>(sql, cpf).SingleOrDefault();
+            return base.db.Connection.Query<Customer>(sql, new { cpf = cpf }).SingleOrDefault();
         }
     }
 }

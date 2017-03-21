@@ -90,16 +90,13 @@ namespace BlackYellow.MVC.Controllers
 
             if (string.IsNullOrEmpty(customer.Cpf) || !customer.Cpf.ValidCPF())
                 throw new Exception("Obrigatório fornecer um CPF válido.");
-                
+
             customer.User.Profile = Domain.Enum.Profile.User;
 
-            _userService.Insert(customer.User);
-            _customerService.Insert(customer);
-
-
-            ViewBag.Message = "Usuário cadastrado com sucesso.";
+            ViewBag.Message = _customerService.Insert(customer) ? $"Usuário #{customer.CustomerId} cadastrado com sucesso." : "Ocorreu um erro ao inserir os dados, tente novamente...";
 
             return View();
+
         }
 
 

@@ -1,12 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Dapper.Contrib.Extensions;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
 
     public class Customer
     {
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -23,13 +24,13 @@ namespace BlackYellow.MVC.Domain.Entites
         public string Phone { get; set; }
 
         public long UserId { get; set; }
-        
+        [Write(false)]
         public Address Address { get; set; }
-
+        [Write(false)]
         public User User { get; set; }
 
-
-        public string FullName
+        [Write(false)]
+                public string FullName
         {
             get { return FirstName + " " + LastName; }
         }

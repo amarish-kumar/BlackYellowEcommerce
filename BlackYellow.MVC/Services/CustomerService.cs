@@ -19,6 +19,10 @@ namespace BlackYellow.MVC.Services
         {
             return _customerRepository.GetCustomerByDocument(cpf);
         }
+
+        public override bool Insert(Customer customer) {
+            return _customerRepository.Insert(customer);
+        }
         
 
     }

@@ -1,8 +1,8 @@
 namespace BlackYellow.MVC.Domain.Enum
 {
-    public enum Profile
+    public enum Profile : int
     {
-        Administrator,
+        Administrator = 1,
         User
     }
 }

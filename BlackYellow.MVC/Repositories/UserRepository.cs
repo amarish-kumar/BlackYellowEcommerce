@@ -14,7 +14,8 @@ namespace BlackYellow.MVC.Repositories
         public User GetUserByMail(string email)
         {
             var sql = "SELECT * FROM Users WHERE Email = @email";
-            return db.Connection.Query<User>(sql, param: email).SingleOrDefault();
+
+            return db.Connection.Query<User>(sql, param: new { email = email }).SingleOrDefault();
         }
 
         public User GetUserByNamePassword(User user)

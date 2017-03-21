@@ -17,27 +17,27 @@ namespace BlackYellow.MVC.Services
             _repository = repository;
         }
 
-        public bool Delete(T obj)
+        public virtual bool Delete(T obj)
         {
            return  _repository.Delete(obj);
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return _repository.Get(id);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public bool Insert(T obj)
+        public virtual bool Insert(T obj)
         {
             return _repository.Insert(obj);
         }
 
-        public bool Update(T obj)
+        public virtual bool Update(T obj)
         {
             return _repository.Update(obj);
         }

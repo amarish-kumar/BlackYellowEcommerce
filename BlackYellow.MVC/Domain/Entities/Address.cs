@@ -2,20 +2,21 @@
 
 
 using System.ComponentModel.DataAnnotations;
+using Dapper.Contrib.Extensions;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
-
+    [Table("Adresses")]
     public class Address
     {
-        public int AddressId { get; set; }
+        public long AddressId { get; set; }
         [Required]
         public string Street { get; set; }
         public string Street2 { get; set; }
         [Required]
-        public string Number { get; set; }     
+        public string Number { get; set; }
         [Required]
-        public string  ZipCode { get; set; }     
+        public string ZipCode { get; set; }
         [Required]
         public string State { get; set; }
         [Required]
