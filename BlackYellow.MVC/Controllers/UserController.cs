@@ -21,14 +21,14 @@ namespace BlackYellow.MVC.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
