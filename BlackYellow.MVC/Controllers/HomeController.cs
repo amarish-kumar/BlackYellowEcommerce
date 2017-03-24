@@ -34,34 +34,7 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-        public JsonResult Order()
-        {
-
-            Cart obj = new Cart();
-            ItemCart item = new ItemCart();
-            item.ItemCartId = 1;
-            item.Price = 200;
-            item.Quantity = 1;
-
-            var strResponse = HttpContext.Session.GetString(SessionCart);
-          
-            obj.Itens = new List<ItemCart>();
-          
-            if (!string.IsNullOrEmpty(strResponse))
-            {
-                var cart = JsonConvert.DeserializeObject<Cart>(strResponse);
-                obj = cart;
-            }
-
-
-            obj.Itens.Add(item);
-
-            var str = JsonConvert.SerializeObject(obj);
-            HttpContext.Session.SetString(SessionCart, str);
-            
-
-            return Json( new { sucesso = HttpContext.Session.GetString(SessionCart) });
-        }
+        
 
         public IActionResult Error()
         {
