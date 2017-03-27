@@ -24,6 +24,50 @@ namespace BlackYellow.MVC.Controllers
 
         // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(User user)
+        {
+
+            user = _userService.GetUserByNamePassword(user);
+
+            if (user?.UserId > 0)
+            {
+
+            
+
+                const string Issuer = "https://contoso.com";
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, Issuer));
+                claims.Add(new Claim(ClaimTypes.Role, user.Profile.ToString(), ClaimValueTypes.String, Issuer));
+                var userIdentity = new ClaimsIdentity("SuperSecureLogin");
+                userIdentity.AddClaims(claims);
+                var userPrincipal = new ClaimsPrincipal(userIdentity);
+
+                HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
+                   new AuthenticationProperties
+                   {
+                       ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
+                       IsPersistent = false,
+                       AllowRefresh = false
+                   }).Wait();
+
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                ViewBag.Message = "Usuário inválido, verifique os dados e tente novamente";
+                return View();
+            }
+
+        }
+
+
         public async Task<JsonResult> Logar([FromBody]User user)
         {
             // Aqui iremos pegar as infomações do usuário 
@@ -57,11 +101,6 @@ namespace BlackYellow.MVC.Controllers
             }
 
 
-        }
-
-        public IActionResult Login()
-        {
-            return View();
         }
 
 

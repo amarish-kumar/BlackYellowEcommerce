@@ -22,7 +22,7 @@ namespace BlackYellow.MVC.Repositories
         {
             try
             {
-                var sql = " SELECT Email, Profile FROM Users WHERE Email = @Email AND Password = @Password";
+                var sql = " SELECT * FROM Users WHERE Email = @Email AND Password = @Password";
 
                 // var row = db.Connection.Query<User>(sql, param: user);
 
