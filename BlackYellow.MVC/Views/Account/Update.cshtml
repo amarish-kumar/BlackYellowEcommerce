@@ -1,0 +1,36 @@
+﻿@model BlackYellow.MVC.Domain.Entites.Customer
+
+@{
+
+    ViewBag.Title = "Editar Dados";
+
+}
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm(actionName: "Update", controllerName: "Account", method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+        {
+
+
+            @Html.Partial("~/Views/Account/Shared/_CustomerData.cshtml", Model)
+
+            <p>
+
+                <input type="submit" class="btn btn-default" value="Salvar Alterações" />
+                <input type="reset" class="btn btn-danger" value="Limpar" />
+
+            </p>
+
+            <div class="clear"></div>
+
+        }
+
+
+
+    </div>
+</div>
+
+@section scripts
+{
+
+}

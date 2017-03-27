@@ -11,15 +11,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/admin/style.css" />
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/admin/style.css")" />
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
 
-  
+
 </head>
 <body>
-  
+
     <div class="nav-side-menu">
         <div class="brand">Black Yellow</div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -41,13 +41,13 @@
                 <li data-toggle="collapse" data-target="#service" class="collapsed">
                     <a href="~/Product/Index"><i class="fa fa-gift fa-lg"></i> Produtos </a>
                 </li>
-               
+
 
 
                 <li data-toggle="collapse" data-target="#new" class="collapsed">
                     <a href="~/Category/Index"><i class="fa fa-dashcube fa-lg"></i> Categorias </a>
                 </li>
-               
+
                 <li>
                     <a href="~/Supplier/Index">
                         <i class="fa fa-truck fa-lg"></i> Fornecedores
@@ -66,7 +66,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="~/Report/Dashboard">BlackYellow</a>
             </div>
-            
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             </ul>
@@ -74,7 +74,7 @@
     </nav>
 
     <div class="container" id="main">
-        
+
         @RenderBody()
     </div>
 
@@ -147,12 +147,29 @@
     </div>
     <!--End Danger Modal Templates-->
 
-   
-    <script src="~/js/admin/_layoutAdmin/general.js"></script>
-   
+
+    <script src="@Url.Content("~/js/admin/_layoutAdmin/general.js")"></script>
+
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+
+            $('.datepicker').datepicker({
+                format: "dd/MM/yyyy",
+                language: "pt-BR",
+                autoclose: true
+            });
+
+
+            @if (ViewBag.Message != null) {
+
+            @:bootbox.alert('@(ViewBag.Message)');
+
+            }
+
+        });
+    </script>
+
 </body>
 </html>
-
-
-

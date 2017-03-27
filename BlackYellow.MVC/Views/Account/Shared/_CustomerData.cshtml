@@ -1,0 +1,82 @@
+﻿@model BlackYellow.MVC.Domain.Entites.Customer
+
+<div class="container">
+    <h3>Dados do Usuário</h3>
+    @*<p id="country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+            <label class="" for="country">
+                Pais <abbr title="required" class="required">*</abbr>
+            </label>
+            <select class="country_to_state country_select" id="country" name="country">
+                <option value="">Selecione o país…</option>
+                <option value="BR">Brasil</option>
+            </select>
+        </p>*@
+    <p id="first_name_field" class="form-group">
+        @Html.LabelFor(fn => fn.FirstName, "Nome")
+        @Html.TextBoxFor(fn => fn.FirstName, new { @class = "form-control" })
+    </p>
+    <p id="last_name_field" class="form-group">
+        @Html.LabelFor(fn => fn.LastName, "Sobrenome")
+        @Html.TextBoxFor(fn => fn.LastName, new { @class = "form-control" })
+    </p>
+
+    <p id="cpf_field" class="form-group">
+        @Html.LabelFor(fn => fn.Cpf, "CPF")
+        @Html.TextBoxFor(fn => fn.Cpf, new { @class = "form-control" })
+    </p>
+
+    <p id="cpf_field" class="form-group">
+        @Html.LabelFor(fn => fn.Birthday, "Nascimento")
+        @Html.TextBoxFor(fn => fn.Birthday, new { @class = "form-control datepicker" })
+    </p>
+
+
+    <div class="clear"></div>
+
+    <!-- #region Adress -->
+    <p id="address_1_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.Street, "Logradouro")
+        @Html.TextBoxFor(fn => fn.Address.Street, new { @class = "form-control" })
+    </p>
+    <p id="address_2_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.Street2, "Complemento")
+        @Html.TextBoxFor(fn => fn.Address.Street2, new { @class = "form-control", placeholder = "Apartamento, Andar, etc... (opcional)" })
+    </p>
+
+    <p id="number_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.Number, "Número")
+        @Html.TextBoxFor(fn => fn.Address.Number, new { @class = "form-control", placeholder = "Número" })
+    </p>
+
+    <p id="city_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.City, "Cidade")
+        @Html.TextBoxFor(fn => fn.Address.City, new { @class = "form-control" })
+    </p>
+    <p id="state_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.State, "Estado")
+        @Html.TextBoxFor(fn => fn.Address.State, new { @class = "form-control" })
+    </p>
+    <p id="postcode_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.ZipCode, "CEP")
+        @Html.TextBoxFor(fn => fn.Address.ZipCode, new { @class = "form-control", placeholder = "CEP / Código Postal" })
+    </p>
+    <!-- #endregion -->
+
+
+
+    <div class="clear"></div>
+    <p id="email_field" class="form-group">
+        @Html.LabelFor(fn => fn.User.Email, "E-mail")
+        @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail" })
+    </p>
+    <p id="phone_field" class="form-group">
+        @Html.LabelFor(fn => fn.Phone, "Telefone")
+        @Html.TextBoxFor(fn => fn.Phone, new { @class = "form-control", placeholder = "Telefone para contato" })
+    </p>
+
+    <p id="account_password_field" class="form-group">
+        @Html.LabelFor(fn => fn.User.Password, "Senha")
+        @Html.TextBoxFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "" })
+    </p>
+
+</div>

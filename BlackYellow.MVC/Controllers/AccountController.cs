@@ -13,6 +13,8 @@ namespace BlackYellow.MVC.Controllers
     public class AccountController : Controller
     {
 
+        private const string UNAUTHORIZED_UPDATE_USER_EXCEPTION = "Você não têm permissão para acessar e editar esses dados, verifique seu login e tente novamente.";
+
         readonly ICustomerService _customerService;
         readonly IUserService _userService;
 
@@ -99,6 +101,39 @@ namespace BlackYellow.MVC.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+
+            var customer = _customerService.Get(id);
+
+
+
+            if (IsLoginCustomer(customer))
+                return View(customer);
+
+
+            throw new UnauthorizedAccessException(UNAUTHORIZED_UPDATE_USER_EXCEPTION);
+
+        }
+
+        [HttpPost]
+        public IActionResult Update(Customer customer)
+        {
+
+            if (customer.CustomerId > 0 && ModelState.IsValid && IsLoginCustomer(customer))
+            {
+
+                _customerService.Update(customer);
+
+                return View(customer);
+
+            }
+
+            throw new UnauthorizedAccessException(UNAUTHORIZED_UPDATE_USER_EXCEPTION);
+
+        }
+
 
         public JsonResult RegisterCustomer([FromBody] Customer customer)
         {
@@ -121,5 +156,12 @@ namespace BlackYellow.MVC.Controllers
             await HttpContext.Authentication.SignOutAsync("Cookie");
             return RedirectToAction("Index", "Home");
         }
+
+        private bool IsLoginCustomer(Customer customer)
+        {
+            //TODO - Verificar se usuário logado é o mesmo do parametro para permitir ação
+            return true;
+        }
+
     }
 }
