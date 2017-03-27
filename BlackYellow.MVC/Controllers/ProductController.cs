@@ -25,7 +25,7 @@ namespace BlackYellow.MVC.Controllers
             _environment = environment;
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
             return View();
@@ -37,7 +37,7 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();

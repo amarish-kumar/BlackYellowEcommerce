@@ -23,9 +23,9 @@ namespace BlackYellow.MVC.Repositories
                                           Price,
                                           CategoryId,
                                           DateRegister)
-                        VALUES( @Name,@Description,@Quantity,@LastPrice,@Price,@CategoryId,@DateRegister)";
+                        VALUES(@Name,@Description,@Quantity,@LastPrice,@Price,@CategoryId,@DateRegister)";
 
-                db.Connection.Execute(sql, new
+               product.ProductId =  db.Connection.ExecuteScalar<int>(sql, new
                 {
                     Name = product.Name,
                     Description = product.Description,
@@ -35,6 +35,19 @@ namespace BlackYellow.MVC.Repositories
                     CategoryId = product.CategoryId,
                     DateRegister = DateTime.Now
                 });
+
+
+                foreach (var item in product.GaleryProduct)
+                {
+                    db.Connection.Execute(sql, new
+                    {
+                        NameImage = item.NameImage,
+                        PathImage = item.PathImage,
+                        IsPrincipal = item.IsPrincipal,
+                        ProductId = product.ProductId
+                    });
+                }
+
 
                 return true;
             }
@@ -82,5 +95,6 @@ namespace BlackYellow.MVC.Repositories
                 throw;
             }
         }
+
     }
 }

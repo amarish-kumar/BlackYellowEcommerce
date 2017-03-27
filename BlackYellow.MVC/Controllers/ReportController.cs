@@ -10,25 +10,25 @@ namespace BlackYellow.MVC.Controllers
     public class ReportController : Controller
     {
         // GET: /<controller>/
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Orders()
         {
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Products()
         {
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public IActionResult Customers()
         {
             return View();

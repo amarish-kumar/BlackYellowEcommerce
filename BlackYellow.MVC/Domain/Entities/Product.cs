@@ -1,3 +1,4 @@
+using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace BlackYellow.MVC.Domain.Entites
         {
             this.GaleryProduct = new List<GaleryProduct>();
         }
+        [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -35,6 +37,8 @@ namespace BlackYellow.MVC.Domain.Entites
         {
             return GaleryProduct.Count >= 4;
         }
+
+       
 
 
         public void FileGalery(IFormFile main_file, ICollection<IFormFile> details_files, string path)
