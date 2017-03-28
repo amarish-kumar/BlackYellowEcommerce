@@ -8,6 +8,9 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -15,6 +18,7 @@
     <link rel="stylesheet" href="@Url.Content("~/css/admin/style.css")" />
     <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
     <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
+
 
 
 </head>
@@ -149,6 +153,11 @@
 
 
     <script src="@Url.Content("~/js/admin/_layoutAdmin/general.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 
     @RenderSection("scripts", required: false)
 
@@ -156,10 +165,23 @@
         $(document).ready(function () {
 
             $('.datepicker').datepicker({
-                format: "dd/MM/yyyy",
+                format: "dd/mm/yyyy",
                 language: "pt-BR",
                 autoclose: true
             });
+
+            $('.datatable').bootstrapTable({
+                locale: 'pt-BR',
+                search:"true",
+                showRefresh:"true",
+                showToggle:"true",
+                showColumns:"true",
+                pagination:"true",
+                classes:"table table-condensed table-bordered table-hover table-responsive table-striped"
+
+
+            });
+
 
 
             @if (ViewBag.Message != null) {

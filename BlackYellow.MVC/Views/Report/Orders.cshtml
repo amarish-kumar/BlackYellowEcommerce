@@ -1,7 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var filters = ViewBag.Filters as BlackYellow.MVC.Models.OrderReportFilters;
 }
-@model BlackYellow.MVC.Models.OrderReportFilters
+@model List<BlackYellow.MVC.Domain.Entites.Order>
 
 <h2>Relatório de Vendas</h2>
 
@@ -15,23 +16,27 @@
             <div class="">
                 <div class="form-inline form-group">
                     <label for="dataInicial">Data Inicial</label>
-                    <input id="dataInicial" name="InitDate" class="form-control datepicker" value="@(Model?.InitDate?.ToString("D"))"  />
+                    <input id="dataInicial" name="InitDate" class="form-control datepicker" value="@(filters?.InitDate?.ToString("D"))" />
                 </div>
 
                 <div class="form-group form-inline">
                     <label for="dataFinal">Data Final</label>
-                    <input id="dataFinal" name="EndDate" class="form-control datepicker" value="@(Model?.EndDate?.ToString("D"))" />
+                    <input id="dataFinal" name="EndDate" class="form-control datepicker" value="@(filters?.EndDate?.ToString("D"))" />
                 </div>
             </div>
 
-
-            @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder)).OfType<BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder>())
+            <ul style="list-style-type: none;">
+                @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder)).OfType<BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder>())
             {
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="Status" value="true" checked="@(Model?.Status?.Contains(item))" />
-                    @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
-                </label>
-            }
+                    <li>
+                        <label class="checkbox">
+                            <input type="checkbox" name="Status" value="true" checked="@(filters?.Status?.Contains(item))" />
+                            @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
+                        </label>
+                    </li>
+                }
+            </ul>
+
 
 
 
@@ -43,6 +48,38 @@
 
     </div>
     <div class="panel-body">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Valor Total</th>
+                    <th>Qtd Itens</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
 
+                        <tr>
+
+                            <td>@item.OrderId</td>
+                            <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item.Status)</td>
+                            <td>@item.OrderDate.ToString("d")</td>
+                            <td>@item.Customer.FullName</td>
+                            <td>@item.TotalOrder.ToString("N2")</td>
+                            <td>@item.Itens.Count</td>
+
+                        </tr>
+
+
+                    }
+                }
+            </tbody>
+        </table>
     </div>
 </div>

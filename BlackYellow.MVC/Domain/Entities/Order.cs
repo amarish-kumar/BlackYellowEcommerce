@@ -10,7 +10,8 @@ namespace BlackYellow.MVC.Domain.Entites
         public int CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
 
-
+        public Models.OrderReportFilters.eStatusOrder Status { get; set; }
+        
         public Customer Customer  { get; set; }
 
         public List<ItemCart> Itens { get; set; }

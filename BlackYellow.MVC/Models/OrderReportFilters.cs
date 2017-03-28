@@ -9,10 +9,10 @@ namespace BlackYellow.MVC.Models
     public class OrderReportFilters : ReportFilters
     {
 
-        public enum eStatusOrder
+        public enum eStatusOrder : int
         {
             [Description("Aguardando pagamento")]
-            AguardandoPagamento,
+            AguardandoPagamento = 1,
 
             [Description("Aguardando Emissão NF")]
             AguardandoEmissaoNF,
@@ -32,7 +32,7 @@ namespace BlackYellow.MVC.Models
 
 
         public eStatusOrder[] Status { get; set; }
-        
+
 
     }
 }
