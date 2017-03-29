@@ -11,40 +11,58 @@
 <div class="panel panel-default">
     <div class="panel-heading">
 
-        <div class="form-inline" style="margin-top: 20px;">
 
-            <div class="">
-                <div class="form-inline form-group">
-                    <label for="dataInicial">Data Inicial</label>
-                    <input id="dataInicial" name="InitDate" class="form-control datepicker" value="@(filters?.InitDate?.ToString("D"))" />
+        @using (Html.BeginForm(FormMethod.Post))
+            {
+
+
+            <div class="clearfix">
+
+                <div class="pull-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-inline" style="margin-top: 20px;">
+
+                                <div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                    <input id="dataInicial" placeholder="Data Inicial" name="InitDate" class="form-control datepicker" value="@(filters?.InitDate?.ToString("d"))" />
+                                    <label for="dataInicial">Data Inicial</label>
+                                </div>
+
+                                <div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                    <input id="dataFinal" placeholder="Data Final" name="EndDate" class="form-control datepicker" value="@(filters?.EndDate?.ToString("d"))" />
+                                    <label for="dataFinal">Data Final</label>
+                                </div>
+
+                                <ul class="col-lg-6 col-sm-12 col-md-6" style="list-style-type: none;column-count:2;margin:0">
+                                    @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Domain.Entites.Order.EStatusOrder)).OfType<BlackYellow.MVC.Domain.Entites.Order.EStatusOrder>())
+                                    {
+                                        <li>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="Status" value="@item" checked="@(filters?.Status?.Contains(item))" />
+                                                @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
+                                            </label>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
                 </div>
 
-                <div class="form-group form-inline">
-                    <label for="dataFinal">Data Final</label>
-                    <input id="dataFinal" name="EndDate" class="form-control datepicker" value="@(filters?.EndDate?.ToString("D"))" />
+                <div class="pull-right">
+
+                    <button type="submit" class="btn btn-lg btn-success">
+                        <i class="fa fa-search"></i> Buscar
+                    </button>
+
                 </div>
+
             </div>
 
-            <ul style="list-style-type: none;">
-                @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder)).OfType<BlackYellow.MVC.Models.OrderReportFilters.eStatusOrder>())
-            {
-                    <li>
-                        <label class="checkbox">
-                            <input type="checkbox" name="Status" value="true" checked="@(filters?.Status?.Contains(item))" />
-                            @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
-                        </label>
-                    </li>
-                }
-            </ul>
+        }
 
 
 
-
-
-            <button type="submit" class="btn btn-success">
-                <i class="fa fa-search"></i> Buscar
-            </button>
-        </div>
 
     </div>
     <div class="panel-body">
@@ -68,7 +86,7 @@
                         <tr>
 
                             <td>@item.OrderId</td>
-                            <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item.Status)</td>
+                            <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item.OrderStatus)</td>
                             <td>@item.OrderDate.ToString("d")</td>
                             <td>@item.Customer.FullName</td>
                             <td>@item.TotalOrder.ToString("N2")</td>

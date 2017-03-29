@@ -13,11 +13,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+    
     <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/admin/style.css")" />
     <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
     <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/css/floating-labels.css")" />
 
 
 
@@ -151,13 +152,13 @@
     </div>
     <!--End Danger Modal Templates-->
 
-
     <script src="@Url.Content("~/js/admin/_layoutAdmin/general.js")"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="@Url.Content("~/js/floating-labels.js")"></script>
 
     @RenderSection("scripts", required: false)
 
@@ -172,14 +173,12 @@
 
             $('.datatable').bootstrapTable({
                 locale: 'pt-BR',
-                search:"true",
-                showRefresh:"true",
-                showToggle:"true",
-                showColumns:"true",
-                pagination:"true",
-                classes:"table table-condensed table-bordered table-hover table-responsive table-striped"
-
-
+                search: "true",
+                showRefresh: "true",
+                showToggle: "true",
+                showColumns: "true",
+                pagination: "true",
+                classes: "table table-condensed table-bordered table-hover table-responsive table-striped"
             });
 
 

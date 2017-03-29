@@ -27,6 +27,8 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/responsive.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="@Url.Content("~/css/floating-labels.css")" />
+
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
@@ -206,6 +208,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="@Url.Content("~/js/floating-labels.js")"></script>
 
     @RenderSection("scripts", required: false)
 
