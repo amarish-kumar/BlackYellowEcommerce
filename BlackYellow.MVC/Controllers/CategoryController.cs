@@ -46,19 +46,12 @@ namespace BlackYellow.MVC.Controllers
         {
             try
             {
-                IEnumerable<Category> categories = new List<Category>();
-                Category category = new Category();
-                category.Name = "teste1";
-                category.CategoryId = 1;
-                Category category2 = new Category();
-                category.CategoryId = 2;
-                category2.Name = "teste2";
-                List<Category> lista = categories.ToList<Category>();
-                lista.Add(category);
-                lista.Add(category2);
+
+                IEnumerable<Category> lista = _categoryService.GetAll();
+              
                 return Json(new { categories = lista });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return Json(new { error = "Erro ao trazer as categorias" });

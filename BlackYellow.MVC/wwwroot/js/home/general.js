@@ -93,6 +93,7 @@ function getCategories()
 
 function getProducts()
 {
+    
     $.ajax({
         contentType: "application/json",
         method: "GET",

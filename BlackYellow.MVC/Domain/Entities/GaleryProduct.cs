@@ -14,11 +14,11 @@ namespace BlackYellow.MVC.Domain.Entites
             
         }
 
-        public int GaleryProductId { get; set; }
+        public long GaleryProductId { get; set; }
         public string NameImage{get; set;}
         public string PathImage {get;   set;}
         public bool IsPrincipal { get; set; }
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
 
         public Product Product { get; set; }
 

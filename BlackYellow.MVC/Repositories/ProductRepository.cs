@@ -19,24 +19,15 @@ namespace BlackYellow.MVC.Repositories
                                 Products( Name, 
                                           Description,
                                           Quantity,
-                                          LastPrice,
+                            
                                           Price,
                                           CategoryId,
                                           DateRegister)
-                        VALUES(@Name,@Description,@Quantity,@LastPrice,@Price,@CategoryId,@DateRegister)";
+                        VALUES(@Name,@Description,@Quantity,@Price,@CategoryId,@DateRegister)";
 
-               product.ProductId =  db.Connection.ExecuteScalar<int>(sql, new
-                {
-                    Name = product.Name,
-                    Description = product.Description,
-                    Quantity = product.Quantity,
-                    LastPrice = product.LastPrice,
-                    Price = product.Price,
-                    CategoryId = product.CategoryId,
-                    DateRegister = DateTime.Now
-                });
+                product.ProductId = db.Connection.Insert(product);
 
-
+                sql = "INSERT INTO GaleryProducts (NameImage, PathImage,IsPrincipal, ProductId) VALUES (@NameImage, @PathImage,@IsPrincipal,@ProductId)";
                 foreach (var item in product.GaleryProduct)
                 {
                     db.Connection.Execute(sql, new
@@ -76,10 +67,10 @@ namespace BlackYellow.MVC.Repositories
                                     splitOn:"PathImage",
                                     map:(p, g) => {
                                         Product pr;
-                                        if (!produtos.TryGetValue(p.ProductId, out pr))
+                                        if (!produtos.TryGetValue((int)p.ProductId, out pr))
                                         {
                                             pr = p;
-                                            produtos.Add(pr.ProductId, pr);
+                                            produtos.Add((int) pr.ProductId, pr);
                                         }
                                         pr.GaleryProduct.Add(g);
                                         return p; }

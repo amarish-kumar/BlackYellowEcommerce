@@ -51,7 +51,7 @@ namespace BlackYellow.MVC.Controllers
             Cart obj = new Cart();
             ItemCart item = new ItemCart();
             item.Product = new Product();
-            item.Product = _productService.Get(prod.ProductId);
+            item.Product = _productService.Get((int)prod.ProductId);
 
             var strResponse = HttpContext.Session.GetString(SessionCart);
             obj.Itens = new List<ItemCart>();

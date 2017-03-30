@@ -13,16 +13,20 @@ namespace BlackYellow.MVC.Domain.Entites
             this.GaleryProduct = new List<GaleryProduct>();
         }
         [Key]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
-        public double LastPrice { get; set; }
+     //   public double LastPrice { get; set; }
         public double Price { get; set; }
+        [Write(false)]
         public virtual Category Category { get; set; }
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
         public DateTime DateRegister { get; set; }
+        [Write(false)]
         public List<GaleryProduct> GaleryProduct { get; set; }
+
+        [Write(false)]
         public bool IsAvailable
         {
             get
@@ -32,7 +36,7 @@ namespace BlackYellow.MVC.Domain.Entites
         }
 
 
-
+       
         public bool GaleryIsFull()
         {
             return GaleryProduct.Count >= 4;
