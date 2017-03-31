@@ -25,9 +25,9 @@ function fillCategories(categories) {
 function fillProducts(products)
 {
     var html = "";
-    console.log(products);
+ 
     $.each(products, function (item, value) {
-       
+        console.log(value.galeryProduct[0].pathImage);
         html = '<div class="col-sm-6 col-md-4">' +
                 '<div class="single-product">' +
                     '<div class="product-f-image">' +

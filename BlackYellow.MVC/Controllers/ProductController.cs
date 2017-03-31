@@ -74,13 +74,14 @@ namespace BlackYellow.MVC.Controllers
             try
             {
                 var path = string.Empty;
+                var pathServer = "images/products/";
                 path = _environment.WebRootPath + "/images/products/";
                 ICollection<IFormFile> files = new Collection<IFormFile>();
                 files.Add(details_file1);
                 files.Add(details_file2);
                 files.Add(details_file3);
 
-                product.FileGalery(main_file, files, path);
+                product.FileGalery(main_file, files, pathServer);
                 product.DateRegister = DateTime.Now;
                 _productService.uploadProductFiles(main_file, files, path);
                 if (_productService.InsertProduct(product))

@@ -57,10 +57,10 @@ namespace BlackYellow.MVC.Repositories
         {
             try
             {
-                var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage
+                var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage, g.IsPrincipal
                                 FROM Products p INNER JOIN
                                 GaleryProducts g ON g.ProductId = p.ProductId
-                                WHERE Quantity > 0";
+                                WHERE Quantity > 0 AND g.IsPrincipal = 1";
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
                 db.Connection.Query<Product, GaleryProduct, Product>(sql,
@@ -72,8 +72,14 @@ namespace BlackYellow.MVC.Repositories
                                             pr = p;
                                             produtos.Add((int) pr.ProductId, pr);
                                         }
-                                        pr.GaleryProduct.Add(g);
-                                        return p; }
+                                        if(g.IsPrincipal)
+                                        {
+                                            pr.GaleryProduct.Add(g);
+                                           
+                                        }
+                                        return p;
+                                    }
+                                       
                         
                     ).ToList();
 

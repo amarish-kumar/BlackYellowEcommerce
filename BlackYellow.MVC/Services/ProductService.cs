@@ -33,7 +33,11 @@ namespace BlackYellow.MVC.Services
         {          
             if (main_file.Length > 0)
             {
-                File.Create(Path.Combine(path, main_file.FileName));               
+                using (var fileStream = new FileStream(Path.Combine(path, main_file.FileName), FileMode.Create))
+                {
+                    await main_file.CopyToAsync(fileStream);
+                }
+                         
             }
 
             foreach (var file in details_files)
