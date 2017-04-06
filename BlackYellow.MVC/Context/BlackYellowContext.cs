@@ -1,11 +1,28 @@
 ﻿
-using MySql.Data.MySqlClient;  
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace BlackYellow.MVC.Context
 {
     public class BlackYellowContext
     {
         // criando a conexão com o banco de dados MYSQL
-        public MySqlConnection Connection = new MySqlConnection("Server=177.153.22.229;Database=BlackYellow; Uid=root;Pwd=FQVbgq77901;SslMode=None;");
+        public System.Data.IDbConnection Connection
+        {
+            get
+            {
+                return GetConnection();
+            }
+        }
+
+        private System.Data.IDbConnection GetConnection()
+        {
+            return new MySqlConnection(ConfigConnection); ;
+        }
+
+
+        public static string ConfigConnection { get; set; }
+
+
     }
 }

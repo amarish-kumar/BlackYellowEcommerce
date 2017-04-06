@@ -33,6 +33,9 @@ namespace BlackYellow.MVC
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
             Configuration = builder.Build();
+
+            Context.BlackYellowContext.ConfigConnection = Configuration.GetConnectionString("BlackYellowConnection");
+
         }
 
         public IConfigurationRoot Configuration { get; }
