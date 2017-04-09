@@ -32,9 +32,13 @@ namespace BlackYellow.MVC.Controllers
         }
 
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            Product p = _productService.Get(id);
+            Category c = _categoryService.Get((int)p.CategoryId);
+            p.Category = new Category();
+            p.Category = c;
+            return View(p);
         }
 
         //[Authorize(Roles = "Administrator")]
