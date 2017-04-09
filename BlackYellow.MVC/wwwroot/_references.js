@@ -4,6 +4,7 @@
 /// <reference path="js/admin/category/create.js" />
 /// <reference path="js/admin/product/create.js" />
 /// <reference path="js/admin/user/create.js" />
+/// <reference path="js/cart/general.js" />
 /// <reference path="js/floating-labels.js" />
 /// <reference path="js/home/general.js" />
 /// <reference path="js/order/cart.js" />

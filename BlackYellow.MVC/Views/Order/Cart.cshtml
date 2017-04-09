@@ -1,4 +1,6 @@
-﻿<div class="product-big-title-area">
+﻿<script src="~/js/cart/general.js" ></script>
+
+<div class="product-big-title-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -15,34 +17,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Procurar Produtos</h2>
-                    <form action="#">
-                        <input type="text" placeholder="Procurar produtos...">
-                        <input type="submit" value="Procurar">
-                    </form>
-                </div>
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Products</h2>
-                    <div class="thubmnail-recent">
-                        <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>R$700.00</ins> <del>R$800.00</del>
-                        </div>
-                    </div>                 
-                </div>
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Posts Recentes</h2>
-                    <ul>
-                        <li><a href="#">Sony Smart TV - 2015</a></li>
-                       
-                    </ul>
-                </div>
-            </div>
+          
 
             <div class="col-md-8">
                 <div class="product-content-right">
@@ -59,8 +34,8 @@
                                         <th class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr class="cart_item">
+                                <tbody id="cart">
+                                    @*<tr class="cart_item">
                                         <td class="product-remove">
                                             <a title="Remover produto" class="remove" href="#">×</a>
                                         </td>
@@ -83,18 +58,8 @@
                                         <td class="product-subtotal">
                                             <span class="amount">R$15.00</span>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="actions" colspan="6">
-                                            <div class="coupon">
-                                                <label for="coupon_code">Coupon:</label>
-                                                <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                            </div>
-                                            <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">
-                                            <input type="submit" value="Finalizar Compra" name="proceed" class="checkout-button button alt wc-forward">
-                                        </td>
-                                    </tr>
+                                    </tr>*@
+                                   
                                 </tbody>
                             </table>
                         </form>

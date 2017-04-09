@@ -33,11 +33,12 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult Itens()
         {
             var strResponse = HttpContext.Session.GetString(SessionCart);
             Cart cart = JsonConvert.DeserializeObject<Cart>(strResponse);
-            return Json(new { sucesso = cart });
+            return Json(new { carrinho = cart });
         }
 
         public IActionResult Checkout()
