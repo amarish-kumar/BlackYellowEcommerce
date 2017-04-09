@@ -13,7 +13,9 @@ input[type="submit"], button[type="submit"] {
 } 
 .col-1, .col-2 {
   width: 293px;
-}    
+} 
+
+ 
     
     
 }
@@ -54,7 +56,9 @@ div.cart-collaterals ul.products li.product {
     
 .col-1, .col-2 {
   width: 345px;
-}    
+} 
+
+ 
     
 }
 /* Mobile Layout: 320px. */
@@ -73,7 +77,14 @@ div.cart-collaterals ul.products li.product {
   margin-bottom: 20px;
   margin-top: 5px;
   text-align: center;
-}  
+}
+
+.search-item {
+  float: none;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  text-align: center;
+}   
 .navbar-header {
   text-align: center;
 }    
@@ -197,6 +208,7 @@ div.coupon input[type="text"] {
   width: 100%;
 }  
     
+
     
 }
 /* Wide Mobile Layout: 480px. */

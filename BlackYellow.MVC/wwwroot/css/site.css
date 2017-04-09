@@ -101,6 +101,17 @@ z-index: 999;}
     padding: 10px;
     position: relative;
 }
+
+.search-item {   
+    float: left;
+    font-size: 18px;
+    margin-top: 40px;
+    padding: 10px;
+    position: relative;
+}
+
+
+
 .shopping-item a {
     color: #666;
 }
