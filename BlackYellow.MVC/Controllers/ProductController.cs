@@ -106,5 +106,21 @@ namespace BlackYellow.MVC.Controllers
                 return Redirect("/Product/Create");
             }
         }
+
+
+        [HttpGet]
+        public IActionResult SearchProducts(string product)
+        {
+            IEnumerable <Product> prods = _productService.GetByName(product);
+            return View(prods);
+
+        }
+
+      //  [HttpGet]
+        public IActionResult SearchByCategory(int id)
+        {
+            IEnumerable<Product> prods = _productService.GetByCategory(id.ToString());
+            return View(prods);
+        }
     }
 }

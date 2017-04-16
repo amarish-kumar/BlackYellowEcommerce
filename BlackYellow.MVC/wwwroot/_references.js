@@ -8,6 +8,7 @@
 /// <reference path="js/floating-labels.js" />
 /// <reference path="js/home/general.js" />
 /// <reference path="js/order/cart.js" />
+/// <reference path="js/products/general.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />

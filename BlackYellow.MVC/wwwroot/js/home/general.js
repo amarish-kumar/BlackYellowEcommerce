@@ -7,19 +7,35 @@
 
 
 function fillCategories(categories) {
-    console.log(categories);
+  
     var html = '<li>' +
                     '<a > Categorias </a>' +
                '</li>';
     $("#category").append(html);
     $.each(categories, function (item, value) {
+      
         html = '<li>'+
-                    '<a onclick="searchCategory('+value.categoriesId+')">' + value.name +'</a>'+
+                    '<a href="/Product/SearchByCategory/'+ value.categoryId+'">' + value.name + '</a>' +
                '</li>'
         $("#category").append(html);
     });
+    console.log(html);
 
     
+}
+
+function searchCategory(categoryId)
+{
+    var category = { CategoryId: categoryId }
+    $.ajax({
+        contentType: "application/json",
+        method: "POST",
+        url: "/Product/SearchByCategory",
+        data: JSON.stringify(category),
+        success: function (data) {
+            
+        }
+    });
 }
 
 function fillProducts(products)

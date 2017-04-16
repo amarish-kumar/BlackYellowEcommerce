@@ -11,6 +11,85 @@ namespace BlackYellow.MVC.Repositories
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
+        public IEnumerable<Product> GetByCategory(string categoryId)
+        {
+            try
+            {
+                var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage, g.IsPrincipal
+                                FROM Products p INNER JOIN
+                                GaleryProducts g ON g.ProductId = p.ProductId
+                                INNER JOIN Categories c ON c.CategoryId = p.CategoryId
+                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND  p.CategoryId = " + categoryId;
+
+                Dictionary<int, Product> produtos = new Dictionary<int, Product>();
+                db.Connection.Query<Product, GaleryProduct, Product>(sql,
+                                    splitOn: "PathImage",
+                                    map: (p, g) => {
+                                        Product pr;
+                                        if (!produtos.TryGetValue((int)p.ProductId, out pr))
+                                        {
+                                            pr = p;
+                                            produtos.Add((int)pr.ProductId, pr);
+                                        }
+                                        if (g.IsPrincipal)
+                                        {
+                                            pr.GaleryProduct.Add(g);
+
+                                        }
+                                        return p;
+                                    }
+
+
+                    ).ToList();
+
+                return produtos.Values;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public IEnumerable<Product> GetByName(string name)
+        {
+            try
+            {
+                var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage, g.IsPrincipal
+                                FROM Products p INNER JOIN
+                                GaleryProducts g ON g.ProductId = p.ProductId
+                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.Name = '"+ name +"'";
+
+                Dictionary<int, Product> produtos = new Dictionary<int, Product>();
+                db.Connection.Query<Product, GaleryProduct, Product>(sql,
+                                    splitOn: "PathImage",
+                                    map: (p, g) => {
+                                        Product pr;
+                                        if (!produtos.TryGetValue((int)p.ProductId, out pr))
+                                        {
+                                            pr = p;
+                                            produtos.Add((int)pr.ProductId, pr);
+                                        }
+                                        if (g.IsPrincipal)
+                                        {
+                                            pr.GaleryProduct.Add(g);
+
+                                        }
+                                        return p;
+                                    }
+
+
+                    ).ToList();
+
+                return produtos.Values;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public bool InsertProduct(Product product)
         {
             try
@@ -52,6 +131,8 @@ namespace BlackYellow.MVC.Repositories
 
 
         }
+
+        
 
         public IEnumerable<Product> ListTop12()
         {

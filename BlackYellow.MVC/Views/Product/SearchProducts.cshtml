@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BlackYellow.MVC.Domain.Entites.Product>
+
+<script src="~/js/products/general.js"></script>
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Busca de Produtos</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Page title area -->
+<div class="container">
+
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <nav class="navbar navbar-inverse" id="sidebar-wrapper" role="navigation">
+                <ul class="nav sidebar-nav" id="category"></ul>
+            </nav>
+            <!-- /#sidebar-wrapper -->
+        </div>
+        <div class="col-md-9">
+            <h2 class="section-title">Destaques</h2>
+            <div class="list-products">
+
+                @foreach (var item in Model)
+                {
+                            <div class="col-sm-6 col-md-4">
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img src="~/@item.GaleryProduct[0].PathImage" class="img-responsive" alt="">
+                                        <div class="product-hover">
+                                            ' +
+                                            <a href="#" onclick="buy(@item.ProductId)" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>
+                                            <a href="/Product/Details/@item.ProductId" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>
+                                        </div>
+                                    </div>
+                                    <h2><a href="Product/Details/' + value.productId + '">@item.Name</a></h2>
+                                    <div class="product-carousel-price">
+                                        <ins>R$@item.Price</ins> <del></del>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -14,9 +14,22 @@ namespace BlackYellow.MVC.Services
     {
         private readonly IProductRepository _productRepository;
 
+
+        
+
         public ProductService(IRepositoryBase<Product> repository, IProductRepository productRepository) : base(repository)
         {
             _productRepository = productRepository;
+        }
+
+        public IEnumerable<Product> GetByCategory(string categoryId)
+        {
+            return _productRepository.GetByCategory(categoryId);
+        }
+
+        public IEnumerable<Product> GetByName(string name)
+        {
+            return _productRepository.GetByName(name);
         }
 
         public bool InsertProduct(Product product)

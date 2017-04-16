@@ -11,5 +11,9 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
         bool InsertProduct(Product product);
 
         IEnumerable<Product> ListTop12();
+
+        IEnumerable<Product> GetByName(string name);
+
+        IEnumerable<Product> GetByCategory(string categoryId);
     }
 }
