@@ -39,5 +39,20 @@ namespace BlackYellow.MVC.Repositories
 
 
         }
+
+        public IEnumerable<User> GetAllUserAdmin()
+        {
+            try
+            {
+                var sql = "SELECT * FROM Users WHERE Users.Profile = 1";
+
+                return db.Connection.Query<User>(sql);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

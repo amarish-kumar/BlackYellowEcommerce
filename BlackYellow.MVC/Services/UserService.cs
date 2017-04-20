@@ -27,7 +27,10 @@ namespace BlackYellow.MVC.Services
             return _userRepository.GetUserByNamePassword(user);
         }
 
-
+        public IEnumerable<User> GetAllUserAdmin()
+        {
+            return _userRepository.GetAllUserAdmin();
+        }
 
 
     }

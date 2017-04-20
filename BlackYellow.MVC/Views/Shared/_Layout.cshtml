@@ -44,7 +44,16 @@
                             <li><a href="~/Order/Checkout"><i class="fa fa-address-card"></i> Finalizar Compra</a></li>
                             <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
                             <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
-                            <li><a href="~/Report/Dashboard"><i class="fa fa-gears"></i> Administração</a></li>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li><a href="~/Report/Dashboard"><i class="fa fa-gears"></i> Administração</a></li>
+                            }
+                            @if(User.Identity.Name != null)
+                            {
+                                <p>Bem vindo, @User.Identity.Name </p>
+
+                            }
+
                         </ul>
                     </div>
                 </div>

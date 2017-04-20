@@ -25,10 +25,11 @@ namespace BlackYellow.MVC.Controllers
             _environment = environment;
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Product> list = _productService.GetAll();
+            return View(list);
         }
 
 
@@ -41,7 +42,7 @@ namespace BlackYellow.MVC.Controllers
             return View(p);
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +55,9 @@ namespace BlackYellow.MVC.Controllers
 
         public IActionResult List()
         {
-            return View();
+            IEnumerable<Product> list = _productService.GetAll();
+
+            return View(list);
         }
 
         [HttpGet]

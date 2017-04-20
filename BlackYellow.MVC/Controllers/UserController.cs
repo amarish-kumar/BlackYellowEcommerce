@@ -21,14 +21,15 @@ namespace BlackYellow.MVC.Controllers
             _userService = userService;
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<User> list = _userService.GetAllUserAdmin();
+            return View(list);
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -37,8 +38,10 @@ namespace BlackYellow.MVC.Controllers
         
         public JsonResult RegisterUser([FromBody] User user)
         {
+
             try
             {
+                user.Profile = Domain.Enum.Profile.Administrator;
                 _userService.Insert(user);
                 return Json(new { success = "Cadastro realizado com sucesso" });
             }

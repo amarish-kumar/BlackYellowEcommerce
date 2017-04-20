@@ -21,21 +21,21 @@ namespace BlackYellow.MVC.Controllers
         }
 
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
-            
-            return View();
+            IEnumerable<Category> list = _categoryService.GetAll();
+            return View(list);
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
            
             return View();
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Update()
         {
             return View();

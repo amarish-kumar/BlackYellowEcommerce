@@ -23,13 +23,13 @@ namespace BlackYellow.MVC.Controllers
 
 
         // GET: /<controller>/
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Index()
         {
             return View();
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Orders()
         {
 
@@ -90,13 +90,13 @@ namespace BlackYellow.MVC.Controllers
 
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Products()
         {
             return View();
         }
 
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Customers()
         {
             return View();
