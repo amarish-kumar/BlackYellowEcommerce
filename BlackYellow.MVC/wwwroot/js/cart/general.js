@@ -1,21 +1,20 @@
 ﻿$(document).ready(function () {
-
-
-
     getItens();
 });
 
 function getItens()
 {
+    console.log("sadasds");
+   
     $.ajax({
         contentType: "application/json",
         method: "POST",
         url: "/Order/Itens",
         success: function (data) {
-            
+            console.log("sadasds");
             fillCart(data.carrinho.itens);
         },
-        error: {}
+        error: function (data) { console.log("sadadsadasdsds"); }
     })
 }
 
@@ -24,12 +23,13 @@ function fillCart(itens) {
   
     var html = "";
     $.each(itens, function (item, value) {
+        console.log(value);
         html += '<tr class="cart_item">' +
                                        ' <td class="product-remove">' +
-                                           '<a title="Remover produto" class="remove" href="#">×</a>' +
+                                           '<a title="Remover produto" class="remove" href="/Order/Remove/'+value.product.productId+'">×</a>' +
                                        '</td>' +
                                         '<td class="product-thumbnail">' +
-                                            '<a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src=""></a>' +
+                                            '<a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="../' + value.product.galeryProduct[0].pathImage + '"></a>' +
                                        '</td>' +
                                         '<td class="product-name">' +
                                             '<a href="single-product.html">' + value.product.name + '</a>' +

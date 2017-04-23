@@ -1,55 +1,26 @@
 ﻿$(document).ready(function () {
-    getCategories();
+  
     getProducts();
 });
 
 
 
 
-function fillCategories(categories) {
-  
-    var html = '<li>' +
-                    '<a > Categorias </a>' +
-               '</li>';
-    $("#category").append(html);
-    $.each(categories, function (item, value) {
-      
-        html = '<li>'+
-                    '<a href="/Product/SearchByCategory/'+ value.categoryId+'">' + value.name + '</a>' +
-               '</li>'
-        $("#category").append(html);
-    });
-    console.log(html);
 
-    
-}
 
-function searchCategory(categoryId)
-{
-    var category = { CategoryId: categoryId }
-    $.ajax({
-        contentType: "application/json",
-        method: "POST",
-        url: "/Product/SearchByCategory",
-        data: JSON.stringify(category),
-        success: function (data) {
-            
-        }
-    });
-}
 
 function fillProducts(products)
 {
     var html = "";
- 
+    
     $.each(products, function (item, value) {
-        console.log(value.galeryProduct[0].pathImage);
+       
         html = '<div class="col-sm-6 col-md-4">' +
                 '<div class="single-product">' +
                     '<div class="product-f-image">' +
                        '  <img src="'+ value.galeryProduct[0].pathImage+'"  class="img-responsive" alt="">' +
                         '<div class="product-hover">' +
-                            '<a href="#" onclick="buy(' + value.productId + ')" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>' +
+                            '<a href="" onclick="buy(' + value.productId + ')" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>' +
                             '<a href="Product/Details/' + value.productId + '" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>' +
                         '</div>' +
                     '</div>' +
@@ -61,6 +32,7 @@ function fillProducts(products)
            ' </div>';
       
         $(".list-products").append(html);
+        console.log(html);
     });
 }
 
@@ -95,17 +67,7 @@ function fillCarrousel(products) {
 }
 
 
-function getCategories()
-{
-    $.ajax({
-        contentType: "application/json",
-        method: "POST",
-        url: "/Category/List",
-        success: function (data) {
-            fillCategories(data.categories);
-        }
-    })
-}
+
 
 function getProducts()
 {
@@ -120,20 +82,7 @@ function getProducts()
     })
 }
 
-function buy(id) {
-    
-    var product = { ProductId: id }
 
-    $.ajax({
-        contentType: "application/json",
-        method: "POST",
-        url: "/Order/Buy",
-        data: JSON.stringify(product),
-        success: function (data) {
-
-        }
-    })
-}
 
 
 

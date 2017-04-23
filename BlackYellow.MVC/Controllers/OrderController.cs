@@ -37,7 +37,12 @@ namespace BlackYellow.MVC.Controllers
         public JsonResult Itens()
         {
             var strResponse = HttpContext.Session.GetString(SessionCart);
-            Cart cart = JsonConvert.DeserializeObject<Cart>(strResponse);
+            Cart cart = new Cart();
+            if(strResponse != null)
+            {
+                cart = JsonConvert.DeserializeObject<Cart>(strResponse);
+            }
+           
             return Json(new { carrinho = cart });
         }
 
@@ -52,7 +57,7 @@ namespace BlackYellow.MVC.Controllers
             Cart obj = new Cart();
             ItemCart item = new ItemCart();
             item.Product = new Product();
-            item.Product = _productService.Get((int)prod.ProductId);
+            item.Product = _productService.GetProductsImages((int)prod.ProductId);
 
             var strResponse = HttpContext.Session.GetString(SessionCart);
             obj.Itens = new List<ItemCart>();
@@ -70,6 +75,32 @@ namespace BlackYellow.MVC.Controllers
 
 
             return Json(new { sucesso = true });
+        }
+
+       
+        public RedirectResult Remove( int id)
+        {
+            Cart obj = new Cart();
+            ItemCart item = new ItemCart();
+            item.Product = new Product();
+            item.Product = _productService.Get((int)id);
+
+            var strResponse = HttpContext.Session.GetString(SessionCart);
+            obj.Itens = new List<ItemCart>();
+
+            if (!string.IsNullOrEmpty(strResponse))
+            {
+                var cart = JsonConvert.DeserializeObject<Cart>(strResponse);
+                obj = cart;
+            }
+
+            obj.Remove(obj, item);
+
+            var str = JsonConvert.SerializeObject(obj);
+            HttpContext.Session.SetString(SessionCart, str);
+
+
+            return Redirect("/Order/Cart");
         }
     }
 }

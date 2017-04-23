@@ -113,6 +113,7 @@ namespace BlackYellow.MVC.Controllers
 
         public IActionResult Register()
         {
+             HttpContext.Authentication.SignOutAsync("Cookie");
             return View();
         }
 

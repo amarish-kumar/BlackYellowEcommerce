@@ -46,7 +46,7 @@
                             <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
                             @if (User.IsInRole("Administrator"))
                             {
-                                <li><a href="~/Report/Dashboard"><i class="fa fa-gears"></i> Administração</a></li>
+                                <li><a href="~/User/Create"><i class="fa fa-gears"></i> Administração</a></li>
                             }
                             @if(User.Identity.Name != null)
                             {
@@ -72,7 +72,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="logo">
-                        <h1><a href="index.html">Black<span>Yellow</span></a></h1>
+                        <h1><a href="/">Black<span>Yellow</span></a></h1>
                     </div>
                 </div>
                 <div class="col-sm-7">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="shopping-item">
-                        <a href="cart.html">Carrinho - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"></span></a>
+                        <a href="/Order/Cart">Carrinho - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count"></span></a>
                     </div>
                 </div>
             </div>

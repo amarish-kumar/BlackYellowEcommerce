@@ -33,7 +33,9 @@ namespace BlackYellow.MVC.Domain.Entites
 
         public void Remove(Cart cart, ItemCart item)
         {
-            cart.Itens.Remove(item);
+            ItemCart itemCart = cart.Itens.Find(p => p.Product.ProductId == item.Product.ProductId);
+            int index = cart.Itens.FindIndex(p => p.Product.ProductId == item.Product.ProductId);
+            cart.Itens.RemoveAt(index);
         }
 
        
@@ -42,7 +44,10 @@ namespace BlackYellow.MVC.Domain.Entites
         {
             get
             {
-                return Itens.Sum(i => i.SubTotal);
+                if (Itens  !=  null)
+                    return Itens.Sum(i => i.SubTotal);
+                else
+                    return 0;
             }
         }
 
@@ -53,7 +58,10 @@ namespace BlackYellow.MVC.Domain.Entites
         {
             get
             {
-                return Itens.Count;
+                if (Itens != null)
+                    return Itens.Count;
+                else
+                    return 0;
             }
         }
 

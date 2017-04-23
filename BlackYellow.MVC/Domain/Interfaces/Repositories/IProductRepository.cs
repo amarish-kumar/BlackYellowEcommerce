@@ -15,5 +15,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
         IEnumerable<Product> GetByName(string name);
 
         IEnumerable<Product> GetByCategory(string categoryId);
+        Product GetProductsImages(int id);
     }
 }

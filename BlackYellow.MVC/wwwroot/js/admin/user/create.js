@@ -44,6 +44,13 @@ function validaCampos()
         $('.modal-body').html("Senha não estão iguais. Tente novamente");
         return false;
     }
+    console.log($('#email').val());
+    if ($('#password').val() == "" || $('#email').val() == "") {
+        $('#modal-danger').modal();
+        $('.modal-title').html("Alerta")
+        $('.modal-body').html("Preencha os campos.");
+        return false;
+    }
 
     return true;
 }

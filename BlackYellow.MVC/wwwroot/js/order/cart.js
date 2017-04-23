@@ -31,13 +31,13 @@ function fillCart(itens)
                                  '</thead>' +
                      '<tbody>';
      $.each(itens, function (item, value) {
-       
+         console.log(value.product.galeryProduct[0].pathImage);
          html += ' <tr class="cart_item">' +
                  ' <td class="product-remove">' +
                  '   <a title="Remover produto" class="remove" href="#">×</a>' +
                  ' </td>' +
                  ' <td class="product-thumbnail">' +
-                 '     <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src=""></a>' +
+                 '     <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="'+value.product.galeryProduct[0].pathImage+'"></a>' +
                  ' </td>' +
                  ' <td class="product-name">' +
                  '    <a href="single-product.html">' + value.product.name + '</a>' +
@@ -66,6 +66,6 @@ function fillCart(itens)
 
      html += '  </tbody>'+
             ' </table>';
-     console.log(html);
+   
      $("#cart").append(html);
 }

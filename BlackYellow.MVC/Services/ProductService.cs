@@ -42,6 +42,11 @@ namespace BlackYellow.MVC.Services
             return _productRepository.ListTop12();
         }
 
+        public Product GetProductsImages(int id)
+        {
+            return _productRepository.GetProductsImages(id);
+        }
+
         public async void uploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)
         {          
             if (main_file.Length > 0)
