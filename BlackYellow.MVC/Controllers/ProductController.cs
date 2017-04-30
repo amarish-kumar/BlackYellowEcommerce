@@ -36,6 +36,7 @@ namespace BlackYellow.MVC.Controllers
         public IActionResult Details(int id)
         {
             Product p = _productService.Get(id);
+            p.GaleryProduct = _productService.GetImages(id);
             Category c = _categoryService.Get((int)p.CategoryId);
             p.Category = new Category();
             p.Category = c;

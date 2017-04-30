@@ -173,6 +173,46 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
+        public List<GaleryProduct> GetImages(int id)
+        {
+            try
+            {
+                var sql = @"SELECT p.ProductId, g.PathImage, g.IsPrincipal
+                                FROM GaleryProducts g INNER JOIN
+                                Products p ON g.ProductId = p.ProductId 
+                                WHERE   p.ProductId = " + id;
+
+                Dictionary<int, Product> produtos = new Dictionary<int, Product>();
+#pragma warning disable CS1701 // Assuming assembly reference matches identity
+                Product product =  db.Connection.Query<Product, GaleryProduct, Product>(sql,
+                                     splitOn: "PathImage",
+                                     map: (p, g) => {
+                                         Product pr;
+                                         if (!produtos.TryGetValue((int)p.ProductId, out pr))
+                                         {
+                                             pr = p;
+                                             produtos.Add((int)pr.ProductId, pr);
+                                         }                                         
+                                             pr.GaleryProduct.Add(g);
+                                         
+                                         return p;
+                                     }
+
+
+                     ).FirstOrDefault();
+#pragma warning restore CS1701 // Assuming assembly reference matches identity
+
+                List<GaleryProduct> galeries = new List<GaleryProduct>();
+                galeries = product.GaleryProduct;
+                return galeries;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         //public IEnumerable<GaleryProduct> GetImagesByProduct(int id)
         //{
         //    try

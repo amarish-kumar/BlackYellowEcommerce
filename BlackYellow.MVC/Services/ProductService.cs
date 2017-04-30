@@ -69,5 +69,10 @@ namespace BlackYellow.MVC.Services
                 }
             }
         }
+
+        public List<GaleryProduct> GetImages(int id)
+        {
+            return _productRepository.GetImages(id);
+        }
     }
 }

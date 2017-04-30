@@ -21,5 +21,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 
         Product GetProductsImages(int id);
 
+        List<GaleryProduct> GetImages(int id);
+
     }
 }
