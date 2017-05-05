@@ -75,9 +75,7 @@ namespace BlackYellow.MVC.Controllers
 
 
             return Json(new { sucesso = true });
-        }
-
-       
+        }  
         public RedirectResult Remove( int id)
         {
             Cart obj = new Cart();
