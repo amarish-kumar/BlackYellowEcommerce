@@ -100,5 +100,10 @@ namespace BlackYellow.MVC.Controllers
 
             return Redirect("/Order/Cart");
         }
+
+        public ActionResult Boleto()
+        {
+            return View();
+        }
     }
 }
