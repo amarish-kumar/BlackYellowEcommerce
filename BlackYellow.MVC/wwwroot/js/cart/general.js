@@ -12,18 +12,18 @@ function getItens()
         url: "/Order/Itens",
         success: function (data) {
             console.log("sadasds");
-            fillCart(data.carrinho.itens);
+            fillCart(data.carrinho.itens,data.carrinho);
         },
-        error: function (data) { console.log("sadadsadasdsds"); }
+        error: function (data) {  }
     })
 }
 
 
-function fillCart(itens) {
-  
+function fillCart(itens,carrinho) {
+    console.log(carrinho);
     var html = "";
     $.each(itens, function (item, value) {
-        console.log(value);
+       
         html += '<tr class="cart_item">' +
                                        ' <td class="product-remove">' +
                                            '<a title="Remover produto" class="remove" href="/Order/Remove/'+value.product.productId+'">×</a>' +
@@ -40,7 +40,7 @@ function fillCart(itens) {
                                         '<td class="product-quantity">' +
                                             '<div class="quantity buttons_added">' +
                                               
-                                               ' <input type="number" size="4" class="input-text qty text" title="Qty" value="' + value.quantity + '" >' +
+                                               ' <input type="number" size="4" disabled class="input-text qty text" title="Qty" value="' + value.quantity + '" >' +
                                               
                                             '</div>' +
                                        ' </td>' +
@@ -54,10 +54,31 @@ function fillCart(itens) {
     html += ' <tr>  ' +
                                        ' <td class="actions" colspan="6">' +
 
-                                           ' <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">' +
+                                           //' <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">' +
                                            ' <input type="submit" value="Finalizar Compra" name="proceed" class="checkout-button button alt wc-forward">' +
                                        ' </td>' +
                                    ' </tr>';
     $("#cart").append(html);
+
+
+    html = '<h2>Compra Total</h2>' +
+                               ' <table cellspacing="0">' +
+                                   ' <tbody>' +
+                                        '<tr class="cart-subtotal">' +
+                                            '<th>Subtotal</th>' +
+                                            '<td><span class="amount">R$'+carrinho.totalOrder+'</span></td>' +
+                                        '</tr>' +
+                                       ' <tr class="shipping">' +
+                                            '<th>Frete</th>' +
+                                            '<td>Grátis</td>' +
+                                       ' </tr>' +
+                                       ' <tr class="order-total">' +
+                                            '<th>Total da compra</th>' +
+                                            '<td><strong><span class="amount"</span> R$' + carrinho.totalOrder + '</strong> </td>' +
+                                       ' </tr>' +
+                                   ' </tbody>' +
+                               ' </table>';
+
+    $('.cart_totals').append(html);
     
 }

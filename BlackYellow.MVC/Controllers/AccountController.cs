@@ -41,13 +41,26 @@ namespace BlackYellow.MVC.Controllers
             {
 
                 var customer = _customerService.GetCustomerByUserId((int)user.UserId);
-
+                string nome = null;
+                string customerId = null;
+                if (customer != null)
+                {
+                    nome = customer.FullName;
+                    customerId = customer.CustomerId.ToString();
+                }
+                    
+                else
+                {
+                    nome = user.Email;
+                }
+                    
+                
                 const string Issuer = "https://contoso.com";
                 var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, Issuer));
+                claims.Add(new Claim(ClaimTypes.Name, nome, ClaimValueTypes.String, Issuer));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(), ClaimValueTypes.String, Issuer));
                 claims.Add(new Claim(ClaimTypes.Role, user.Profile.ToString(), ClaimValueTypes.String, Issuer));
-                var userIdentity = new ClaimsIdentity(customer.CustomerId.ToString());
+                var userIdentity = new ClaimsIdentity(customerId);
                 userIdentity.AddClaims(claims);
                 userIdentity.Label = user.UserId.ToString();
                 var userPrincipal = new ClaimsPrincipal(userIdentity);
