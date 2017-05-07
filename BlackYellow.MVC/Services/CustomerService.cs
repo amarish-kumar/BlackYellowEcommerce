@@ -23,7 +23,20 @@ namespace BlackYellow.MVC.Services
         public override bool Insert(Customer customer) {
             return _customerRepository.Insert(customer);
         }
-        
 
+        public override Customer Get(int id)
+        {
+            return _customerRepository.Get(id);
+        }
+
+        public override bool Update(Customer obj)
+        {
+            return _customerRepository.Update(obj);
+        }
+
+        public Customer GetCustomerByUserId(int id)
+        {
+           return  _customerRepository.GetCustomerByUserId(id);
+        }
     }
 }

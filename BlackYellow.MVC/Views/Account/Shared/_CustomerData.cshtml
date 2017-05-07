@@ -12,6 +12,49 @@
                 <option value="BR">Brasil</option>
             </select>
         </p>*@
+    @if (TempData["USER"].ToString() != "FALSE")
+    {
+
+        <p id="email_field" class="form-group">
+            @Html.LabelFor(fn => fn.User.Email, "E-mail")
+            @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail" })
+        </p>
+
+        <p id="account_password_field" class="form-group">
+            @Html.LabelFor(fn => fn.User.Password, "Senha")
+            @Html.PasswordFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "" })
+        </p>
+    }
+    else
+    {
+        <p id="id_field" class="form-group" hidden>
+          
+            @Html.TextBoxFor(fn => fn.CustomerId, new { @class = "form-control" })
+        </p>
+
+        <p id="id_field" class="form-group" hidden>
+
+            @Html.TextBoxFor(fn => fn.Address.AddressId, new { @class = "form-control" })
+        </p>
+
+        <p id="id_field" class="form-group" hidden>
+
+            @Html.TextBoxFor(fn => fn.User.UserId, new { @class = "form-control" })
+        </p>
+
+        <p id="email_field" class="form-group" hidden>
+            @Html.LabelFor(fn => fn.User.Email, "E-mail")
+            @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail" })
+        </p>
+
+        <p id="account_password_field" class="form-group" hidden>
+            @Html.LabelFor(fn => fn.User.Password, "Senha")
+            @Html.TextBoxFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "" })
+        </p>
+
+    }
+
+
     <p id="first_name_field" class="form-group">
         @Html.LabelFor(fn => fn.FirstName, "Nome")
         @Html.TextBoxFor(fn => fn.FirstName, new { @class = "form-control" })
@@ -66,18 +109,12 @@
 
 
     <div class="clear"></div>
-    <p id="email_field" class="form-group">
-        @Html.LabelFor(fn => fn.User.Email, "E-mail")
-        @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail" })
-    </p>
+   
     <p id="phone_field" class="form-group">
         @Html.LabelFor(fn => fn.Phone, "Telefone")
         @Html.TextBoxFor(fn => fn.Phone, new { @class = "form-control", placeholder = "Telefone para contato" })
     </p>
 
-    <p id="account_password_field" class="form-group">
-        @Html.LabelFor(fn => fn.User.Password, "Senha")
-        @Html.TextBoxFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "" })
-    </p>
+   
 
 </div>

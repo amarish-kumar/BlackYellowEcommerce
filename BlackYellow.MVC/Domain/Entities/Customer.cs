@@ -7,6 +7,8 @@ namespace BlackYellow.MVC.Domain.Entites
 
     public class Customer
     {
+        [Dapper.Contrib.Extensions.Key]
+
         public long CustomerId { get; set; }
         [Required]
         public string FirstName { get; set; }

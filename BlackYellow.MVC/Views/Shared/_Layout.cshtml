@@ -38,19 +38,27 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="/Account/MyAccount"><i class="fa fa-gift"></i> Minha Conta</a></li>
+                            
                             @*<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>*@
                             <li><a href="~/Order/Cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             <li><a href="~/Order/Checkout"><i class="fa fa-address-card"></i> Finalizar Compra</a></li>
-                            <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
-                            <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
+                           
+                          
                             @if (User.IsInRole("Administrator"))
                             {
                                 <li><a href="~/User/Create"><i class="fa fa-gears"></i> Administração</a></li>
                             }
-                            @if(User.Identity.Name != null)
+                            @if (User.Identity.Name == null)
                             {
+                                <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
+                                <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>
+                                <li><a href="~/Account/Logout"><i class="fa fa-key"></i> Logout</a></li>
                                 <p>Bem vindo, @User.Identity.Name </p>
+                                
 
                             }
 
@@ -129,7 +137,7 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="footer-about-us">
                             <h2>Black<span> Yellow</span></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        
                             <div class="footer-social">
                                 <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                                 <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -139,33 +147,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-menu">
-                            <h2 class="footer-wid-title">User Navigation </h2>
-                            <ul>
-                                <li><a href="#">Minha conta</a></li>
-                                <li><a href="#">Historico de compra</a></li>
-                                <li><a href="#">Contato</a></li>
-                                <li><a href="#">Pagina Inicial</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="footer-menu">
-                            <h2 class="footer-wid-title">Categorias</h2>
-                            <ul>
-                                <li><a href="#">PS4</a></li>
-                                <li><a href="#">XBox One</a></li>
-                                <li><a href="#">PS3</a></li>
-                                <li><a href="#">Xbox 360</a></li>
-                                <li><a href="#">Playstation VR</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                   
+             
                 </div>
             </div>
         </div> <!-- End footer top area -->

@@ -54,5 +54,25 @@ namespace BlackYellow.MVC.Repositories
                 return null;
             }
         }
+
+        public User GetUserByCustomer(int id)
+        {
+            try
+            {
+                var sql = "SELECT u.UserId, u.email, u.password FROM Users u INNER JOIN Customers c ON c.UserId = u.UserId WHERE c.CustomerId =" + id;
+
+                var user =    db.Connection.Query<User>(sql
+                 ).First();
+
+                return user;
+            }
+
+            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

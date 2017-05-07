@@ -20,7 +20,7 @@ function fillProducts(products)
                     '<div class="product-f-image">' +
                        '  <img src="'+ value.galeryProduct[0].pathImage+'"  class="img-responsive" alt="">' +
                         '<div class="product-hover">' +
-                            '<a href="" onclick="buy(' + value.productId + ')" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>' +
+                            '<a href="#" onclick="buy(' + value.productId + ')" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Comprar</a>' +
                             '<a href="Product/Details/' + value.productId + '" class="view-details-link"><i class="fa fa-link"></i> Detalhes</a>' +
                         '</div>' +
                     '</div>' +

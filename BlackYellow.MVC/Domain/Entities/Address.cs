@@ -9,6 +9,7 @@ namespace BlackYellow.MVC.Domain.Entites
     [Table("Adresses")]
     public class Address
     {
+        [Dapper.Contrib.Extensions.Key]
         public long AddressId { get; set; }
         [Required]
         public string Street { get; set; }
@@ -21,7 +22,10 @@ namespace BlackYellow.MVC.Domain.Entites
         public string State { get; set; }
         [Required]
         public string City { get; set; }
+
+       
         public long CustomerId { get; set; }
+       
 
     }
 }
