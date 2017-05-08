@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    getItensCart();
+   // getItensCart();
 });
 
 function getItensCart()

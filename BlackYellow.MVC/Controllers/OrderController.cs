@@ -57,6 +57,7 @@ namespace BlackYellow.MVC.Controllers
                 newCart.Itens.ForEach(n =>
                 {
                     var item = atualCart.Itens.FirstOrDefault(a => a.ItemCartId.Equals(n.ItemCartId));
+                    //TODO verificar se tem quantidade em estoque!!! ---
                     item.Quantity = n.Quantity;
                 });
 

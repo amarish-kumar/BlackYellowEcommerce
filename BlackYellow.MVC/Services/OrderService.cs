@@ -442,7 +442,7 @@ namespace BlackYellow.MVC.Services
 				                    <tr class='ct h13'>
 						                    <td class='w192'>N�mero do documento</td>
 						                    <td class='w132'>CPF/CNPJ</td>
-						                    <td class='w134'>Vencimento</td>
+						                    <td class='w134'>Venciment</td>
 						                    <td class='w180'>Valor documento</td>
 				                    </tr>
 				                    <tr class='cp h12 rBb'>
