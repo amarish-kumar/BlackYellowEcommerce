@@ -30,7 +30,45 @@ namespace BlackYellow.MVC.Controllers
 
         public IActionResult Cart()
         {
-            return View();
+
+            var strResponse = HttpContext.Session.GetString(SessionCart);
+            Cart cart = new Cart();
+            if (strResponse != null)
+            {
+                cart = JsonConvert.DeserializeObject<Cart>(strResponse);
+            }
+
+            return View(cart);
+        }
+
+        [HttpPost]
+        public IActionResult Cart(Cart newCart)
+        {
+
+            var strResponse = HttpContext.Session.GetString(SessionCart);
+
+            if (!string.IsNullOrEmpty(strResponse))
+            {
+                var atualCart = JsonConvert.DeserializeObject<Cart>(strResponse);
+
+
+                newCart.Itens.ForEach(n =>
+                {
+                    var item = atualCart.Itens.FirstOrDefault(a => a.ItemCartId.Equals(n.ItemCartId));
+                    item.Quantity = n.Quantity;
+                });
+
+                atualCart.Itens = atualCart.Itens.Where(a => a.Quantity > 0).ToList();
+
+                var str = JsonConvert.SerializeObject(atualCart);
+                HttpContext.Session.SetString(SessionCart, str);
+
+                return View(atualCart);
+
+            }
+            else
+                return View();
+
         }
 
         [HttpPost]
@@ -38,21 +76,34 @@ namespace BlackYellow.MVC.Controllers
         {
             var strResponse = HttpContext.Session.GetString(SessionCart);
             Cart cart = new Cart();
-            if(strResponse != null)
+            if (strResponse != null)
             {
                 cart = JsonConvert.DeserializeObject<Cart>(strResponse);
             }
-           
+
             return Json(new { carrinho = cart });
         }
 
         public IActionResult Checkout()
         {
-            return View();
+            var cartSessionText = HttpContext.Session.GetString(SessionCart);
+            Cart cart = JsonConvert.DeserializeObject<Cart>(cartSessionText);
+
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                if (!string.IsNullOrEmpty(cartSessionText) && cart?.Itens.Count > 0)
+                    return View(cart);
+                else
+                {
+                    return View();
+                }
+            }
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
-        public JsonResult Buy([FromBody] Product prod )
+        public JsonResult Buy([FromBody] Product prod)
         {
             Cart obj = new Cart();
             ItemCart item = new ItemCart();
@@ -68,6 +119,8 @@ namespace BlackYellow.MVC.Controllers
                 obj = cart;
             }
 
+
+
             obj.Add(obj, item);
 
             var str = JsonConvert.SerializeObject(obj);
@@ -75,8 +128,8 @@ namespace BlackYellow.MVC.Controllers
 
 
             return Json(new { sucesso = true });
-        }  
-        public RedirectResult Remove( int id)
+        }
+        public RedirectResult Remove(int id)
         {
             Cart obj = new Cart();
             ItemCart item = new ItemCart();

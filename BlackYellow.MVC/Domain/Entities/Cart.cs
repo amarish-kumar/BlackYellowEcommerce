@@ -27,6 +27,7 @@ namespace BlackYellow.MVC.Domain.Entites
             else
             {
                 item.Quantity = 1;
+                item.ItemCartId = (cart.Itens.OrderBy(x => x.ItemCartId).LastOrDefault()?.ItemCartId ?? 0) + 1;
                 cart.Itens.Add(item);
             }
         }

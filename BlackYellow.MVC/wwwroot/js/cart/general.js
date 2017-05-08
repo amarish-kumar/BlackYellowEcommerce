@@ -1,6 +1,6 @@
-﻿$(document).ready(function () {
-    getItens();
-});
+﻿//$(document).ready(function () {
+//    getItens();
+//});
 
 function getItens()
 {
