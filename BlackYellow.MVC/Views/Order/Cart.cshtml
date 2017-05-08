@@ -1,4 +1,9 @@
-﻿<script src="~/js/cart/general.js" ></script>
+﻿@model BlackYellow.MVC.Domain.Entites.Cart
+@{
+    var index = -1;
+}
+
+<script src="~/js/cart/general.js"></script>
 
 <div class="product-big-title-area">
     <div class="container">
@@ -17,12 +22,12 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-          
+
 
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <form method="post" action="#">
+                        <form method="post">
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
                                     <tr>
@@ -35,62 +40,88 @@
                                     </tr>
                                 </thead>
                                 <tbody id="cart">
-                                    @*<tr class="cart_item">
+
+
+
+                                    @foreach (var item in Model.Itens)
+                                    {
+
+
+
+                                    <tr class="cart_item">
+
                                         <td class="product-remove">
-                                            <a title="Remover produto" class="remove" href="#">×</a>
+                                            <input type="hidden" value="@Model.Itens.IndexOf(item)" name="index@(++index)" />
+                                            <input type="hidden" value="@item.ItemCartId" name="Itens[@index].ItemCartId" />
+                                            <a title="Remover produto" class="remove" href="/Order/Remove/@item.Product.ProductId">×</a>
                                         </td>
+
                                         <td class="product-thumbnail">
-                                            <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+
+                                            <a href="~/Product/Details/@item.Product.ProductId"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/@item.Product.GaleryProduct.FirstOrDefault(p => p.IsPrincipal)?.PathImage"></a>
+
                                         </td>
+
                                         <td class="product-name">
-                                            <a href="single-product.html">Produto 1</a>
+                                            <a name="Product.Name" href="~/Product/Details/@item.Product.ProductId">@item.Product.Name</a>
                                         </td>
+
                                         <td class="product-price">
-                                            <span class="amount">R$15.00</span>
+
+                                            <span class="amount">@item.Product.Price.ToString("C2")</span>
+
                                         </td>
+
                                         <td class="product-quantity">
+
                                             <div class="quantity buttons_added">
-                                                <input type="button" class="minus" value="-">
-                                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-                                                <input type="button" class="plus" value="+">
+                                                <input type="number" name="Itens[@(index)].Quantity" size="4" class="input-text qty text" title="Quantidade" value="@item.Quantity">
                                             </div>
+
                                         </td>
+
                                         <td class="product-subtotal">
-                                            <span class="amount">R$15.00</span>
+                                            <span class="amount">@item.SubTotal.ToString("C2")</span>
                                         </td>
-                                    </tr>*@
-                                   
+
+                                    </tr>
+
+                                    }
+
+                                    <tr>
+                                        <td class="actions" colspan="6">
+                                            <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">
+                                            <a href="@Url.Action("Checkout")" class="checkout-button button alt wc-forward">Finalizar Compra</a>
+
+                                        </td>
+
+                                    </tr>
+
                                 </tbody>
                             </table>
                         </form>
                         <div class="cart-collaterals">
 
-                            @*<div class="cross-sells">
-                                <h2>Produtos relacionados...</h2>
-                                <ul class="products">
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
-                                            <h3>Produto 1</h3>
-                                            <span class="price"><span class="amount">R$20.00</span></span>
-                                        </a>
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
-                                            <h3>Produto 1</h3>
-                                            <span class="price"><span class="amount">R$20.00</span></span>
-                                        </a>
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-                                </ul>
-                            </div>*@
-
-                            <div class="cart_totals " >
-                                
+                            <div class="cart_totals ">
+                                <h2>Compra Total</h2>
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Subtotal</th>
+                                            <td><span class="amount">@Model.TotalOrder.ToString("C2")</span></td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th>Frete</th>
+                                            <td>Grátis</td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Total da compra</th>
+                                            <td><strong><span class="amount">@Model.TotalOrder.ToString("C2")</span></strong> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                       </div>
+                        </div>
                     </div>
                 </div>
             </div>

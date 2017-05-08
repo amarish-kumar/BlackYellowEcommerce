@@ -1,4 +1,6 @@
-﻿
+﻿@model BlackYellow.MVC.Domain.Entites.Cart
+
+
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,81 +18,54 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-           
+
 
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="woocommerce">
-                        <div class="woocommerce-info">
-                            Já é cliente ? <a class="showlogin" data-toggle="collapse" href="#login-form-wrap" aria-expanded="false" aria-controls="login-form-wrap">Clique aqui para logar</a>
-                        </div>
-                        <form id="login-form-wrap" class="login collapse" method="post">
 
-                            <p>Se você já comprou conosco antes. Por favor insira suas credenciais, se não cadastra-se</p>
-                            <p class="form-row form-row-first">
-                                <label for="username">
-                                   Email <span class="required">*</span>
-                                </label>
-                                <input type="text" id="email" name="email" class="input-text">
-                            </p>
-                            <p class="form-row form-row-last">
-                                <label for="password">
-                                    Password <span class="required">*</span>
-                                </label>
-                                <input type="password" id="password" name="password" class="input-text">
-                            </p>
-                            <div class="clear"></div>
+                        <form method="post">
 
-                            <p class="form-row">
-                                <input type="submit" value="Login" name="login" class="button">
-                                <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>
-                            </p>
-                            <p class="lost_password">
-                                <a href="#">Esqueceu sua senha ?</a>
-                            </p>
-                            <div class="clear"></div>
-                        </form>
-
-                        <form id="" method="post" class=" ">
-                           
                             <div class="clear"></div>
                             <h3 id="order_review_heading">Sua compra</h3>
                             <div id="order_review" style="position: relative;">
                                 <table class="shop_table">
                                     <thead>
                                         <tr>
-                                            <th class="product-name">Product</th>
+                                            <th class="product-name">Produto</th>
                                             <th class="product-total">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach (var item in Model.Itens)
+                                        {
                                         <tr class="cart_item">
                                             <td class="product-name">
-                                                Ship Your Idea <strong class="product-quantity">× 1</strong>
+                                                @item.Product.Name <strong class="product-quantity">× @item.Quantity</strong>
                                             </td>
                                             <td class="product-total">
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">@item.SubTotal.ToString("C2")</span>
                                             </td>
                                         </tr>
+                                        }
                                     </tbody>
                                     <tfoot>
                                         <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
+                                            <th>Total do Carrinho</th>
                                             <td>
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">@Model.TotalOrder.ToString("C2")</span>
                                             </td>
                                         </tr>
                                         <tr class="shipping">
-                                            <th>Shipping and Handling</th>
+                                            <th>Envio</th>
                                             <td>
-                                                Free Shipping
-                                                <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+                                                Frete Grátis
                                             </td>
                                         </tr>
 
                                         <tr class="order-total">
-                                            <th>Order Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <th>Total do Pedido</th>
+                                            <td><strong><span class="amount">@Model.TotalOrder.ToString("C2")</span></strong> </td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -98,13 +73,13 @@
                                 <div id="payment">
                                     <ul class="payment_methods methods">
                                         <li class="payment_method_bacs">
-                                            <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
-                                            <label for="payment_method_bacs">Boleto Bancário </label>
-                                           
+                                            <input type="radio" data-order_button_text="Boleto" checked="checked" value="boleto" name="payment_method" class="input-radio" id="payment_method_boleto">
+                                            <label for="payment_method_bacs">Boleto Bancário</label>
+
                                         </li>
-                                       
+
                                         <li class="payment_method_paypal">
-                                            <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
+                                            <input type="radio" data-order_button_text="PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
                                             <label for="payment_method_paypal">
                                                 PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What is PayPal?</a>
                                             </label>
@@ -121,7 +96,7 @@
                             </div>
 
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@ namespace BlackYellow.MVC.Domain.Entites
         public double Price { get; set; }
 
 
-        public double SubTotal { get { return this.Product.Price * Quantity; } }
+        public double SubTotal { get { return this.Product?.Price * Quantity ?? 0; } }
 
-                
+
     }
 }
