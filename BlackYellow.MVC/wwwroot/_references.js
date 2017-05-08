@@ -7,6 +7,7 @@
 /// <reference path="js/cart/general.js" />
 /// <reference path="js/floating-labels.js" />
 /// <reference path="js/home/general.js" />
+/// <reference path="js/order/boleto.js" />
 /// <reference path="js/order/cart.js" />
 /// <reference path="js/products/general.js" />
 /// <reference path="js/site.js" />

@@ -17,7 +17,7 @@
 
         <p id="email_field" class="form-group">
             @Html.LabelFor(fn => fn.User.Email, "E-mail")
-            @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail" })
+            @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", placeholder = "Endereço de E-mail", @type = "email" })
         </p>
 
         <p id="account_password_field" class="form-group">

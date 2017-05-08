@@ -38,31 +38,32 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            
+
                             @*<li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>*@
                             <li><a href="~/Order/Cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             <li><a href="~/Order/Checkout"><i class="fa fa-address-card"></i> Finalizar Compra</a></li>
-                           
-                          
+
+
                             @if (User.IsInRole("Administrator"))
                             {
                                 <li><a href="~/User/Create"><i class="fa fa-gears"></i> Administração</a></li>
                             }
-                            @if (User.Identity.Name == null)
+                            @if (User.Identity.Name == null  )
                             {
                                 <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
                                 <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
                             }
-                            else
+                            else if (User.Identity.AuthenticationType != null)
                             {
-                                <li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>
+                                @*<li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>*@
                                 <li><a href="~/Account/Logout"><i class="fa fa-key"></i> Logout</a></li>
-                                <p>Bem vindo, @User.Identity.Name </p>
-                                
+                                <li><a href="~/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i>Bem vindo, @User.Identity.Name </a></li>
+
 
                             }
 
                         </ul>
+
                     </div>
                 </div>
 
