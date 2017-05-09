@@ -41,61 +41,67 @@
                                 </thead>
                                 <tbody id="cart">
 
-
-
-                                    @foreach (var item in Model.Itens)
+                                    @if (Model.Itens != null)
                                     {
 
+                                        @foreach (var item in Model.Itens)
+                                        {
 
 
-                                    <tr class="cart_item">
 
-                                        <td class="product-remove">
-                                            <input type="hidden" value="@Model.Itens.IndexOf(item)" name="index@(++index)" />
-                                            <input type="hidden" value="@item.ItemCartId" name="Itens[@index].ItemCartId" />
-                                            <a title="Remover produto" class="remove" href="/Order/Remove/@item.Product.ProductId">×</a>
-                                        </td>
+                                            <tr class="cart_item">
 
-                                        <td class="product-thumbnail">
+                                                <td class="product-remove">
+                                                    <input type="hidden" value="@Model.Itens.IndexOf(item)" name="index@(++index)" />
+                                                    <input type="hidden" value="@item.ItemCartId" name="Itens[@index].ItemCartId" />
+                                                    <a title="Remover produto" class="remove" href="/Order/Remove/@item.Product.ProductId">×</a>
+                                                </td>
 
-                                            <a href="~/Product/Details/@item.Product.ProductId"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/@item.Product.GaleryProduct.FirstOrDefault(p => p.IsPrincipal)?.PathImage"></a>
+                                                <td class="product-thumbnail">
 
-                                        </td>
+                                                    <a href="~/Product/Details/@item.Product.ProductId"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/@item.Product.GaleryProduct.FirstOrDefault(p => p.IsPrincipal)?.PathImage"></a>
 
-                                        <td class="product-name">
-                                            <a name="Product.Name" href="~/Product/Details/@item.Product.ProductId">@item.Product.Name</a>
-                                        </td>
+                                                </td>
 
-                                        <td class="product-price">
+                                                <td class="product-name">
+                                                    <a name="Product.Name" href="~/Product/Details/@item.Product.ProductId">@item.Product.Name</a>
+                                                </td>
 
-                                            <span class="amount">@item.Product.Price.ToString("C2")</span>
+                                                <td class="product-price">
 
-                                        </td>
+                                                    <span class="amount">@item.Product.Price.ToString("C2")</span>
 
-                                        <td class="product-quantity">
+                                                </td>
 
-                                            <div class="quantity buttons_added">
-                                                <input type="number" name="Itens[@(index)].Quantity" size="4" class="input-text qty text" title="Quantidade" value="@item.Quantity">
-                                            </div>
+                                                <td class="product-quantity">
 
-                                        </td>
+                                                    <div class="quantity buttons_added">
+                                                        <input type="number" name="Itens[@(index)].Quantity" size="4" class="input-text qty text" title="Quantidade" value="@item.Quantity">
+                                                    </div>
 
-                                        <td class="product-subtotal">
-                                            <span class="amount">@item.SubTotal.ToString("C2")</span>
-                                        </td>
+                                                </td>
 
-                                    </tr>
+                                                <td class="product-subtotal">
+                                                    <span class="amount">@item.SubTotal.ToString("C2")</span>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="actions" colspan="6">
+                                                    <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">
+                                                    <a href="@Url.Action("Checkout")" class="checkout-button button alt wc-forward">Finalizar Compra</a>
+
+                                                </td>
+
+                                            </tr>
+
+                                        }
 
                                     }
 
-                                    <tr>
-                                        <td class="actions" colspan="6">
-                                            <input type="submit" value="Atualizar Carrinho" name="update_cart" class="button">
-                                            <a href="@Url.Action("Checkout")" class="checkout-button button alt wc-forward">Finalizar Compra</a>
+                                   
 
-                                        </td>
-
-                                    </tr>
+                                   
 
                                 </tbody>
                             </table>
