@@ -3,7 +3,6 @@ using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using Dapper;
 

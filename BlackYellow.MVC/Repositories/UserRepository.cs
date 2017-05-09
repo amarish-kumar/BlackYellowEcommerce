@@ -1,9 +1,7 @@
 ﻿using System;
 using BlackYellow.MVC.Domain.Entites;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
-using Dapper.Contrib.Extensions;
 using Dapper;
-using Dapper.Contrib;
 using System.Collections.Generic;
 using System.Linq;
 

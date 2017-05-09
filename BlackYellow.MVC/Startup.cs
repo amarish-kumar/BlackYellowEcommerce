@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +8,6 @@ using BlackYellow.MVC.Domain.Interfaces.Services;
 using BlackYellow.MVC.Services;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using BlackYellow.MVC.Repositories;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace BlackYellow.MVC
 {

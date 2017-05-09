@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+﻿using System.Collections.Generic;
 using Dapper.Contrib.Extensions;
-using BlackYellow.MVC.Domain.Entites;
 using BlackYellow.MVC.Context;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 

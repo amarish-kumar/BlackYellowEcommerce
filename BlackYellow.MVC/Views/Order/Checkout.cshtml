@@ -72,24 +72,16 @@
 
                                 <div id="payment">
                                     <ul class="payment_methods methods">
+                                        @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Domain.Entites.Order.EPaymentMethod)).OfType<BlackYellow.MVC.Domain.Entites.Order.EPaymentMethod>())
+                                        {
                                         <li class="payment_method_bacs">
-                                            <input type="radio" data-order_button_text="Boleto" checked="checked" value="boleto" name="payment_method" class="input-radio" id="payment_method_boleto">
-                                            <label for="payment_method_bacs">Boleto Bancário</label>
-
+                                            <input type="radio" data-order_button_text="Boleto" checked="checked" value="@((int)item)" name="PaymentMethod" class="input-radio" id="payment_method_boleto">
+                                            <label for="payment_method_bacs">@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)</label>
                                         </li>
-
-                                        <li class="payment_method_paypal">
-                                            <input type="radio" data-order_button_text="PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
-                                            <label for="payment_method_paypal">
-                                                PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What is PayPal?</a>
-                                            </label>
-                                            <div style="display:none;" class="payment_box payment_method_paypal">
-                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                                            </div>
-                                        </li>
+                                        }
                                     </ul>
                                     <div class="form-row place-order">
-                                        <input type="submit" data-value="Finalizar Compra" value="Finalizar Compra" id="finalizar_comprar" name="" class="button alt">
+                                        <input type="submit" data-value="Finalizar Compra" value="Finalizar Compra" id="finalizar_comprar" class="button alt">
                                     </div>
                                     <div class="clear"></div>
                                 </div>

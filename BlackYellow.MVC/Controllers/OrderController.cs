@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using BlackYellow.MVC.Domain.Entites;
@@ -101,6 +100,52 @@ namespace BlackYellow.MVC.Controllers
             else
                 return RedirectToAction("Login", "Account");
         }
+
+        [HttpPost]
+        public IActionResult Checkout(Order order)
+        {
+            var cartSessionText = HttpContext.Session.GetString(SessionCart);
+            Cart cart = JsonConvert.DeserializeObject<Cart>(cartSessionText);
+            var customer = AccountController.GetCustomer(HttpContext.Session.GetString(AccountController.SessionCustomer));
+
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+
+                if (cart.Itens.Count > 0)
+                {
+                    IPayment pagamento;
+
+                    if (order.PaymentMethod == Order.EPaymentMethod.Boleto)
+                    {
+
+                        pagamento = new Services.TicketService(customer, cart.TotalOrder, DateTime.Now.AddDays(3));
+
+                    }
+                    else throw new Exception("Pagamento não suportado");
+
+                    pagamento.ExecutePay();
+
+                    ViewBag.Message = "Compra Realizada com sucesso";
+
+                    return View("SuccessfulOrder", pagamento);
+
+                }
+                else
+                {
+                    return View();
+                }
+
+
+
+            }
+            else
+                return RedirectToAction("Login", "Account");
+
+        }
+
+
+
+
 
         [HttpPost]
         public JsonResult Buy([FromBody] Product prod)

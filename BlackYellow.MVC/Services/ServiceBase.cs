@@ -1,9 +1,6 @@
 ﻿using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using BlackYellow.MVC.Domain.Interfaces.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlackYellow.MVC.Services
 {

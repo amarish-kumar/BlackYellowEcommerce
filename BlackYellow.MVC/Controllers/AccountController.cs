@@ -6,14 +6,26 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using BlackYellow.MVC.Helpers.Extensions;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace BlackYellow.MVC.Controllers
 {
     public class AccountController : Controller
     {
 
+        public const string SessionCustomer = "_CUSTOMER";
         private const string UNAUTHORIZED_UPDATE_USER_EXCEPTION = "Você não têm permissão para acessar e editar esses dados, verifique seu login e tente novamente.";
+
+        public static Customer GetCustomer(string strResponse)
+        {
+
+            if (string.IsNullOrEmpty(strResponse)) return null;
+
+            var customer = JsonConvert.DeserializeObject<Customer>(strResponse);
+            return customer;
+
+        }
 
         readonly ICustomerService _customerService;
         readonly IUserService _userService;
@@ -36,7 +48,7 @@ namespace BlackYellow.MVC.Controllers
         {
 
             user = _userService.GetUserByNamePassword(user);
-          
+
             if (user?.UserId > 0)
             {
 
@@ -48,13 +60,13 @@ namespace BlackYellow.MVC.Controllers
                     nome = customer.FullName;
                     customerId = customer.CustomerId.ToString();
                 }
-                    
+
                 else
                 {
                     nome = user.Email;
                 }
-                    
-                
+
+
                 const string Issuer = "https://contoso.com";
                 var claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, nome, ClaimValueTypes.String, Issuer));
@@ -72,6 +84,9 @@ namespace BlackYellow.MVC.Controllers
                        IsPersistent = false,
                        AllowRefresh = false
                    }).Wait();
+
+                var str = JsonConvert.SerializeObject(customer);
+                HttpContext.Session.SetString(SessionCustomer, str);
 
                 return RedirectToAction("Index", "Home");
 
@@ -138,21 +153,21 @@ namespace BlackYellow.MVC.Controllers
         {
             bool flag = true;
 
-           
+
 
             if (!ModelState.IsValid)
             {
                 flag = false;
                 ViewBag.Message = "Os dados fornecidos são inválidos, preencha o cadastro corretamente";
             }
-           
+
 
             if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
             {
                 flag = false;
                 ViewBag.Message = "Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.";
             }
-                
+
 
             if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
 
@@ -165,7 +180,7 @@ namespace BlackYellow.MVC.Controllers
             //    ViewBag.Message =  "Obrigatório fornecer um CPF válido." ;
 
 
-            if(flag)
+            if (flag)
             {
                 TempData["USER"] = "TRUE";
                 customer.User.Profile = Domain.Enum.Profile.User;
@@ -176,7 +191,7 @@ namespace BlackYellow.MVC.Controllers
             {
                 TempData["USER"] = "FALSE";
             }
-            
+
 
             return View();
 
@@ -208,7 +223,7 @@ namespace BlackYellow.MVC.Controllers
             if (customer.CustomerId > 0 && ModelState.IsValid && IsLoginCustomer(customer))
             {
                 ViewBag.Message = "Cadastro atualizado com sucesso";
-                _customerService.Update(customer);              
+                _customerService.Update(customer);
 
             }
             else
@@ -217,7 +232,7 @@ namespace BlackYellow.MVC.Controllers
 
             }
 
-            
+
 
             return View(customer);
 

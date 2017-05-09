@@ -1,9 +1,6 @@
 ﻿using BlackYellow.MVC.Domain.Entites;
 using BlackYellow.MVC.Domain.Interfaces.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.IO;

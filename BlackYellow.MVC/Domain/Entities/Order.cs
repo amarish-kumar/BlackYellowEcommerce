@@ -18,6 +18,10 @@ namespace BlackYellow.MVC.Domain.Entites
 
         public List<ItemCart> Itens { get; set; }
 
+        public EPaymentMethod PaymentMethod { get; set; }
+        public DateTime PaymentDate { get; set; }
+
+
         public double TotalOrder { get { return this.Itens.Sum(i => i.SubTotal); } }
 
         public enum EStatusOrder : int
@@ -40,6 +44,11 @@ namespace BlackYellow.MVC.Domain.Entites
             [Description("Cancelado")]
             Cancelado
         }
+        public enum EPaymentMethod : int
+        {
+            Boleto = 1,
+        }
+
 
     }
 }
