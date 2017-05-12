@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using BlackYellow.MVC.Domain.Entites;
 using Dapper;
+using System;
+using Dapper.Contrib.Extensions;
 
 namespace BlackYellow.MVC.Repositories
 {
@@ -11,7 +13,7 @@ namespace BlackYellow.MVC.Repositories
         public IEnumerable<Order> GetAll(Models.OrderReportFilters filters)
         {
 
-            var @return = new Dictionary<int, Order>();
+            var @return = new Dictionary<long, Order>();
 
             var sql = @"SELECT * 
                             FROM Orders
@@ -64,6 +66,11 @@ namespace BlackYellow.MVC.Repositories
 
             return @return.Values;
 
+        }
+
+        long IOrderRepository.Insert(Order order)
+        {
+            return base.db.Connection.Insert(order);
         }
     }
 }

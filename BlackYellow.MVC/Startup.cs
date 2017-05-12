@@ -8,6 +8,8 @@ using BlackYellow.MVC.Domain.Interfaces.Services;
 using BlackYellow.MVC.Services;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using BlackYellow.MVC.Repositories;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace BlackYellow.MVC
 {
@@ -71,6 +73,24 @@ namespace BlackYellow.MVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+            app.UseStaticFiles(); // For the wwwroot folder
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
+                RequestPath = new PathString("/boleto")
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "images")),
+                RequestPath = new PathString("/boleto")
+            });
+
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

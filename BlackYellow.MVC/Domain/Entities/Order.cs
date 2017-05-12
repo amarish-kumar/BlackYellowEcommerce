@@ -8,8 +8,8 @@ namespace BlackYellow.MVC.Domain.Entites
     public class Order
     {
 
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
+        public long OrderId { get; set; }
+        public long CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
 
         public EStatusOrder OrderStatus { get; set; }
@@ -20,6 +20,8 @@ namespace BlackYellow.MVC.Domain.Entites
 
         public EPaymentMethod PaymentMethod { get; set; }
         public DateTime PaymentDate { get; set; }
+        public long TicketNumber { get; set; }
+
 
 
         public double TotalOrder { get { return this.Itens.Sum(i => i.SubTotal); } }

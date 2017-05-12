@@ -8,6 +8,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
         IEnumerable<Order> GetAll(Models.OrderReportFilters filters);
 
         string MontaBoleto();
+        long Insert(Order order);
     }
 
 }

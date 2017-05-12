@@ -10,7 +10,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 
         bool Update(T obj);
 
-        T Get(int id);
+        T Get(long id);
 
         IEnumerable<T> GetAll();
 

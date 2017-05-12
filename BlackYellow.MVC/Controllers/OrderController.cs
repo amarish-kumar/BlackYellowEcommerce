@@ -56,8 +56,19 @@ namespace BlackYellow.MVC.Controllers
                 newCart.Itens.ForEach(n =>
                 {
                     var item = atualCart.Itens.FirstOrDefault(a => a.ItemCartId.Equals(n.ItemCartId));
-                    //TODO verificar se tem quantidade em estoque!!! ---
-                    item.Quantity = n.Quantity;
+
+                    var p = _productService.Get(n.Product.ProductId);
+
+                    if (p.Quantity >= n.Quantity)
+                    {
+                        item.Quantity = n.Quantity;
+                    }
+                    else
+                    {
+                        item.Quantity = p.Quantity;
+                    }
+
+
                 });
 
                 atualCart.Itens = atualCart.Itens.Where(a => a.Quantity > 0).ToList();
@@ -128,9 +139,29 @@ namespace BlackYellow.MVC.Controllers
 
                     pagamento.ExecutePay();
 
+                    order.Customer = customer;
+                    order.CustomerId = customer.CustomerId;
+                    order.Itens = cart.Itens;
+                    order.OrderDate = DateTime.Now;
+                    order.OrderStatus = Order.EStatusOrder.Concluido;
+                    order.PaymentDate = DateTime.Now;
+                    order.PaymentMethod = Order.EPaymentMethod.Boleto;
+
+                    foreach (var item in order.Itens)
+                    {
+                        var p = _productService.Get(item.Product.ProductId);
+                        p.Quantity -= item.Quantity;
+                        _productService.Update(p);
+                    }
+
+                    order.OrderId = _orderService.Insert(order);
+
+                    order.TicketNumber = 1000000 + order.OrderId;
+
+
                     ViewBag.Message = "Compra Realizada com sucesso";
 
-                    return View("SuccessfulOrder", pagamento);
+                    return View("Boleto", pagamento);
 
                 }
                 else
