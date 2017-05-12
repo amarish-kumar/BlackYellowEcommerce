@@ -60,6 +60,8 @@ namespace BlackYellow.MVC
             services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<IOrderRepository, OrderRepository>();
+            services.AddSingleton<ICartItemRepository, CartItemRepository>();
+            services.AddSingleton<ICartItemService, CartItemService>();
 
 
 

@@ -1,3 +1,4 @@
+using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,15 +8,16 @@ namespace BlackYellow.MVC.Domain.Entites
 {
     public class Order
     {
-
+        [Key]
         public long OrderId { get; set; }
         public long CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
 
         public EStatusOrder OrderStatus { get; set; }
 
+        [Write(false)]
         public Customer Customer { get; set; }
-
+        [Write(false)]
         public List<ItemCart> Itens { get; set; }
 
         public EPaymentMethod PaymentMethod { get; set; }
@@ -24,7 +26,16 @@ namespace BlackYellow.MVC.Domain.Entites
 
 
 
-        public double TotalOrder { get { return this.Itens.Sum(i => i.SubTotal); } }
+        public double TotalOrder {
+            get
+            { if(Itens != null)
+                {
+                    return this.Itens.Sum(i => i.SubTotal);
+                }
+                return 0; 
+            }
+
+        }
 
         public enum EStatusOrder : int
         {
