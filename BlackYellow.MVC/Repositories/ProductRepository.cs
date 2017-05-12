@@ -131,7 +131,7 @@ namespace BlackYellow.MVC.Repositories
 
         }
 
-        public  Product GetProductsImages(int id)
+        public  Product GetProductsImages(long id)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
-        public List<GaleryProduct> GetImages(int id)
+        public List<GaleryProduct> GetImages(long id)
         {
             try
             {
@@ -212,7 +212,7 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
-        //public IEnumerable<GaleryProduct> GetImagesByProduct(int id)
+        //public IEnumerable<GaleryProduct> GetImagesByProduct(long id)
         //{
         //    try
         //    {

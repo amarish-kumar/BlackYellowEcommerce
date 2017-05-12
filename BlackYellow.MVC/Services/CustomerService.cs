@@ -23,7 +23,7 @@ namespace BlackYellow.MVC.Services
             return _customerRepository.Insert(customer);
         }
 
-        public override Customer Get(int id)
+        public override Customer Get(long id)
         {
             return _customerRepository.Get(id);
         }
@@ -33,7 +33,7 @@ namespace BlackYellow.MVC.Services
             return _customerRepository.Update(obj);
         }
 
-        public Customer GetCustomerByUserId(int id)
+        public Customer GetCustomerByUserId(long id)
         {
            return  _customerRepository.GetCustomerByUserId(id);
         }

@@ -208,7 +208,7 @@ namespace BlackYellow.MVC.Controllers
 
             return Json(new { sucesso = true });
         }
-        public RedirectResult Remove(int id)
+        public RedirectResult Remove(long id)
         {
             Cart obj = new Cart();
             ItemCart item = new ItemCart();

@@ -16,9 +16,9 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 
         IEnumerable<Product> GetByCategory(string categoryId);
 
-        Product GetProductsImages(int id);
+        Product GetProductsImages(long id);
 
-        List<GaleryProduct> GetImages(int id);
+        List<GaleryProduct> GetImages(long id);
 
     }
 }

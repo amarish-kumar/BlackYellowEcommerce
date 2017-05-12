@@ -9,6 +9,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
         User GetUserByMail(string email);
         IEnumerable<User> GetAllUserAdmin();
 
-        User GetUserByCustomer(int id);
+        User GetUserByCustomer(long id);
     }
 }

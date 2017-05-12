@@ -29,7 +29,7 @@ namespace BlackYellow.MVC.Services
             return _userRepository.GetAllUserAdmin();
         }
 
-        public User GetUserByCustomer(int id)
+        public User GetUserByCustomer(long id)
         {
             return _userRepository.GetUserByCustomer(id);
         }

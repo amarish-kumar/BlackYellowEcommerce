@@ -198,7 +198,7 @@ namespace BlackYellow.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update(int id)
+        public IActionResult Update(long id)
         {
 
             var customer = _customerService.Get(id);

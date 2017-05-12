@@ -39,7 +39,7 @@ namespace BlackYellow.MVC.Services
             return _productRepository.ListTop12();
         }
 
-        public Product GetProductsImages(int id)
+        public Product GetProductsImages(long id)
         {
             return _productRepository.GetProductsImages(id);
         }
@@ -67,7 +67,7 @@ namespace BlackYellow.MVC.Services
             }
         }
 
-        public List<GaleryProduct> GetImages(int id)
+        public List<GaleryProduct> GetImages(long id)
         {
             return _productRepository.GetImages(id);
         }

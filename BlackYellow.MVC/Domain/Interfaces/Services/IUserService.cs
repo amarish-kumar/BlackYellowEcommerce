@@ -8,7 +8,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
         User GetUserByNamePassword(User user);
         User GetUserByMail(string email);
         IEnumerable<User> GetAllUserAdmin();
-        User GetUserByCustomer(int id);
+        User GetUserByCustomer(long id);
 
      
     }

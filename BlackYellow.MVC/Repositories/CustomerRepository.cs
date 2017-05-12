@@ -45,7 +45,7 @@ namespace BlackYellow.MVC.Repositories
             return base.db.Connection.Query<Customer>(sql, new { cpf = cpf }).SingleOrDefault();
         }
 
-        public override Customer Get(int id)
+        public override Customer Get(long id)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
-        public Customer GetCustomerByUserId(int id)
+        public Customer GetCustomerByUserId(long id)
         {
             try
             {

@@ -12,6 +12,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
 
         IEnumerable<T> GetAll();
 
-        T Get(int id);
+        T Get(long id);
     }
 }

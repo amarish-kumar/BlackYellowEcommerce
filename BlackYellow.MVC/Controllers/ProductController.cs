@@ -33,7 +33,7 @@ namespace BlackYellow.MVC.Controllers
         }
 
 
-        public IActionResult Details(int id)
+        public IActionResult Details(long id)
         {
             Product p = _productService.Get(id);
             p.GaleryProduct = _productService.GetImages(id);
@@ -121,7 +121,7 @@ namespace BlackYellow.MVC.Controllers
         }
 
       //  [HttpGet]
-        public IActionResult SearchByCategory(int id)
+        public IActionResult SearchByCategory(long id)
         {
             IEnumerable<Product> prods = _productService.GetByCategory(id.ToString());
             return View(prods);

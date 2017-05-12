@@ -12,7 +12,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
         IEnumerable<Product> GetByName(string name);
 
         IEnumerable<Product> GetByCategory(string categoryId);
-        Product GetProductsImages(int id);
-        List<GaleryProduct> GetImages(int id);
+        Product GetProductsImages(long id);
+        List<GaleryProduct> GetImages(long id);
     }
 }

@@ -29,8 +29,6 @@
     "Microsoft.AspNetCore.Authorization": "1.1.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Session": "1.0.0",
-    "NReco.PdfGenerator.LT": "1.1.15",
-    "CoreCompat.System.Drawing": "1.0.0-beta002",
     "Microsoft.AspNet.WebApi.Client": "5.2.3"
   },
 

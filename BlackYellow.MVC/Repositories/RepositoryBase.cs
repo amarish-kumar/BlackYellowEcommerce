@@ -15,7 +15,7 @@ namespace BlackYellow.MVC.Repositories
                     
         }
 
-        public virtual T Get(int id)
+        public virtual T Get(long id)
         {
             return db.Connection.Get<T>(id);
         }

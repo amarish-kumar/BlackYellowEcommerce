@@ -19,7 +19,7 @@ namespace BlackYellow.MVC.Services
            return  _repository.Delete(obj);
         }
 
-        public virtual T Get(int id)
+        public virtual T Get(long id)
         {
             return _repository.Get(id);
         }

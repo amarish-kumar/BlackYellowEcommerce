@@ -53,7 +53,7 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
-        public User GetUserByCustomer(int id)
+        public User GetUserByCustomer(long id)
         {
             try
             {

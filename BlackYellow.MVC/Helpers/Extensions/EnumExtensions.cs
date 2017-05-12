@@ -15,7 +15,7 @@ namespace BlackYellow.MVC.Helpers.Extensions
 
             var type = enumValue.GetType();
             FieldInfo fieldInfo = type.GetField(enumValueAsString);
-            IEnumerable< Attribute> attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            IEnumerable<Attribute> attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
             if (attributes.Any())
             {
