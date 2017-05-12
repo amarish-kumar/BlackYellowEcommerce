@@ -180,6 +180,8 @@ namespace BlackYellow.MVC.Controllers
                     boleto.Order = order;
                     boleto.Order.Customer = customer;
 
+                    HttpContext.Session.Clear();
+
                     return View("Boleto", boleto);
 
                 }
@@ -224,6 +226,7 @@ namespace BlackYellow.MVC.Controllers
             var str = JsonConvert.SerializeObject(obj);
             HttpContext.Session.SetString(SessionCart, str);
 
+            ViewBag.Message = "Produto Adicionado ao carrinho!";
 
             return Json(new { sucesso = true });
         }

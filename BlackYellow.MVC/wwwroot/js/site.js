@@ -16,7 +16,7 @@ function buy(id) {
         url: "/Order/Buy",
         data: JSON.stringify(product),
         success: function (data) {
-
+            bootbox.alert("Produto adicionado com sucesso");
         }
     })
 }
