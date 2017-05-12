@@ -13,14 +13,20 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
+
     <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/admin/style.css")" />
     <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
     <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
     <link rel="stylesheet" href="@Url.Content("~/css/floating-labels.css")" />
 
-
+    <style>
+        table.table ul.dropdown-menu {
+            position: relative;
+            float: none;
+            max-width: 160px;
+        }
+    </style>
 
 </head>
 <body>
@@ -78,7 +84,7 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/Account/Logout" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/Account/Logout"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             </ul>
         </div>
     </nav>
@@ -169,6 +175,14 @@
 
     <script>
         $(document).ready(function () {
+
+            //$('.table').on('show.bs.dropdown', function () {
+            //    $('.table').css("overflow", "inherit");
+            //});
+
+            //$('.table').on('hide.bs.dropdown', function () {
+            //    $('.table').css("overflow", "auto");
+            //})
 
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",

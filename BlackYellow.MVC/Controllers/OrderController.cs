@@ -134,21 +134,9 @@ namespace BlackYellow.MVC.Controllers
 
                 if (cart.Itens.Count > 0)
                 {
-                    IPayment pagamento;
 
-                    if (order.PaymentMethod == Order.EPaymentMethod.Boleto)
-                    {
-
-                        pagamento = new Services.TicketService(customer, cart.TotalOrder, DateTime.Now.AddDays(3));
-
-                    }
-                    else throw new Exception("Pagamento não suportado");
-
-                 //   pagamento.ExecutePay();
-
-                  //  order.Customer = customer;
                     order.CustomerId = customer.CustomerId;
-                   
+
                     order.Itens = cart.Itens;
                     order.OrderDate = DateTime.Now;
                     order.OrderStatus = Order.EStatusOrder.Concluido;
@@ -168,14 +156,14 @@ namespace BlackYellow.MVC.Controllers
 
                     foreach (var item in order.Itens)
                     {
-                        item.ProductId = (int) item.Product.ProductId;
-                        item.OrderId = (int) order.OrderId;
+                        item.ProductId = (int)item.Product.ProductId;
+                        item.OrderId = (int)order.OrderId;
                         item.Price = item.Product.Price;
                         _cartItemService.Insert(item);
                     }
 
 
-                    ViewBag.Message = "Compra Realizada com sucesso ! Ticket Number :"+ order.TicketNumber;
+                    ViewBag.Message = "Compra Realizada com sucesso ! Número do pedido :" + order.TicketNumber;
                     BoletoViewModel boleto = new BoletoViewModel();
                     boleto.Order = order;
                     boleto.Order.Customer = customer;

@@ -30,6 +30,15 @@
     <link rel="stylesheet" href="@Url.Content("~/css/floating-labels.css")" />
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+
+    <style>
+        table.table ul.dropdown-menu {
+            position: relative;
+            float: none;
+            max-width: 160px;
+        }
+    </style>
+
 </head>
 <body>
     <div class="header-area">
@@ -46,16 +55,16 @@
 
                             @if (User.IsInRole("Administrator"))
                             {
-                                <li><a href="~/User/Create"><i class="fa fa-gears"></i> Administração</a></li>
+                            <li><a href="~/User/Create"><i class="fa fa-gears"></i> Administração</a></li>
                             }
-                            @if (User.Identity.Name == null  )
+                            @if (User.Identity.Name == null)
                             {
-                                <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
+                            <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
                                 <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
                             }
                             else if (User.Identity.AuthenticationType != null)
                             {
-                                @*<li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>*@
+                            @*<li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>*@
                                 <li><a href="~/Account/Logout"><i class="fa fa-key"></i> Logout</a></li>
                                 <li><a href="~/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i>Bem vindo, @User.Identity.Name </a></li>
 
@@ -86,7 +95,7 @@
                 </div>
                 <div class="col-sm-7">
                     <div class="search-item">
-                      
+
                         <form action="/Product/SearchProducts" method="get">
                             <input type="text" name="product" placeholder="Procurar produtos...">
                             <input type="submit" value="Procurar">
@@ -121,9 +130,9 @@
                             <li><a href="~/Order/Cart">Carrinho</a></li>
                             <li>
                                 <a href="~/Order/Checkout">Finalizar Compra</a>
-                            </li>                                                
+                            </li>
                             <li><a href="#">Contato</a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -138,7 +147,7 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="footer-about-us">
                             <h2>Black<span> Yellow</span></h2>
-                        
+
                             <div class="footer-social">
                                 <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                                 <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -148,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-             
+
                 </div>
             </div>
         </div> <!-- End footer top area -->
@@ -203,6 +212,14 @@
 
     <script>
         $(document).ready(function () {
+
+            //$('.table').on('show.bs.dropdown', function () {
+            //    $('.table').css("overflow", "inherit");
+            //});
+
+            $('.table').on('hide.bs.dropdown', function () {
+                $('.table').css("overflow", "auto");
+            })
 
             $('.datepicker').datepicker({
                 format: "dd/mm/yyyy",

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var filters = ViewBag.Filters as BlackYellow.MVC.Models.OrderReportFilters;
 }
-@model List<BlackYellow.MVC.Domain.Entites.Order>
+@model IEnumerable<BlackYellow.MVC.Domain.Entites.Order>
 
 <h2>Relatório de Vendas</h2>
 
@@ -36,17 +36,17 @@
                                 <ul class="col-lg-6 col-sm-12 col-md-6" style="list-style-type: none;column-count:2;margin:0">
                                     @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Domain.Entites.Order.EStatusOrder)).OfType<BlackYellow.MVC.Domain.Entites.Order.EStatusOrder>())
                                     {
-                                        <li>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" name="Status" value="@item" checked="@(filters?.Status?.Contains(item))" />
-                                                @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
-                                            </label>
-                                        </li>
+                                    <li>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="Status" value="@item" checked="@(filters?.Status?.Contains(item))" />
+                                            @BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item)
+                                        </label>
+                                    </li>
                                     }
                                 </ul>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="pull-right">
@@ -74,25 +74,40 @@
                     <th>Data</th>
                     <th>Cliente</th>
                     <th>Valor Total</th>
-                    <th>Qtd Itens</th>
+                    <th>Qtd. Itens</th>
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Count > 0)
+                @if (Model.Any())
                 {
-                    foreach (var item in Model)
+                    foreach (var order in Model)
                     {
 
-                        <tr>
+                    <tr>
 
-                            <td>@item.OrderId</td>
-                            <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(item.OrderStatus)</td>
-                            <td>@item.OrderDate.ToString("d")</td>
-                            <td>@item.Customer.FullName</td>
-                            <td>@item.TotalOrder.ToString("N2")</td>
-                            <td>@item.Itens.Count</td>
+                        <td>@order.TicketNumber</td>
+                        <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(order.OrderStatus)</td>
+                        <td>@order.OrderDate.ToString("d")</td>
+                        <td>@order.Customer.FullName <small>@(order.Customer.Address.Street), @(order.Customer.Address.City)/@(order.Customer.Address.State)</small></td>
+                        <td>@order.TotalOrder.ToString("N2")</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="itemddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    @order.Itens.Count
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="itemddm">
+                                    @foreach (var item in order.Itens)
+                                    {
+                                    <li>
+                                        <i class="glyphicon glyphicon-chevron-right"></i><span>@item.Product.Name</span>
+                                    </li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
 
-                        </tr>
+                    </tr>
 
 
                     }
