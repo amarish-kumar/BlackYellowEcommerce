@@ -60,6 +60,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public enum EPaymentMethod : int
         {
             Boleto = 1,
+            PagamentoConta = 2
         }
 
 
