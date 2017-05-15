@@ -36,10 +36,11 @@
                                 @*   <div class="form-group col-lg-3 col-sm-12 col-md-3">*@
                                 <div class="form-group">
                                     <select id="categoryId" name="CategoryId">
+                                        <option></option>
                                         @foreach (var item in BlackYellow.MVC.Models.ProductReportFilters.Categories)
                                         {
-                                        <option selected="@((filters?.CategoryId?.Equals(item.CategoryId) ?? false) ? "true" : "false")">
-                                            @item.Name - @item.Description
+                                        <option value="@item.CategoryId" selected="@((filters?.CategoryId?.Equals(item.CategoryId) ?? false) ? "true" : "false")">
+                                            <text>#@item.CategoryId - @item.Name - @item.Description</text>
                                         </option>
                                         }
                                     </select>
@@ -83,7 +84,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Any())
+                @if (Model?.Any() ?? false)
                 {
                     foreach (var product in Model)
                     {
@@ -94,7 +95,7 @@
                         <td>@product.Name</td>
                         <td>@product.Description</td>
                         <td>@product.Price.ToString("N2")</td>
-                        <td>@product.SoldItens.Sum(o => o.SubTotal) / @product.SoldItens.Count</td>
+                        <td>@(product.SoldItens.Sum(o => o.SubTotal) / product.SoldItens.Count)</td>
                         <td>@product.SoldItens.Sum(o => o.Quantity)</td>
                         <td>@product.SoldItens.Count</td>
                         <td>@product.Quantity</td>

@@ -58,14 +58,14 @@ namespace BlackYellow.MVC.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Products()
         {
-            return View();
+            return Products(new Models.ProductReportFilters { CategoryId = null });
         }
 
         [HttpPost, Authorize(Roles = "Administrator")]
         public IActionResult Products(Models.ProductReportFilters filters)
         {
             var orders = _productService.GetAll(filters);
-            
+
             ViewBag.Filters = filters;
 
             return View(orders);
