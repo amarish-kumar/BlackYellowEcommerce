@@ -42,7 +42,7 @@ namespace BlackYellow.MVC.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Administrator")]
         public IActionResult Orders(Models.OrderReportFilters filters)
         {
 
@@ -59,6 +59,16 @@ namespace BlackYellow.MVC.Controllers
         public IActionResult Products()
         {
             return View();
+        }
+
+        [HttpPost, Authorize(Roles = "Administrator")]
+        public IActionResult Products(Models.ProductReportFilters filters)
+        {
+            var orders = _productService.GetAll(filters);
+            
+            ViewBag.Filters = filters;
+
+            return View(orders);
         }
 
         [Authorize(Roles = "Administrator")]

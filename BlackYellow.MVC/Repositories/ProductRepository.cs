@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using Dapper;
+using BlackYellow.MVC.Models;
 
 namespace BlackYellow.MVC.Repositories
 {
@@ -23,7 +24,8 @@ namespace BlackYellow.MVC.Repositories
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
                 db.Connection.Query<Product, GaleryProduct, Product>(sql,
                                     splitOn: "PathImage",
-                                    map: (p, g) => {
+                                    map: (p, g) =>
+                                    {
                                         Product pr;
                                         if (!produtos.TryGetValue((int)p.ProductId, out pr))
                                         {
@@ -57,12 +59,13 @@ namespace BlackYellow.MVC.Repositories
                 var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage, g.IsPrincipal
                                 FROM Products p INNER JOIN
                                 GaleryProducts g ON g.ProductId = p.ProductId
-                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.Name = '"+ name +"'";
+                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.Name = '" + name + "'";
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
                 db.Connection.Query<Product, GaleryProduct, Product>(sql,
                                     splitOn: "PathImage",
-                                    map: (p, g) => {
+                                    map: (p, g) =>
+                                    {
                                         Product pr;
                                         if (!produtos.TryGetValue((int)p.ProductId, out pr))
                                         {
@@ -125,13 +128,13 @@ namespace BlackYellow.MVC.Repositories
 
                 return false;
             }
-            
+
 
 
 
         }
 
-        public  Product GetProductsImages(long id)
+        public Product GetProductsImages(long id)
         {
             try
             {
@@ -139,30 +142,31 @@ namespace BlackYellow.MVC.Repositories
                                 FROM Products p INNER JOIN
                                 GaleryProducts g ON g.ProductId = p.ProductId INNER JOIN
                                 Categories c ON c.CategoryId = p.CategoryId 
-                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.ProductId = "+ id;
+                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.ProductId = " + id;
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
-               return db.Connection.Query<Product, GaleryProduct, Product>(sql,
-                                    splitOn: "PathImage",
-                                    map: (p, g) => {
-                                        Product pr;
-                                        if (!produtos.TryGetValue((int)p.ProductId, out pr))
-                                        {
-                                            pr = p;
-                                            produtos.Add((int)pr.ProductId, pr);
-                                        }
-                                        if (g.IsPrincipal)
-                                        {
-                                            pr.GaleryProduct.Add(g);
+                return db.Connection.Query<Product, GaleryProduct, Product>(sql,
+                                     splitOn: "PathImage",
+                                     map: (p, g) =>
+                                     {
+                                         Product pr;
+                                         if (!produtos.TryGetValue((int)p.ProductId, out pr))
+                                         {
+                                             pr = p;
+                                             produtos.Add((int)pr.ProductId, pr);
+                                         }
+                                         if (g.IsPrincipal)
+                                         {
+                                             pr.GaleryProduct.Add(g);
 
-                                        }
-                                        return p;
-                                    }
+                                         }
+                                         return p;
+                                     }
 
 
-                    ).FirstOrDefault();
+                     ).FirstOrDefault();
 
-                
+
 
             }
             catch (Exception)
@@ -182,24 +186,24 @@ namespace BlackYellow.MVC.Repositories
                                 WHERE   p.ProductId = " + id;
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
-#pragma warning disable CS1701 // Assuming assembly reference matches identity
-                Product product =  db.Connection.Query<Product, GaleryProduct, Product>(sql,
+
+                Product product = db.Connection.Query<Product, GaleryProduct, Product>(sql,
                                      splitOn: "PathImage",
-                                     map: (p, g) => {
+                                     map: (p, g) =>
+                                     {
                                          Product pr;
                                          if (!produtos.TryGetValue((int)p.ProductId, out pr))
                                          {
                                              pr = p;
                                              produtos.Add((int)pr.ProductId, pr);
-                                         }                                         
-                                             pr.GaleryProduct.Add(g);
-                                         
+                                         }
+                                         pr.GaleryProduct.Add(g);
+
                                          return p;
                                      }
 
 
                      ).FirstOrDefault();
-#pragma warning restore CS1701 // Assuming assembly reference matches identity
 
                 List<GaleryProduct> galeries = new List<GaleryProduct>();
                 galeries = product.GaleryProduct;
@@ -212,42 +216,7 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
-        //public IEnumerable<GaleryProduct> GetImagesByProduct(long id)
-        //{
-        //    try
-        //    {
-        //        var sql = @"SELECT g.PathImage, g.IsPrincipal
-        //                        FROM Products p INNER JOIN
-        //                        GaleryProducts g ON g.ProductId = p.ProductId ";
 
-        //        Dictionary<int, Product> produtos = new Dictionary<int, Product>();
-        //        db.Connection.Query<GaleryProduct, GaleryProduct, Product>(sql,
-        //                            splitOn: "PathImage",
-        //                            map: (p, g) =>
-        //                            {
-        //                                Product pr;
-        //                                if (!produtos.TryGetValue((int)p.ProductId, out pr))
-        //                                {
-        //                                    pr = p;
-        //                                    produtos.Add((int)pr.ProductId, pr);
-        //                                }
-
-        //                                return p;
-        //                            }
-
-
-        //            ).ToList();
-
-        //        return produtos.Values;
-
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-    
         public IEnumerable<Product> ListTop12()
         {
             try
@@ -259,27 +228,28 @@ namespace BlackYellow.MVC.Repositories
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
                 db.Connection.Query<Product, GaleryProduct, Product>(sql,
-                                    splitOn:"PathImage",
-                                    map:(p, g) => {
+                                    splitOn: "PathImage",
+                                    map: (p, g) =>
+                                    {
                                         Product pr;
                                         if (!produtos.TryGetValue((int)p.ProductId, out pr))
                                         {
                                             pr = p;
-                                            produtos.Add((int) pr.ProductId, pr);
+                                            produtos.Add((int)pr.ProductId, pr);
                                         }
-                                        if(g.IsPrincipal)
+                                        if (g.IsPrincipal)
                                         {
                                             pr.GaleryProduct.Add(g);
-                                           
+
                                         }
                                         return p;
                                     }
-                                       
-                        
+
+
                     ).ToList();
 
                 return produtos.Values;
-                        
+
             }
             catch (Exception)
             {
@@ -288,5 +258,51 @@ namespace BlackYellow.MVC.Repositories
             }
         }
 
+        public object GetAll(ProductReportFilters filters)
+        {
+            var @return = new Dictionary<long, Product>();
+
+            var sql = @"SELECT * 
+                            FROM Products
+                            LEFT JOIN CartsItems
+                                 ON Products.ProductId = CartsItems.ProductId
+                            LEFT JOIN Orders
+                                 ON CartsItems.OrderId = Orders.OrderId
+                            INNER JOIN Categories
+                                ON Categories.CategoryId = Products.CategoryId
+                        WHERE /*((@InitDate IS NULL AND @EndData IS NULL) OR cast(Orders.OrderDate as date) BETWEEN @InitDate AND @EndDate) AND*/ (@CategoryId IS NULL OR Categories.CategoryId = @CategoryId) ";
+
+            var queryResult = base.db.Connection.Query<Product, ItemCart, Order, Category, Product>(sql,
+                splitOn: "CustomerId,AddressId,UserId,ItemCartId,ProductId,CategoryId",
+                map: (prod, cart, ord, cat) =>
+                {
+
+                    Product result;
+
+                    if (!@return.TryGetValue(prod.ProductId, out result))
+                    {
+                        result = prod;
+                        @return.Add(result.ProductId, result);
+                    }
+
+                    result.Category = cat;
+                    result.CategoryId = cat.CategoryId;
+                    cart.Order = ord;
+                    cart.OrderId = ord.OrderId;
+
+                    if (result.SoldItens == null) result.SoldItens = new List<ItemCart>();
+
+                    if (!(result.SoldItens.Contains(cart)))
+                        result.SoldItens.Add(cart);
+
+
+
+                    return result;
+
+                },
+                param: filters);
+
+            return @return.Values;
+        }
     }
 }

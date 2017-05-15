@@ -17,7 +17,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public string Name { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
-     //   public double LastPrice { get; set; }
+        //   public double LastPrice { get; set; }
         public double Price { get; set; }
         [Write(false)]
         public virtual Category Category { get; set; }
@@ -35,14 +35,19 @@ namespace BlackYellow.MVC.Domain.Entites
             }
         }
 
+        [Write(false)]
+        public List<ItemCart> SoldItens { get; set; }
 
-       
+
+
+
+
         public bool GaleryIsFull()
         {
             return GaleryProduct.Count >= 4;
         }
 
-       
+
 
 
         public void FileGalery(IFormFile main_file, ICollection<IFormFile> details_files, string path)

@@ -1,5 +1,6 @@
 ﻿using BlackYellow.MVC.Domain.Entites;
 using System.Collections.Generic;
+using BlackYellow.MVC.Models;
 
 namespace BlackYellow.MVC.Domain.Interfaces.Repositories
 {
@@ -14,5 +15,6 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
         IEnumerable<Product> GetByCategory(string categoryId);
         Product GetProductsImages(long id);
         List<GaleryProduct> GetImages(long id);
+        object GetAll(ProductReportFilters filters);
     }
 }

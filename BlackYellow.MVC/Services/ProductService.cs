@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using BlackYellow.MVC.Models;
+using System;
 
 namespace BlackYellow.MVC.Services
 {
@@ -12,7 +14,7 @@ namespace BlackYellow.MVC.Services
         private readonly IProductRepository _productRepository;
 
 
-        
+
 
         public ProductService(IRepositoryBase<Product> repository, IProductRepository productRepository) : base(repository)
         {
@@ -44,15 +46,15 @@ namespace BlackYellow.MVC.Services
             return _productRepository.GetProductsImages(id);
         }
 
-        public async void uploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)
-        {          
+        public async void UploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)
+        {
             if (main_file.Length > 0)
             {
                 using (var fileStream = new FileStream(Path.Combine(path, main_file.FileName), FileMode.Create))
                 {
                     await main_file.CopyToAsync(fileStream);
                 }
-                         
+
             }
 
             foreach (var file in details_files)
@@ -70,6 +72,11 @@ namespace BlackYellow.MVC.Services
         public List<GaleryProduct> GetImages(long id)
         {
             return _productRepository.GetImages(id);
+        }
+
+        public object GetAll(ProductReportFilters filters)
+        {
+            return _productRepository.GetAll(filters);
         }
     }
 }

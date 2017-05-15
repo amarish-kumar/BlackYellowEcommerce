@@ -91,7 +91,7 @@ namespace BlackYellow.MVC.Controllers
 
                 product.FileGalery(main_file, files, pathServer);
                 product.DateRegister = DateTime.Now;
-                _productService.uploadProductFiles(main_file, files, path);
+                _productService.UploadProductFiles(main_file, files, path);
                 if (_productService.InsertProduct(product))
                 {
                     TempData["MsgSucesso"] = "Produto cadastrado com sucesso.";

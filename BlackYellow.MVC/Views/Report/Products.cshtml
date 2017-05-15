@@ -1,24 +1,110 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var filters = ViewBag.Filters as BlackYellow.MVC.Models.ProductReportFilters;
 }
-<h2>Relatório de Produtos</h2>
+@model IEnumerable<BlackYellow.MVC.Domain.Entites.Product>
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="form-group">
-            <label for="basic-url">Campo 1 </label>
-            <div class="form-group">
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+<h2>Relatório de Vendas</h2>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+
+        @using (Html.BeginForm(FormMethod.Post))
+            {
+
+
+            <div class="clearfix">
+
+                <div class="pull-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-inline" style="margin-top: 20px;">
+
+                                @*<div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                        <input id="dataInicial" placeholder="Data Inicial" name="InitDate" class="form-control datepicker" value="@(filters?.InitDate?.ToString("d"))" />
+                                        <label for="dataInicial">Data Inicial</label>
+                                    </div>
+
+                                    <div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                        <input id="dataFinal" placeholder="Data Final" name="EndDate" class="form-control datepicker" value="@(filters?.EndDate?.ToString("d"))" />
+                                        <label for="dataFinal">Data Final</label>
+                                    </div>*@
+
+                                @*   <div class="form-group col-lg-3 col-sm-12 col-md-3">*@
+                                <div class="form-group">
+                                    <select id="categoryId" name="CategoryId">
+                                        @foreach (var item in BlackYellow.MVC.Models.ProductReportFilters.Categories)
+                                        {
+                                        <option selected="@((filters?.CategoryId?.Equals(item.CategoryId) ?? false) ? "true" : "false")">
+                                            @item.Name - @item.Description
+                                        </option>
+                                        }
+                                    </select>
+                                    <label for="categoryId">Categoria</label>
+                                </div>
+                                @*</div>*@
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+
+                    <button type="submit" class="btn btn-lg btn-success">
+                        <i class="fa fa-search"></i> Buscar
+                    </button>
+
+                </div>
+
             </div>
-        </div>
+
+        }
+
+
+
+
     </div>
-    <div class="col-lg-6">
-        <label for="basic-url">Campo 2</label>
-        <div class="form-group">
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-        </div>
+    <div class="panel-body">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Preço Atual</th>
+                    <th>Preço Médio</th>
+                    <th>Unidades Vendidas</th>
+                    <th>Qtd. Vendas</th>
+                    <th>Estoque</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var product in Model)
+                    {
+
+                    <tr>
+
+                        <td>@product.ProductId</td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price.ToString("N2")</td>
+                        <td>@product.SoldItens.Sum(o => o.SubTotal) / @product.SoldItens.Count</td>
+                        <td>@product.SoldItens.Sum(o => o.Quantity)</td>
+                        <td>@product.SoldItens.Count</td>
+                        <td>@product.Quantity</td>
+
+                    </tr>
+
+
+                    }
+                }
+            </tbody>
+        </table>
     </div>
-</div>
-<div class="col-md-12 text-center">
-    <button type="button" class="btn btn-primary btn-lg">Gerar Relatório</button>
 </div>
