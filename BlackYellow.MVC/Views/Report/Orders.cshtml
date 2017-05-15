@@ -85,7 +85,7 @@
 
                     <tr>
 
-                        <td>@order.TicketNumber</td>
+                        <td>@order.TicketNumber@order.OrderId</td>
                         <td>@BlackYellow.MVC.Helpers.Extensions.EnumExtensions.GetEnumDescription(order.OrderStatus)</td>
                         <td>@order.OrderDate.ToString("d")</td>
                         <td>@order.Customer.FullName <small>@(order.Customer.Address.Street), @(order.Customer.Address.City)/@(order.Customer.Address.State)</small></td>

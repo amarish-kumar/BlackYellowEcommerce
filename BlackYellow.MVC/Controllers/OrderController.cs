@@ -107,16 +107,20 @@ namespace BlackYellow.MVC.Controllers
         public IActionResult Checkout()
         {
             var cartSessionText = HttpContext.Session.GetString(SessionCart);
-            Cart cart = JsonConvert.DeserializeObject<Cart>(cartSessionText);
-
-            if (User?.Identity?.IsAuthenticated == true)
+            if(!string.IsNullOrEmpty(cartSessionText))
             {
-                if (!string.IsNullOrEmpty(cartSessionText) && cart?.Itens.Count > 0)
-                    return View(cart);
-                else
+                Cart cart = JsonConvert.DeserializeObject<Cart>(cartSessionText);
+                if (User?.Identity?.IsAuthenticated == true)
                 {
-                    return View();
+                    if (!string.IsNullOrEmpty(cartSessionText) && cart?.Itens.Count > 0)
+                        return View(cart);
+                    else
+                    {
+                        return View();
+                    }
                 }
+                else
+                    return RedirectToAction("Login", "Account");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -139,10 +143,14 @@ namespace BlackYellow.MVC.Controllers
 
                     order.Itens = cart.Itens;
                     order.OrderDate = DateTime.Now;
-                    order.OrderStatus = Order.EStatusOrder.Concluido;
+                    
                     order.PaymentDate = DateTime.Now;
-                    order.PaymentMethod = Order.EPaymentMethod.Boleto;
-
+                    //    order.PaymentMethod = Order.EPaymentMethod.Boleto;
+                    if (order.PaymentMethod == Order.EPaymentMethod.Boleto)
+                        order.OrderStatus = Order.EStatusOrder.Concluido;
+                    else
+                        order.OrderStatus = Order.EStatusOrder.AguardandoPagamento;
+                      
                     foreach (var item in order.Itens)
                     {
                         var p = _productService.Get(item.Product.ProductId);
@@ -162,15 +170,23 @@ namespace BlackYellow.MVC.Controllers
                         _cartItemService.Insert(item);
                     }
 
-
+                   
                     ViewBag.Message = "Compra Realizada com sucesso ! Número do pedido :" + order.TicketNumber;
-                    BoletoViewModel boleto = new BoletoViewModel();
-                    boleto.Order = order;
-                    boleto.Order.Customer = customer;
+                    if (order.PaymentMethod == Order.EPaymentMethod.Boleto)
+                    {
+                        BoletoViewModel boleto = new BoletoViewModel();
+                        boleto.Order = order;
+                        boleto.Order.Customer = customer;
 
-                    HttpContext.Session.Clear();
+                        HttpContext.Session.Clear();
 
-                    return View("Boleto", boleto);
+                        return View("Boleto", boleto);
+                    }
+                    else
+                    {
+                        return View("WaitingPayment", customer);
+                    }
+                      
 
                 }
                 else
