@@ -7,5 +7,7 @@ namespace BlackYellow.MVC.Domain.Interfaces.Repositories
     {
         IEnumerable<Order> GetAll(Models.OrderReportFilters filters);
         long Insert(Order order);
+        Order Get(long orderId);
+        IEnumerable<Order> GetAll(long customerId);
     }
 }

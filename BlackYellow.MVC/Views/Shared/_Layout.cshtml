@@ -37,6 +37,18 @@
             float: none;
             max-width: 160px;
         }
+
+        .navbar-login {
+            width: 305px;
+            padding: 10px;
+            padding-bottom: 0px;
+        }
+
+        .navbar-login-session {
+            padding: 10px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
     </style>
 
 </head>
@@ -60,13 +72,60 @@
                             @if (User.Identity.Name == null)
                             {
                             <li><a href="~/Account/Register"><i class="fa fa-sign-in"></i> Registrar-se</a></li>
-                                <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
+                            <li><a href="~/Account/Login"><i class="fa fa-key"></i> Login</a></li>
                             }
                             else if (User.Identity.AuthenticationType != null)
                             {
-                            @*<li><a href="/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i> Minha Conta</a></li>*@
-                                <li><a href="~/Account/Logout"><i class="fa fa-key"></i> Logout</a></li>
-                                <li><a href="~/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-gift"></i>Bem vindo, @User.Identity.Name </a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <strong>Bem vindo, @User.Identity.Name</strong>
+                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="text-center">
+                                                        <span class="glyphicon glyphicon-user icon-size"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <p class="text-left"><strong>@User.Identity.Name</strong></p>
+                                                    <p class="text-left">
+                                                        <a href="~/Account/Update/@User.Identity.AuthenticationType" class="btn btn-primary btn-block btn-sm">Atualizar dados</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="~/Order/MyOrders" class="btn btn-info btn-block">Meus Pedidos</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <div class="navbar-login navbar-login-session">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        <a href="~/Account/Logout" class="btn btn-danger btn-block">Sair</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
 
 
                             }

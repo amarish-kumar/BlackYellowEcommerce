@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BlackYellow.MVC.Domain.Entites.Order>
+
+@if (Model?.Any() ?? false)
+{
+
+
+    <table class="table table-bordered table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Data</th>
+                <th>Valor Total</th>
+                <th>Pagamento</th>
+                <th>Status</th>
+                <th>Produtos</th>
+            </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+            <tr>
+                <td>@pedido.TicketNumber</td>
+                <td>@pedido.OrderDate.ToString("d")</td>
+                <td>@pedido.TotalOrder</td>
+                <td>@pedido.PaymentMethod</td>
+                <td>@pedido.OrderStatus</td>
+                <td>
+                    <a title="Clique para ver detalhes" href="@Url.Action("Index", "Order", new { id = pedido.OrderId })">@pedido.Itens.Count</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+    <div class="jumbotron">
+        <h4>
+            <span>Nenhum pedido realizado até o momento...</span>
+        </h4>
+    </div>
+}

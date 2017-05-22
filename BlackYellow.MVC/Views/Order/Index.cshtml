@@ -1,0 +1,121 @@
+﻿@model BlackYellow.MVC.Domain.Entites.Order
+
+@if (Model != null)
+{
+
+    <script src="~/js/cart/general.js"></script>
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Detalhes do Pedido #@Model.TicketNumber (@Model.OrderDate.ToString("d"))<small>Entregue em @Model.Customer.Address.Street</small></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Page title area -->
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">Produto</th>
+                                        <th class="product-price">Preço</th>
+                                        <th class="product-quantity">Quantidade</th>
+                                        <th class="product-subtotal">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart">
+
+                                    @if (Model.Itens != null)
+                                    {
+
+                                    @foreach (var item in Model.Itens)
+                                    {
+
+
+
+                                    <tr class="cart_item">
+
+
+                                        <td class="product-thumbnail">
+
+                                            <a href="~/Product/Details/@item.Product.ProductId"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/@item.Product.GaleryProduct.FirstOrDefault(p => p.IsPrincipal)?.PathImage"></a>
+
+                                        </td>
+
+                                        <td class="product-name">
+                                            <a name="Product.Name" href="~/Product/Details/@item.Product.ProductId">@item.Product.Name</a>
+                                        </td>
+
+                                        <td class="product-price">
+
+                                            <span class="amount">@item.Product.Price.ToString("C2")</span>
+
+                                        </td>
+
+                                        <td class="product-quantity">
+
+                                            <div class="quantity buttons_added">
+                                                <span class="amount">@item.Quantity</span>
+                                            </div>
+
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="amount">@item.SubTotal.ToString("C2")</span>
+                                        </td>
+
+                                    </tr>
+
+
+                                    }
+
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="cart-collaterals">
+
+                                <div class="cart_totals ">
+                                    <h2>Compra Total</h2>
+                                    <table cellspacing="0">
+                                        <tbody>
+                                            <tr class="cart-subtotal">
+                                                <th>Subtotal</th>
+                                                <td><span class="amount">@Model.TotalOrder.ToString("C2")</span></td>
+                                            </tr>
+                                            <tr class="shipping">
+                                                <th>Frete</th>
+                                                <td>Grátis</td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th>Total da compra</th>
+                                                <td><strong><span class="amount">@Model.TotalOrder.ToString("C2")</span></strong> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

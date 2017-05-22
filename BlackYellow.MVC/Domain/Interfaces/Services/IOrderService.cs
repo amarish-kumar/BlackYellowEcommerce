@@ -9,6 +9,8 @@ namespace BlackYellow.MVC.Domain.Interfaces.Services
 
         string MontaBoleto();
         long Insert(Order order);
+        Order Get(long id);
+        IEnumerable<Order> GetAll(long customerId);
     }
 
 }

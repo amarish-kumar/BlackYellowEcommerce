@@ -4,18 +4,36 @@ using BlackYellow.MVC.Domain.Entites;
 using Dapper;
 using System;
 using Dapper.Contrib.Extensions;
+using System.Linq;
 
 namespace BlackYellow.MVC.Repositories
 {
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
 
+        public override Order Get(long orderId)
+        {
+
+            return GetAll("WHERE Orders.OrderId = @orderId", new { orderId }).FirstOrDefault();
+
+        }
+
+        public IEnumerable<Order> GetAll(long customerId)
+        {
+            return GetAll("WHERE Orders.CustomerId = @customerId", new { customerId });
+        }
+
         public IEnumerable<Order> GetAll(Models.OrderReportFilters filters)
+        {
+            return GetAll("WHERE cast(Orders.OrderDate as date) BETWEEN @InitDate AND @EndDate AND Orders.OrderStatus in @Status", filters);
+        }
+
+        private IEnumerable<Order> GetAll(string where, object param)
         {
 
             var @return = new Dictionary<long, Order>();
 
-            var sql = @"SELECT * 
+            var sql = $@"SELECT * 
                             FROM Orders
                             INNER JOIN Customers
                                 ON Orders.CustomerId = Customers.CustomerId
@@ -29,9 +47,7 @@ namespace BlackYellow.MVC.Repositories
                                 ON Products.ProductId = CartsItems.ProductId
                             INNER JOIN Categories
                                 ON Categories.CategoryId = Products.CategoryId
-                            /*LEFT JOIN GaleryProducts
-                                ON GaleryProducts.ProductId = Products.ProductId*/
-                        WHERE cast(Orders.OrderDate as date) BETWEEN @InitDate AND @EndDate AND Orders.OrderStatus in @Status";
+                           {where}";
 
             var queryResult = base.db.Connection.Query<Order, Customer, Address, User, ItemCart, Product, Category, Order>(sql,
                 splitOn: "CustomerId,AddressId,UserId,ItemCartId,ProductId,CategoryId",
@@ -62,7 +78,7 @@ namespace BlackYellow.MVC.Repositories
                     return ord;
 
                 },
-                param: filters);
+                param: param);
 
             return @return.Values;
 

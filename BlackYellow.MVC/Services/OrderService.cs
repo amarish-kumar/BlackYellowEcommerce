@@ -17,6 +17,16 @@ namespace BlackYellow.MVC.Services
             _orderRepository = orderRepository;
         }
 
+        public Order Get(long orderId)
+        {
+            return _orderRepository.Get(orderId);
+        }
+
+        public IEnumerable<Order> GetAll(long customerId)
+        {
+            return _orderRepository.GetAll(customerId);
+        }
+
         public IEnumerable<Order> GetAll(Models.OrderReportFilters filters)
         {
             return _orderRepository.GetAll(filters);
