@@ -38,17 +38,6 @@
             max-width: 160px;
         }
 
-        .navbar-login {
-            width: 305px;
-            padding: 10px;
-            padding-bottom: 0px;
-        }
-
-        .navbar-login-session {
-            padding: 10px;
-            padding-bottom: 0px;
-            padding-top: 0px;
-        }
     </style>
 
 </head>
@@ -84,45 +73,20 @@
                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="navbar-login">
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <p class="text-center">
-                                                        <span class="glyphicon glyphicon-user icon-size"></span>
-                                                    </p>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <p class="text-left"><strong>@User.Identity.Name</strong></p>
-                                                    <p class="text-left">
-                                                        <a href="~/Account/Update/@User.Identity.AuthenticationType" class="btn btn-primary btn-block btn-sm">Atualizar dados</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                    <li class="col-lg-12 col-md-12 col-sm-12">
+                                        <a href="~/Account/Update/@User.Identity.AuthenticationType"><i class="fa fa-pencil-square"></i>Atualizar dados</a>
                                     </li>
-                                    <li>
-                                        <div class="navbar-login navbar-login-session">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p>
-                                                        <a href="~/Order/MyOrders" class="btn btn-info btn-block">Meus Pedidos</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                    <li class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <a href="~/Order/MyOrders"><i class="fa fa-list"></i>Meus Pedidos</a>
+
                                     </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <div class="navbar-login navbar-login-session">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <p>
-                                                        <a href="~/Account/Logout" class="btn btn-danger btn-block">Sair</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <li role="separator" class="divider col-lg-12 col-md-12 col-sm-12"></li>
+                                    <li class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <a href="~/Account/Logout"><i class="fa fa-sign-out"></i>Sair</a>
                                     </li>
                                 </ul>
                             </li>
