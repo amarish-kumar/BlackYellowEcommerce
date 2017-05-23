@@ -182,14 +182,14 @@ namespace BlackYellow.MVC.Controllers
 
             if (flag)
             {
-                TempData["USER"] = "TRUE";
+                TempData["USER"] = "FALSE";
                 customer.User.Profile = Domain.Enum.Profile.User;
 
                 ViewBag.Message = _customerService.Insert(customer) ? $"Usuário #{customer.FullName} cadastrado com sucesso." : "Ocorreu um erro ao inserir os dados, tente novamente...";
             }
             else
             {
-                TempData["USER"] = "FALSE";
+                TempData["USER"] = "TRUE";
             }
 
 
