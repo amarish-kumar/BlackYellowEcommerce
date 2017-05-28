@@ -11,15 +11,23 @@ namespace BlackYellow.MVC.Services
     {
 
         private readonly IOrderRepository _orderRepository;
+        private readonly IProductRepository _productRepository;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
         {
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
         }
 
         public Order Get(long orderId)
         {
-            return _orderRepository.Get(orderId);
+            Order order =  _orderRepository.Get(orderId);
+            foreach (var item in order.Itens)
+            {
+              
+                item.Product.GaleryProduct.Add(_productRepository.GetProductsImages(item.ProductId).GaleryProduct[0]);
+            }
+            return order;
         }
 
         public IEnumerable<Order> GetAll(long customerId)
