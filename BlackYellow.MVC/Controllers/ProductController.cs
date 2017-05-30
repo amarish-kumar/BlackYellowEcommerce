@@ -49,7 +49,7 @@ namespace BlackYellow.MVC.Controllers
             if (product.Quantity > 0 && product.Price > 0)
             {
 
-                if (!string.IsNullOrEmpty(product.Name.Trim()) && !string.IsNullOrEmpty(product.Description.Trim()))
+                if (!string.IsNullOrWhiteSpace(product.Name) && !string.IsNullOrWhiteSpace(product.Description))
                 {
 
 
@@ -67,7 +67,7 @@ namespace BlackYellow.MVC.Controllers
                     ViewBag.Message = "Produto atualizado com sucesso";
 
 
-                    return RedirectToAction("Details", new { id = product.ProductId });
+                     return View(product);
 
                 }
                 else

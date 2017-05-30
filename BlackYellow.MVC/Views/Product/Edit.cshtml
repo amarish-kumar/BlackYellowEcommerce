@@ -1,12 +1,7 @@
 ﻿@model BlackYellow.MVC.Domain.Entites.Product
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
-
-
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 
 
 
@@ -19,26 +14,26 @@
 
             <h4>Edição do produto #@Model.ProductId</h4>
 
-            @Html.HiddenFor(p => p.ProductId);
+            @Html.HiddenFor(p => p.ProductId)
 
             <div class="form-group">
                 @Html.LabelFor(p => p.Name)
-                @Html.TextBoxFor(p => p.Name, new { @class = "form-control" });
+                @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(p => p.Price)
-                @Html.TextBoxFor(p => p.Price, new { @class = "form-control" });
+                @Html.TextBoxFor(p => p.Price, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(p => p.Description)
-                @Html.TextBoxFor(p => p.Description, new { @class = "form-control" });
+                @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(p => p.Quantity)
-                @Html.TextBoxFor(p => p.Quantity, new { @class = "form-control" });
+                @Html.TextBoxFor(p => p.Quantity, new { @class = "form-control" })
             </div>
 
             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Salvar</button>
