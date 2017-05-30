@@ -81,6 +81,11 @@ namespace BlackYellow.MVC.Controllers
         {
             try
             {
+                if(product.Quantity < 0 || product.Price < 0)
+                {
+                    TempData["MsgErro"] = "Erro ao cadastrar produto.";
+                    return Redirect("/Product/Create");
+                }
                 var path = string.Empty;
                 var pathServer = "images/products/";
                 path = _environment.WebRootPath + "/images/products/";
