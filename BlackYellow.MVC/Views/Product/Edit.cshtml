@@ -1,0 +1,50 @@
+﻿@model BlackYellow.MVC.Domain.Entites.Product
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+
+}
+
+
+
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <div class="container">
+        <div class="row">
+
+            <h4>Edição do produto #@Model.ProductId</h4>
+
+            @Html.HiddenFor(p => p.ProductId);
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Name)
+                @Html.TextBoxFor(p => p.Name, new { @class = "form-control" });
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Price)
+                @Html.TextBoxFor(p => p.Price, new { @class = "form-control" });
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Description)
+                @Html.TextBoxFor(p => p.Description, new { @class = "form-control" });
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(p => p.Quantity)
+                @Html.TextBoxFor(p => p.Quantity, new { @class = "form-control" });
+            </div>
+
+            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;Salvar</button>
+            <a href="@Url.Action("Index", "Product")" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;Cancelar</a>
+
+        </div>
+    </div>
+}
+
