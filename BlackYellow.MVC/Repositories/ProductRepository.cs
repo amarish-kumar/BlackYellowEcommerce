@@ -276,28 +276,33 @@ namespace BlackYellow.MVC.Repositories
                 splitOn: "CustomerId,AddressId,UserId,ItemCartId,ProductId,CategoryId",
                 map: (prod, cart, ord, cat) =>
                 {
-
-                    Product result;
-
-                    if (!@return.TryGetValue(prod.ProductId, out result))
+                    Product result = new Product();
+                    if (prod != null && cart != null && ord != null && cat != null)
                     {
-                        result = prod;
-                        @return.Add(result.ProductId, result);
+                       
+
+                        if (!@return.TryGetValue(prod.ProductId, out result))
+                        {
+                            result = prod;
+                            @return.Add(result.ProductId, result);
+                        }
+
+                        result.Category = cat;
+                        result.CategoryId = cat.CategoryId;
+                        cart.Order = ord;
+                        cart.OrderId = ord.OrderId;
+
+                        if (result.SoldItens == null) result.SoldItens = new List<ItemCart>();
+
+                        if (!(result.SoldItens.Contains(cart)))
+                            result.SoldItens.Add(cart);
+                      
                     }
-
-                    result.Category = cat;
-                    result.CategoryId = cat.CategoryId;
-                    cart.Order = ord;
-                    cart.OrderId = ord.OrderId;
-
-                    if (result.SoldItens == null) result.SoldItens = new List<ItemCart>();
-
-                    if (!(result.SoldItens.Contains(cart)))
-                        result.SoldItens.Add(cart);
-
-
-
                     return result;
+
+
+
+
 
                 },
                 param: filters);

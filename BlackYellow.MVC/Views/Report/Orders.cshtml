@@ -23,17 +23,17 @@
                         <div class="col-md-12">
                             <div class="form-inline" style="margin-top: 20px;">
 
-                                <div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                <div class="form-group float-label-control col-lg-6 col-sm-6 col-md-3">
                                     <input id="dataInicial" placeholder="Data Inicial" name="InitDate" type="date" value="@(filters?.InitDate?.ToString("d"))" />
                                     <label for="dataInicial">Data Inicial</label>
                                 </div>
 
-                                <div class="form-group float-label-control col-lg-3 col-sm-6 col-md-3">
+                                <div class="form-group float-label-control col-lg-6 col-sm-6 col-md-3">
                                     <input id="dataFinal" placeholder="Data Final" name="EndDate" type="date" value="@(filters?.EndDate?.ToString("d"))" />
                                     <label for="dataFinal">Data Final</label>
                                 </div>
 
-                                <ul class="col-lg-6 col-sm-12 col-md-6" style="list-style-type: none;column-count:2;margin:0">
+                                <ul hidden class="col-lg-6 col-sm-12 col-md-6" style="list-style-type: none;column-count:2;margin:0">
                                     @foreach (var item in Enum.GetValues(typeof(BlackYellow.MVC.Domain.Entites.Order.EStatusOrder)).OfType<BlackYellow.MVC.Domain.Entites.Order.EStatusOrder>())
                                     {
                                     <li>
