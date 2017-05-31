@@ -77,8 +77,8 @@
                     <th>Produto</th>
                     <th>Descrição</th>
                     <th>Preço Atual</th>
-                    <th>Preço Médio</th>
-                    <th>Unidades Vendidas</th>
+                    @*<th>Preço Médio</th>
+                    <th>Unidades Vendidas</th>*@
                     <th>Qtd. Vendas</th>
                     <th>Estoque</th>
                 </tr>
@@ -95,8 +95,8 @@
                         <td>@product.Name</td>
                         <td>@product.Description</td>
                         <td>@product.Price.ToString("N2")</td>
-                        <td>@(product.SoldItens.Sum(o => o.SubTotal) / product.SoldItens.Count)</td>
-                        <td>@product.SoldItens.Sum(o => o.Quantity)</td>
+                        @*<td>@(product.SoldItens.Sum(o => o.SubTotal) / product.SoldItens.Count)</td>
+                        <td>@product.SoldItens.Sum(o => o.Quantity)</td>*@
                         <td>@product.SoldItens.Count</td>
                         <td>@product.Quantity</td>
 
