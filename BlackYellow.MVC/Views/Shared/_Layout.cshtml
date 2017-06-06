@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
+
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/responsive.css" />
     </environment>
+
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
@@ -27,6 +29,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/responsive.min.css" asp-append-version="true" />
     </environment>
+
     <link rel="stylesheet" href="@Url.Content("~/css/floating-labels.css")" />
 
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
@@ -38,6 +41,9 @@
             max-width: 160px;
         }
 
+        .field-validation-error {
+            color: red;
+        }
     </style>
 
 </head>
@@ -230,10 +236,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script src="@Url.Content("~/js/floating-labels.js")"></script>
+    <script src="@Url.Content("~/lib/jquery-validation/dist/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js")"></script>
 
     @RenderSection("scripts", required: false)
 
     <script>
+        $("form").validate();
         $(document).ready(function () {
 
             //$('.table').on('show.bs.dropdown', function () {

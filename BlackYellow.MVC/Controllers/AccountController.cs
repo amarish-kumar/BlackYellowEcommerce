@@ -100,41 +100,6 @@ namespace BlackYellow.MVC.Controllers
         }
 
 
-        //public async Task<JsonResult> Logar([FromBody]User user)
-        //{
-        //    // Aqui iremos pegar as infomações do usuário 
-
-
-        //    user = _userService.GetUserByNamePassword(user);
-
-        //    if (user != null)
-        //    {
-        //        const string Issuer = "https://contoso.com";
-        //        var claims = new List<Claim>();
-        //        claims.Add(new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String, Issuer));
-        //        claims.Add(new Claim(ClaimTypes.Role, user.Profile.ToString(), ClaimValueTypes.String, Issuer));
-        //        var userIdentity = new ClaimsIdentity("SuperSecureLogin");
-        //        userIdentity.AddClaims(claims);
-        //        var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-        //        await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-        //            new AuthenticationProperties
-        //            {
-        //                ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-        //                IsPersistent = false,
-        //                AllowRefresh = false
-        //            });
-
-        //        return Json(new { success = "Usuario logado com sucesso" });
-        //    }
-        //    else
-        //    {
-        //        return Json(new { error = "Usuário ou senha inválidos" });
-        //    }
-
-
-        //}
-
 
         public IActionResult Forbidden()
         {
@@ -143,55 +108,39 @@ namespace BlackYellow.MVC.Controllers
 
         public IActionResult Register()
         {
-            TempData["USER"] = "TRUE";
-            HttpContext.Authentication.SignOutAsync("Cookie");
+
+            if (User?.Identity.IsAuthenticated ?? false)
+                return RedirectToAction("Update");
+
             return View();
+
         }
 
         [HttpPost]
         public IActionResult Register(Customer customer)
         {
-            bool flag = true;
 
-
-
-            if (!ModelState.IsValid)
-            {
-                flag = false;
-                ViewBag.Message = "Os dados fornecidos são inválidos, preencha o cadastro corretamente";
-            }
+            if (User?.Identity.IsAuthenticated ?? false)
+                return RedirectToAction("Update");
 
 
             if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
             {
-                flag = false;
                 ViewBag.Message = "Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.";
             }
-
-
-            if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
+            else if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
 
             {
-                flag = false;
                 ViewBag.Message = "Este cpf já foi utilizado em outro cadastro. Clique em recuperar senha caso tenha esquecido.";
-            }
-
-            //if (string.IsNullOrEmpty(customer.Cpf) || !customer.Cpf.ValidCPF())
-            //    ViewBag.Message =  "Obrigatório fornecer um CPF válido." ;
-
-
-            if (flag)
-            {
-                TempData["USER"] = "FALSE";
-                customer.User.Profile = Domain.Enum.Profile.User;
-
-                ViewBag.Message = _customerService.Insert(customer) ? $"Usuário #{customer.FullName} cadastrado com sucesso." : "Ocorreu um erro ao inserir os dados, tente novamente...";
             }
             else
             {
-                TempData["USER"] = "TRUE";
-            }
 
+                customer.User.Profile = Domain.Enum.Profile.User;
+
+                ViewBag.Message = _customerService.Insert(customer) ? $"Cliente {customer.FullName} cadastrado com sucesso." : "Ocorreu um erro ao inserir os dados, tente novamente...";
+
+            }
 
             return View();
 
@@ -201,14 +150,15 @@ namespace BlackYellow.MVC.Controllers
         public IActionResult Update(long id)
         {
 
+            if (!User?.Identity.IsAuthenticated ?? false)
+                return RedirectToAction("Register");
+
             var customer = _customerService.Get(id);
             var user = _userService.GetUserByCustomer(id);
-            customer.User = new User();
+
             customer.User = user;
-            TempData["USER"] = "FALSE";
 
-
-            if (IsLoginCustomer(customer))
+            if (IsLoginCustomer(customer.CustomerId))
                 return View(customer);
 
 
@@ -219,11 +169,12 @@ namespace BlackYellow.MVC.Controllers
         [HttpPost]
         public IActionResult Update(Customer customer)
         {
-            TempData["USER"] = "FALSE";
-            if (customer.CustomerId > 0 && ModelState.IsValid && IsLoginCustomer(customer))
+
+
+            if (customer.CustomerId > 0 && ModelState.IsValid && IsLoginCustomer(customer.CustomerId))
             {
-                ViewBag.Message = "Cadastro atualizado com sucesso";
-                _customerService.Update(customer);
+                ViewBag.Message = _customerService.Update(customer) ? "Cadastro atualizado com sucesso" : "Ocorreu um erro ao atualizar os dados, tente novamente...";
+
 
             }
             else
@@ -239,21 +190,6 @@ namespace BlackYellow.MVC.Controllers
         }
 
 
-        public JsonResult RegisterCustomer([FromBody] Customer customer)
-        {
-            try
-            {
-                _customerService.Insert(customer);
-                return Json(new { success = "Cadastro realizado com sucesso" });
-            }
-            catch (Exception ex)
-            {
-
-                return Json(new { error = "Erro ao realizar o cadastro " });
-            }
-        }
-
-
         public async Task<IActionResult> Logout()
         {
             // remove o cookie
@@ -261,10 +197,9 @@ namespace BlackYellow.MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private bool IsLoginCustomer(Customer customer)
+        private bool IsLoginCustomer(long customerId)
         {
-            //TODO - Verificar se usuário logado é o mesmo do parametro para permitir ação
-            return true;
+            return customerId.Equals(Convert.ToInt32(User.Identity.AuthenticationType));
         }
 
     }

@@ -11,21 +11,27 @@ namespace BlackYellow.MVC.Domain.Entites
     {
         [Dapper.Contrib.Extensions.Key]
         public long AddressId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Por favor digite a Rua")]
         public string Street { get; set; }
         public string Street2 { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Por favor digite o número")]
         public string Number { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Por favor digite o CEP")]
         public string ZipCode { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Por favor digite o Estado (UF)")]
+        [MaxLength(2, ErrorMessage = "A UF contém apenas 2 caracteres, ex.: SP, RJ, MG")]
         public string State { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Por favor digite a data de nascimento")]
         public string City { get; set; }
 
-       
+
         public long CustomerId { get; set; }
-       
+
 
     }
 }

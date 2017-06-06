@@ -191,15 +191,17 @@ namespace BlackYellow.MVC.Controllers
 
 
                     ViewBag.Message = "Compra Realizada com sucesso ! Número do pedido :" + order.TicketNumber;
+                    HttpContext.Session.Clear();
+
                     if (order.PaymentMethod == Order.EPaymentMethod.Boleto)
                     {
+
                         BoletoViewModel boleto = new BoletoViewModel();
                         boleto.Order = order;
                         boleto.Order.Customer = customer;
 
-                        HttpContext.Session.Clear();
-
                         return View("Boleto", boleto);
+
                     }
                     else
                     {
