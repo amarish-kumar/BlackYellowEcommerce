@@ -26,7 +26,6 @@ namespace BlackYellow.MVC.Domain.Entites
         public DateTime Birthday { get; set; }
 
         [Required(ErrorMessage = "Por favor digite o CPF")]
-        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Por favor digite o telefone")]
@@ -46,50 +45,18 @@ namespace BlackYellow.MVC.Domain.Entites
             get { return FirstName + " " + LastName; }
         }
 
-
-    }
-
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-    public sealed class CustomValidationCPFAttribute : ValidationAttribute, IClientModelValidator
-    {
-        /// <summary>
-        /// Construtor
-        /// </summary>
-        public CustomValidationCPFAttribute()
-        {
-        }
-        /// <summary>
-        /// Validação server
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public override bool IsValid(object value)
-        {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
-                return true;
-            bool valido = ValidaCPF(value.ToString());
-            return valido;
-        }
-
-
-        // <summary>
-        /// Remove caracteres não numéricos
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
         public static string RemoveNaoNumericos(string text)
         {
             System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex(@"[^0-9]");
             string ret = reg.Replace(text, string.Empty);
             return ret;
         }
-        /// <summary>
-        /// Valida se um cpf é válido
-        /// </summary>
-        /// <param name="cpf"></param>
-        /// <returns></returns>
-        public static bool ValidaCPF(string cpf)
+
+        internal bool IsValidCpf()
         {
+
+            var cpf = this.Cpf;
+
             //Remove formatação do número, ex: "123.456.789-01" vira: "12345678901"
             cpf = RemoveNaoNumericos(cpf);
             if (cpf.Length > 11)
@@ -130,27 +97,8 @@ namespace BlackYellow.MVC.Domain.Entites
                 return false;
             return true;
         }
-
-        public void AddValidation(ClientModelValidationContext context)
-        {
-            MergeAttribute(context.Attributes, "data-val", "true");
-            var errorMessage = FormatErrorMessage(context.ModelMetadata.GetDisplayName());
-            MergeAttribute(context.Attributes, "data-val-Cpf", errorMessage);
-        }
-
-        private bool MergeAttribute(
-            IDictionary<string, string> attributes,
-            string key,
-            string value)
-        {
-            if (attributes.ContainsKey(key))
-            {
-                return false;
-            }
-            attributes.Add(key, value);
-            return true;
-        }
     }
 
+   
 
 }

@@ -125,7 +125,11 @@ namespace BlackYellow.MVC.Controllers
 
             customer.User.Profile = Domain.Enum.Profile.User;
 
-            if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
+            if (!customer.IsValidCpf())
+            {
+                ViewBag.Message = "CPF Inválido...";
+            }
+            else if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
             {
                 ViewBag.Message = "Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.";
             }
@@ -138,8 +142,11 @@ namespace BlackYellow.MVC.Controllers
                 ViewBag.Message = $"Cliente {customer.FullName} cadastrado com sucesso.";
                 return Login(customer.User);
             }
+            else
+            {
+                ViewBag.Message = "Ocorreu um erro ao inserir os dados, tente novamente...";
+            }
 
-            ViewBag.Message = "Ocorreu um erro ao inserir os dados, tente novamente...";
 
             return View();
 
