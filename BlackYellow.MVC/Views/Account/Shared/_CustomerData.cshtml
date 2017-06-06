@@ -17,7 +17,7 @@
 
     <p id="account_password_field" class="form-group">
         @Html.LabelFor(fn => fn.User.Password, "Senha")
-        @Html.TextBoxFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "", required = "required" })
+        @Html.PasswordFor(fn => fn.User.Password, new { @class = "form-control", placeholder = "", required = "required" })
         @Html.ValidationMessageFor(fn => fn.User.Password)
     </p>
 

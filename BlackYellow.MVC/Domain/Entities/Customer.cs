@@ -20,6 +20,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Por favor digite a data de nascimento")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Birthday { get; set; }
 
         [Required(ErrorMessage = "Por favor digite o CPF")]

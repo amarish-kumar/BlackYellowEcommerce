@@ -123,24 +123,23 @@ namespace BlackYellow.MVC.Controllers
             if (User?.Identity.IsAuthenticated ?? false)
                 return RedirectToAction("Update");
 
+            customer.User.Profile = Domain.Enum.Profile.User;
 
             if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
             {
                 ViewBag.Message = "Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.";
             }
             else if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
-
             {
                 ViewBag.Message = "Este cpf já foi utilizado em outro cadastro. Clique em recuperar senha caso tenha esquecido.";
             }
-            else
+            else if (_customerService.Insert(customer))
             {
-
-                customer.User.Profile = Domain.Enum.Profile.User;
-
-                ViewBag.Message = _customerService.Insert(customer) ? $"Cliente {customer.FullName} cadastrado com sucesso." : "Ocorreu um erro ao inserir os dados, tente novamente...";
-
+                ViewBag.Message = $"Cliente {customer.FullName} cadastrado com sucesso.";
+                return Login(customer.User);
             }
+
+            ViewBag.Message = "Ocorreu um erro ao inserir os dados, tente novamente...";
 
             return View();
 
