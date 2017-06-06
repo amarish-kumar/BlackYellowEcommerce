@@ -11,7 +11,7 @@
 
     <p id="email_field" class="form-group">
         @Html.LabelFor(fn => fn.User.Email, "E-mail")
-        @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", required = "required",  placeholder = "Endereço de E-mail" })
+        @Html.TextBoxFor(fn => fn.User.Email, new { @class = "form-control", required = "required", placeholder = "Endereço de E-mail" })
         @Html.ValidationMessageFor(fn => fn.User.Email)
     </p>
 
@@ -47,6 +47,11 @@
 
     <div class="clear"></div>
 
+    <p id="postcode_field" class="form-group">
+        @Html.LabelFor(fn => fn.Address.ZipCode, "CEP")
+        @Html.TextBoxFor(fn => fn.Address.ZipCode, new { @class = "form-control", placeholder = "CEP / Código Postal", required = "required" })
+        @Html.ValidationMessageFor(fn => fn.Address.ZipCode)
+    </p>
     <!-- #region Adress -->
     <p id="address_1_field" class="form-group">
         @Html.LabelFor(fn => fn.Address.Street, "Logradouro")
@@ -75,11 +80,7 @@
         @Html.TextBoxFor(fn => fn.Address.State, new { @class = "form-control", required = "required" })
         @Html.ValidationMessageFor(fn => fn.Address.State)
     </p>
-    <p id="postcode_field" class="form-group">
-        @Html.LabelFor(fn => fn.Address.ZipCode, "CEP")
-        @Html.TextBoxFor(fn => fn.Address.ZipCode, new { @class = "form-control", placeholder = "CEP / Código Postal", required = "required" })
-        @Html.ValidationMessageFor(fn => fn.Address.ZipCode)
-    </p>
+
     <!-- #endregion -->
 
 
@@ -92,6 +93,61 @@
         @Html.ValidationMessageFor(fn => fn.Phone)
     </p>
 
+
+    <script>
+        $(document).ready(function () {
+
+
+            //Quando o campo cep perde o foco.
+            $("#Address_ZipCode").blur(function () {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
+
+                        var street = document.getElementById("Address_Street");
+                        var city = document.getElementById("Address_City");
+                        var state = document.getElementById("Address_State");
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        street.value = ("...");
+                        city.value = ("...");
+                        state.value = ("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                street.value = (dados.logradouro);
+                                city.value = (dados.localidade);
+                                state.value = (dados.uf);
+                            } //end if.
+                            else {
+                                bootbox.alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        bootbox.alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+
+                }
+            });
+              
+
+        });
+    </script>
 
 
 </div>

@@ -20,6 +20,7 @@ namespace BlackYellow.MVC.Domain.Entites
         public string Number { get; set; }
 
         [Required(ErrorMessage = "Por favor digite o CEP")]
+        [DataType(DataType.PostalCode)]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Por favor digite o Estado (UF)")]
