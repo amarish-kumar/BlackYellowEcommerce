@@ -3,7 +3,7 @@
 $(document).ready(function () {
     getCategories();
     getItensQTD();
-   
+
 });
 
 function buy(id) {
@@ -16,6 +16,7 @@ function buy(id) {
         url: "/Order/Buy",
         data: JSON.stringify(product),
         success: function (data) {
+            getItensQTD();
             bootbox.alert("Produto adicionado com sucesso");
         }
     })
@@ -80,7 +81,6 @@ function getItensQTD() {
 }
 
 
-function fillCartQTD(qtd)
-{
-    $(".product-count").append(qtd);
+function fillCartQTD(qtd) {
+    $(".product-count").html(qtd);
 }
