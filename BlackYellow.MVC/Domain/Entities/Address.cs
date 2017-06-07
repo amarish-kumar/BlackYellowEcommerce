@@ -6,7 +6,7 @@ using Dapper.Contrib.Extensions;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
-    [Table("Adresses")]
+     [Table("Adresses")]
     public class Address
     {
         [Dapper.Contrib.Extensions.Key]
