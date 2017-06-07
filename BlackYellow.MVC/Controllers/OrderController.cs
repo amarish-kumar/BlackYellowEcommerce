@@ -142,7 +142,7 @@ namespace BlackYellow.MVC.Controllers
                     return RedirectToAction("Login", "Account");
             }
             else
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Cart", "Order");
         }
 
         [HttpPost]
