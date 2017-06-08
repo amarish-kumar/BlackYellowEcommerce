@@ -57,9 +57,9 @@ namespace BlackYellow.MVC.Repositories
             try
             {
                 var sql = @"SELECT  p.ProductId, p.Name, p.Price, g.PathImage, g.IsPrincipal
-                                FROM Products p INNER JOIN
-                                GaleryProducts g ON g.ProductId = p.ProductId
-                                WHERE Quantity > 0 AND g.IsPrincipal = 1 AND p.Name = '" + name + "'";
+                                FROM Products p
+                                LEFT JOIN GaleryProducts g ON g.ProductId = p.ProductId AND g.IsPrincipal = 1 
+                                WHERE Quantity > 0 AND p.Name like @filter";
 
                 Dictionary<int, Product> produtos = new Dictionary<int, Product>();
                 db.Connection.Query<Product, GaleryProduct, Product>(sql,
@@ -81,7 +81,7 @@ namespace BlackYellow.MVC.Repositories
                                     }
 
 
-                    ).ToList();
+                   , param: new { filter = $"%{name}%" }).ToList();
 
                 return produtos.Values;
             }
@@ -279,7 +279,7 @@ namespace BlackYellow.MVC.Repositories
                     Product result = new Product();
                     if (prod != null && cart != null && ord != null && cat != null)
                     {
-                       
+
 
                         if (!@return.TryGetValue(prod.ProductId, out result))
                         {
@@ -296,7 +296,7 @@ namespace BlackYellow.MVC.Repositories
 
                         if (!(result.SoldItens.Contains(cart)))
                             result.SoldItens.Add(cart);
-                      
+
                     }
                     return result;
 

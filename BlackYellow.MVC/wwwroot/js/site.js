@@ -27,7 +27,7 @@ function getCategories() {
     $.ajax({
         contentType: "application/json",
         method: "POST",
-        url: "/Category/List",
+        url: "/Category/ListWithProducts",
         success: function (data) {
             fillCategories(data.categories);
         }

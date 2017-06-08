@@ -152,6 +152,8 @@ namespace BlackYellow.MVC.Controllers
             Cart cart = JsonConvert.DeserializeObject<Cart>(cartSessionText);
             var customer = _customerService.Get(Convert.ToInt32(User.Identity.AuthenticationType));
 
+          
+
             if (User?.Identity?.IsAuthenticated == true && customer != null)
             {
 
@@ -203,10 +205,13 @@ namespace BlackYellow.MVC.Controllers
                         return View("Boleto", boleto);
 
                     }
-                    else
+                    else if (order.PaymentMethod == Order.EPaymentMethod.PagamentoConta)
                     {
                         return View("WaitingPayment", customer);
                     }
+                  
+
+                    return View();
 
 
                 }
@@ -222,6 +227,7 @@ namespace BlackYellow.MVC.Controllers
                 return RedirectToAction("Login", "Account");
 
         }
+
 
 
         public IActionResult MyOrders()

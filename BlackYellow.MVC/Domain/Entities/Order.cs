@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlackYellow.MVC.Domain.Entites
 {
     public class Order
     {
-        [Key]
+        [Dapper.Contrib.Extensions.Key]
         public long OrderId { get; set; }
         public long CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
@@ -26,17 +27,20 @@ namespace BlackYellow.MVC.Domain.Entites
 
 
 
-        public double TotalOrder {
+        public double TotalOrder
+        {
             get
-            { if(Itens != null)
+            {
+                if (Itens != null)
                 {
                     return this.Itens.Sum(i => i.SubTotal);
                 }
-                return 0; 
+                return 0;
             }
 
         }
 
+    
         public enum EStatusOrder : int
         {
             [Description("Aguardando Pagto")]
@@ -60,8 +64,8 @@ namespace BlackYellow.MVC.Domain.Entites
         public enum EPaymentMethod : int
         {
             Boleto = 1,
-            PagamentoConta = 2
-        }
+            PagamentoConta = 2,
+          }
 
 
     }

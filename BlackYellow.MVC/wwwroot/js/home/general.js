@@ -26,7 +26,7 @@ function fillProducts(products)
                     '</div>' +
                    ' <h2><a href="Product/Details/' + value.productId + '">' + value.name + '</a></h2>' +
                    ' <div class="product-carousel-price">' +
-                       ' <ins>R$'+value.price+'</ins> <del>'+value.lastprice+'</del>' +
+                       ' <ins>R$'+value.price+'</ins>' +
                    '</div>' +
                ' </div>' +
            ' </div>';

@@ -36,7 +36,24 @@ namespace BlackYellow.MVC.Controllers
         {
             return View();
         }
+        public JsonResult ListWithProducts()
+        {
+            try
+            {
 
+                IEnumerable<Category> lista = _categoryService.GetAllWithProducts();
+
+                return Json(new { categories = lista });
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { error = "Erro ao trazer as categorias" });
+            }
+
+
+        }
+        
 
         public JsonResult List()
         {
