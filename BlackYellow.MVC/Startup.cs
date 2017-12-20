@@ -10,6 +10,7 @@ using BlackYellow.MVC.Domain.Interfaces.Repositories;
 using BlackYellow.MVC.Repositories;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlackYellow.MVC
 {
@@ -71,6 +72,9 @@ namespace BlackYellow.MVC
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddSession();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie();
+
 
         }
 
@@ -99,14 +103,7 @@ namespace BlackYellow.MVC
             loggerFactory.AddDebug();
 
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationScheme = "Cookie",
-                LoginPath = new PathString("/Account/Login/"),
-                AccessDeniedPath = new PathString("/Account/Forbidden/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true
-            });
+           
 
             app.UseApplicationInsightsRequestTelemetry();
 

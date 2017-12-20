@@ -9,22 +9,22 @@ namespace BlackYellow.MVC.Helpers.Extensions
     public static class EnumExtensions
     {
 
-        public static string GetEnumDescription(this Enum enumValue)
-        {
-            string enumValueAsString = enumValue.ToString();
+        //public static string GetEnumDescription(this Enum enumValue)
+        //{
+        ////    string enumValueAsString = enumValue.ToString();
 
-            var type = enumValue.GetType();
-            FieldInfo fieldInfo = type.GetField(enumValueAsString);
-            IEnumerable<Attribute> attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+        ////    var type = enumValue.GetType();
+        ////    FieldInfo fieldInfo = type.GetField(enumValueAsString);
+        ////    IEnumerable<Attribute> attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            if (attributes.Any())
-            {
-                var attribute = (DescriptionAttribute)attributes.ElementAt(0);
-                return attribute.Description;
-            }
+        ////    if (attributes.Any())
+        ////    {
+        ////        var attribute = (DescriptionAttribute)attributes.ElementAt(0);
+        ////        return attribute.Description;
+        ////    }
 
-            return enumValueAsString;
-        }
+        ////    return enumValueAsString;
+        ////}
 
     }
 }
