@@ -1,3 +1,3 @@
-# Black Yellow Open Source Project
+# Black Yellow - Open Source Project
 
 
