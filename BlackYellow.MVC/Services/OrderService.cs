@@ -1,8 +1,7 @@
-﻿using BlackYellow.MVC.Domain.Interfaces.Services;
+﻿using BlackYellow.Domain.Interfaces.Services;
 using System.Collections.Generic;
-using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Repositories;
-using BlackYellow.MVC.Models;
+using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Repositories;
 using System;
 
 namespace BlackYellow.MVC.Services
@@ -35,10 +34,10 @@ namespace BlackYellow.MVC.Services
             return _orderRepository.GetAll(customerId);
         }
 
-        public IEnumerable<Order> GetAll(Models.OrderReportFilters filters)
-        {
-            return _orderRepository.GetAll(filters);
-        }
+        //public IEnumerable<Order> GetAll(Models.OrderReportFilters filters)
+        //{
+        //    return _orderRepository.GetAll(filters);
+        //}
 
         public string MontaBoleto()
         {

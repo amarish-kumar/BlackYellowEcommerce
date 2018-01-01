@@ -1,5 +1,5 @@
-﻿using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+﻿using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -149,9 +149,9 @@ namespace BlackYellow.MVC.Controllers
                 files.Add(details_file2);
                 files.Add(details_file3);
 
-                product.FileGalery(main_file, files, pathServer);
+              //  product.FileGalery(main_file, files, pathServer);
                 product.DateRegister = DateTime.Now;
-                _productService.UploadProductFiles(main_file, files, path);
+               // _productService.UploadProductFiles(main_file, files, path);
                 if (_productService.InsertProduct(product))
                 {
                     TempData["MsgSucesso"] = "Produto cadastrado com sucesso.";

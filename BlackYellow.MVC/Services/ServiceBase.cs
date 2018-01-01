@@ -1,5 +1,5 @@
-﻿using BlackYellow.MVC.Domain.Interfaces.Repositories;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+﻿using BlackYellow.Domain.Interfaces.Repositories;
+using BlackYellow.Domain.Interfaces.Services;
 using System.Collections.Generic;
 
 namespace BlackYellow.MVC.Services

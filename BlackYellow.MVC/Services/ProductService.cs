@@ -1,11 +1,10 @@
-﻿using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+﻿using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Services;
 using System.Collections.Generic;
-using BlackYellow.MVC.Domain.Interfaces.Repositories;
+using BlackYellow.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using BlackYellow.MVC.Models;
-using System;
 
 namespace BlackYellow.MVC.Services
 {
@@ -74,9 +73,9 @@ namespace BlackYellow.MVC.Services
             return _productRepository.GetImages(id);
         }
 
-        public object GetAll(ProductReportFilters filters)
-        {
-            return _productRepository.GetAll(filters);
-        }
+        //public object GetAll(ProductReportFilters filters)
+        //{
+        //    return _productRepository.GetAll(filters);
+        //}
     }
 }

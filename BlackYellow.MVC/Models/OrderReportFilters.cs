@@ -1,4 +1,4 @@
-﻿using static BlackYellow.MVC.Domain.Entites.Order;
+﻿using static BlackYellow.Domain.Entites.Order;
 
 namespace BlackYellow.MVC.Models
 {

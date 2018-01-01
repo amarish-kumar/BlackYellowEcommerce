@@ -1,5 +1,5 @@
-﻿using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+﻿using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication;
+using BlackYellow.Domain.Enum;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -119,7 +120,7 @@ namespace BlackYellow.MVC.Controllers
             if (User?.Identity.IsAuthenticated ?? false)
                 return RedirectToAction("Update");
 
-            customer.User.Profile = Domain.Enum.Profile.User;
+            customer.User.Profile = Profile.User;
 
             if (!customer.IsValidCpf())
             {

@@ -18,7 +18,7 @@ namespace BlackYellow.MVC.Models
 
                 if (_categories == null)
                 {
-                    _categories = new Repositories.CategoryRepository().GetAll();
+                    _categories = new Infrastructure.Repositories.CategoryRepository().GetAll();
                 }
 
                 return _categories;

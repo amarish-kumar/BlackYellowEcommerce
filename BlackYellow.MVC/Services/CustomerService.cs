@@ -1,6 +1,6 @@
-﻿using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Services;
-using BlackYellow.MVC.Domain.Interfaces.Repositories;
+﻿using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Services;
+using BlackYellow.Domain.Interfaces.Repositories;
 
 namespace BlackYellow.MVC.Services
 {

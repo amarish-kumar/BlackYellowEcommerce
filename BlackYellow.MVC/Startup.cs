@@ -4,13 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+using BlackYellow.Domain.Interfaces.Services;
 using BlackYellow.MVC.Services;
-using BlackYellow.MVC.Domain.Interfaces.Repositories;
-using BlackYellow.MVC.Repositories;
+using BlackYellow.Domain.Interfaces.Repositories;
+using BlackYellow.Infrastructure.Repositories;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using BlackYellow.Infrastructure.Context;
 
 namespace BlackYellow.MVC
 {
@@ -31,7 +32,7 @@ namespace BlackYellow.MVC
             }
             Configuration = builder.Build();
 
-            Context.BlackYellowContext.ConfigConnection = Configuration.GetConnectionString("BlackYellowConnection");
+            BlackYellowContext.ConfigConnection = Configuration.GetConnectionString("BlackYellowConnection");
 
         }
 

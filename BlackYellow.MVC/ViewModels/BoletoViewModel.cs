@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BlackYellow.MVC.Domain.Entites;
+using BlackYellow.Domain.Entites;
+
 
 namespace BlackYellow.MVC.ViewModels
 {

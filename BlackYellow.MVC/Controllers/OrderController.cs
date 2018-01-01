@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using BlackYellow.MVC.Domain.Entites;
+using BlackYellow.Domain.Entites;
 using Newtonsoft.Json;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+using BlackYellow.Domain.Interfaces.Services;
 using BlackYellow.MVC.ViewModels;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BlackYellow.MVC.Controllers
 {

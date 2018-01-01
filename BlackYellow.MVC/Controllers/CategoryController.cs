@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using BlackYellow.MVC.Domain.Entites;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+using BlackYellow.Domain.Entites;
+using BlackYellow.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BlackYellow.MVC.Controllers

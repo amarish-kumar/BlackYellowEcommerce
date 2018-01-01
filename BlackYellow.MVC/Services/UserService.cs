@@ -1,7 +1,7 @@
-﻿using BlackYellow.MVC.Domain.Entites;
+﻿using BlackYellow.Domain.Entites;
 using System.Collections.Generic;
-using BlackYellow.MVC.Domain.Interfaces.Repositories;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+using BlackYellow.Domain.Interfaces.Repositories;
+using BlackYellow.Domain.Interfaces.Services;
 
 namespace BlackYellow.MVC.Services
 {

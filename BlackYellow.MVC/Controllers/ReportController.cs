@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using static BlackYellow.MVC.Domain.Entites.Order;
-using BlackYellow.MVC.Domain.Interfaces.Services;
+using static BlackYellow.Domain.Entites.Order;
+using BlackYellow.Domain.Interfaces.Services;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -28,48 +27,48 @@ namespace BlackYellow.MVC.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Orders()
-        {
+        //[Authorize(Roles = "Administrator")]
+        //public IActionResult Orders()
+        //{
 
-            var defaultFilters = new Models.OrderReportFilters();
+        //    var defaultFilters = new Models.OrderReportFilters();
 
-            defaultFilters.InitDate = DateTime.Today.AddDays((DateTime.Today.Day - 1) * -1);
-            defaultFilters.EndDate = DateTime.Today;
-            defaultFilters.Status = Enum.GetValues(typeof(EStatusOrder)).OfType<EStatusOrder>().ToArray();
+        //    defaultFilters.InitDate = DateTime.Today.AddDays((DateTime.Today.Day - 1) * -1);
+        //    defaultFilters.EndDate = DateTime.Today;
+        //    defaultFilters.Status = Enum.GetValues(typeof(EStatusOrder)).OfType<EStatusOrder>().ToArray();
 
-            return Orders(defaultFilters);
+        //    return Orders(defaultFilters);
 
-        }
+        //}
 
-        [HttpPost, Authorize(Roles = "Administrator")]
-        public IActionResult Orders(Models.OrderReportFilters filters)
-        {
+        //[HttpPost, Authorize(Roles = "Administrator")]
+        //public IActionResult Orders(Models.OrderReportFilters filters)
+        //{
 
-            var orders = _orderService.GetAll(filters);
+        //    var orders = _orderService.GetAll(1);
 
 
-            ViewBag.Filters = filters;
+        //    ViewBag.Filters = filters;
 
-            return View(orders);
+        //    return View(orders);
 
-        }
+        //}
 
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Products()
-        {
-            return Products(new Models.ProductReportFilters { CategoryId = null });
-        }
+        //[Authorize(Roles = "Administrator")]
+        //public IActionResult Products()
+        //{
+        //    return Products(new Models.ProductReportFilters { CategoryId = null });
+        //}
 
-        [HttpPost, Authorize(Roles = "Administrator")]
-        public IActionResult Products(Models.ProductReportFilters filters)
-        {
-            var orders = _productService.GetAll(filters);
+        //[HttpPost, Authorize(Roles = "Administrator")]
+        //public IActionResult Products(Models.ProductReportFilters filters)
+        //{
+        //    var orders = _productService.GetAll(filters);
 
-            ViewBag.Filters = filters;
+        //    ViewBag.Filters = filters;
 
-            return View(orders);
-        }
+        //    return View(orders);
+        //}
 
         [Authorize(Roles = "Administrator")]
         public IActionResult Customers()
