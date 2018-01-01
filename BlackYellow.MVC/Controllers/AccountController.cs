@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -44,7 +45,7 @@ namespace BlackYellow.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User user)
+        public async Task<IActionResult> Login(User user)
         {
 
             user = _userService.GetUserByNamePassword(user);
@@ -77,13 +78,8 @@ namespace BlackYellow.MVC.Controllers
                 userIdentity.Label = user.UserId.ToString();
                 var userPrincipal = new ClaimsPrincipal(userIdentity);
 
-                HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                   new AuthenticationProperties
-                   {
-                       ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                       IsPersistent = false,
-                       AllowRefresh = false
-                   }).Wait();
+                await HttpContext.SignInAsync(userPrincipal);
+
 
                 var str = JsonConvert.SerializeObject(customer);
                 HttpContext.Session.SetString(SessionCustomer, str);
@@ -117,7 +113,7 @@ namespace BlackYellow.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Customer customer)
+        public async Task<IActionResult> Register(Customer customer)
         {
 
             if (User?.Identity.IsAuthenticated ?? false)
@@ -140,7 +136,7 @@ namespace BlackYellow.MVC.Controllers
             else if (_customerService.Insert(customer))
             {
                 ViewBag.Message = $"Cliente {customer.FullName} cadastrado com sucesso.";
-                return Login(customer.User);
+                return await  Login(customer.User);
             }
             else
             {

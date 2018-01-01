@@ -102,8 +102,8 @@ namespace BlackYellow.MVC
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseAuthentication();
 
-           
 
             app.UseApplicationInsightsRequestTelemetry();
 
