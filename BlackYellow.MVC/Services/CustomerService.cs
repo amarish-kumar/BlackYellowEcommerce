@@ -7,10 +7,12 @@ namespace BlackYellow.MVC.Services
     public class CustomerService : ServiceBase<Customer>, ICustomerService
     {
 
-    private ICustomerRepository _customerRepository ;
+        private ICustomerRepository _customerRepository;
+        private IUserRepository _userRepository;
 
-        public CustomerService(IRepositoryBase<Customer> repository , ICustomerRepository customerRepository) : base(repository)
+        public CustomerService(IRepositoryBase<Customer> repository , ICustomerRepository customerRepository, IUserRepository userRepository) : base(repository)
         {
+            _userRepository = userRepository;
             _customerRepository = customerRepository;
         }
 
@@ -36,6 +38,17 @@ namespace BlackYellow.MVC.Services
         public Customer GetCustomerByUserId(long id)
         {
            return  _customerRepository.GetCustomerByUserId(id);
+        }
+
+        public Customer GetCustomerByEmailAndPassword(User user)
+        {
+            var customer = _customerRepository.GetCustomerByUserId((long) user.UserId);
+
+            if (customer == null) return null;
+
+            customer.User = new User();
+            customer.User = user;
+            return customer;
         }
     }
 }

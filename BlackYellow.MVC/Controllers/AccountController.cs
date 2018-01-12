@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication;
 using BlackYellow.Domain.Enum;
+using BlackYellow.Infra.CrossCuting.Security.Services;
 
 namespace BlackYellow.MVC.Controllers
 {
@@ -48,52 +49,29 @@ namespace BlackYellow.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
-
             user = _userService.GetUserByNamePassword(user);
 
-            if (user?.UserId > 0)
-            {
-
-                var customer = _customerService.GetCustomerByUserId((int)user.UserId);
-                string nome = null;
-                string customerId = null;
-                if (customer != null)
-                {
-                    nome = customer.FullName;
-                    customerId = customer.CustomerId.ToString();
-                }
-
-                else
-                {
-                    nome = user.Email;
-                }
-
-
-                const string Issuer = "https://contoso.com";
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, nome, ClaimValueTypes.String, Issuer));
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(), ClaimValueTypes.String, Issuer));
-                claims.Add(new Claim(ClaimTypes.Role, user.Profile.ToString(), ClaimValueTypes.String, Issuer));
-                var userIdentity = new ClaimsIdentity(customerId);
-                userIdentity.AddClaims(claims);
-                userIdentity.Label = user.UserId.ToString();
-                var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-                await HttpContext.SignInAsync(userPrincipal);
-
-
-                var str = JsonConvert.SerializeObject(customer);
-                HttpContext.Session.SetString(SessionCustomer, str);
-
-                return RedirectToAction("Index", "Home");
-
-            }
-            else
+            if (user == null)
             {
                 ViewBag.Message = "Usuário inválido, verifique os dados e tente novamente";
                 return View();
             }
 
+            var customer = _customerService.GetCustomerByEmailAndPassword(user);
+            var userAutenticationService = new UserAutenticationService();
+            ClaimsPrincipal userPrincipal; 
+            if (customer != null)
+            {
+                userPrincipal = userAutenticationService.AddToClaim(customer.FullName, user.Profile.ToString(), user.UserId.ToString());
+            }
+            else
+            {
+                userPrincipal = userAutenticationService.AddToClaim(user.Email, user.Profile.ToString(), user.UserId.ToString());
+            }
+            await HttpContext.SignInAsync(userPrincipal);
+            var str = JsonConvert.SerializeObject(customer);
+            HttpContext.Session.SetString(SessionCustomer, str);
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -137,7 +115,7 @@ namespace BlackYellow.MVC.Controllers
             else if (_customerService.Insert(customer))
             {
                 ViewBag.Message = $"Cliente {customer.FullName} cadastrado com sucesso.";
-                return await  Login(customer.User);
+                return await Login(customer.User);
             }
             else
             {

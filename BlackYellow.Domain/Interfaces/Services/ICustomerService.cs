@@ -6,5 +6,6 @@ namespace BlackYellow.Domain.Interfaces.Services
     {
         Customer GetCustomerByDocument(string cpf);
         Customer GetCustomerByUserId(long id);
+        Customer GetCustomerByEmailAndPassword(User user);
     }
 }

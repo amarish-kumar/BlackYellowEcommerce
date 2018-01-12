@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlackYellow.Domain\BlackYellow.Domain.csproj" />
+    <ProjectReference Include="..\BlackYellow.Infra.CrossCuting.Security\BlackYellow.Infra.CrossCuting.Security.csproj" />
     <ProjectReference Include="..\BlackYellow.Infrastructure\BlackYellow.Infrastructure.csproj" />
   </ItemGroup>
 

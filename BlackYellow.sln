@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Domain", "Black
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Infrastructure", "BlackYellow.Infrastructure\BlackYellow.Infrastructure.csproj", "{12762096-F084-48DB-9672-948DFFB75F61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Infra.CrossCuting.Security", "BlackYellow.Infra.CrossCuting.Security\BlackYellow.Infra.CrossCuting.Security.csproj", "{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{12762096-F084-48DB-9672-948DFFB75F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12762096-F084-48DB-9672-948DFFB75F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12762096-F084-48DB-9672-948DFFB75F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
