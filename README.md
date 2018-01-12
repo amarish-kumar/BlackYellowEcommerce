@@ -38,6 +38,9 @@ The Black Yellow is a open source project written in .NET Core. My idea is learn
 - Micro services
 
 
+# Influences
 
+The main influence was a System Architect and MVP Eduardo Pires with your project Equinox.
 
+https://github.com/EduardoPires/EquinoxProject
 
