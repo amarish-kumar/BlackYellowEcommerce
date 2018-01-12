@@ -13,7 +13,7 @@ The Black Yellow is a open source project written in .NET Core. My idea is learn
 - ASP.CORE MVC Core
 - .NET Core Native DI
 - Dapper
-- AuoMapper
+- AutoMapper
 
 # Architecture:
 
