@@ -98,30 +98,8 @@ namespace BlackYellow.MVC.Controllers
             if (User?.Identity.IsAuthenticated ?? false)
                 return RedirectToAction("Update");
 
-            customer.User.Profile = Profile.User;
-
-            if (!customer.IsValidCpf())
-            {
-                ViewBag.Message = "CPF Inválido...";
-            }
-            else if (_userService.GetUserByMail(customer.User.Email)?.UserId > 0)
-            {
-                ViewBag.Message = "Este e-mail já foi cadastrado anteriormente. Clique em recuperar senha caso tenha esquecido.";
-            }
-            else if (!string.IsNullOrEmpty(_customerService.GetCustomerByDocument(customer.Cpf)?.Cpf))
-            {
-                ViewBag.Message = "Este cpf já foi utilizado em outro cadastro. Clique em recuperar senha caso tenha esquecido.";
-            }
-            else if (_customerService.Insert(customer))
-            {
-                ViewBag.Message = $"Cliente {customer.FullName} cadastrado com sucesso.";
+           if (_customerService.Insert(customer))
                 return await Login(customer.User);
-            }
-            else
-            {
-                ViewBag.Message = "Ocorreu um erro ao inserir os dados, tente novamente...";
-            }
-
 
             return View();
 

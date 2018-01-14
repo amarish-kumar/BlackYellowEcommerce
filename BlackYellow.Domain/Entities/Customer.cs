@@ -51,6 +51,11 @@ namespace BlackYellow.Domain.Entites
             return ret;
         }
 
+        public bool IsValid()
+        {
+            return IsValidCpf() && this.User.EmailisValid();
+        }
+
         public bool IsValidCpf()
         {
 

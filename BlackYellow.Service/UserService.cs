@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using BlackYellow.Domain.Interfaces.Repositories;
 using BlackYellow.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace BlackYellow.Service
 {
@@ -33,6 +37,5 @@ namespace BlackYellow.Service
         {
             return _userRepository.GetUserByCustomer(id);
         }
-
     }
 }

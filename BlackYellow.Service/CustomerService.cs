@@ -1,6 +1,7 @@
 ﻿using BlackYellow.Domain.Entites;
 using BlackYellow.Domain.Interfaces.Services;
 using BlackYellow.Domain.Interfaces.Repositories;
+using BlackYellow.Domain.Enum;
 
 namespace BlackYellow.Service
 {
@@ -22,6 +23,22 @@ namespace BlackYellow.Service
         }
 
         public override bool Insert(Customer customer) {
+           
+            customer.User.Profile = Profile.User;
+
+            if (!customer.IsValid())
+            {
+                //TODO
+            }
+            else if (_userRepository.GetUserByMail(customer.User.Email) != null)
+            {
+                //TODO
+            }
+            else if (!string.IsNullOrEmpty(_customerRepository.GetCustomerByDocument(customer.Cpf)?.Cpf))
+            {
+               // TODO
+            }
+            
             return _customerRepository.Insert(customer);
         }
 
