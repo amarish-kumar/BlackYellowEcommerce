@@ -21,6 +21,10 @@ The Black Yellow is a open source project written in .NET Core. My idea is learn
 - DDD
 - Repository and Generic Repository
 
+# News
+
+01/14/2018 - Started a write test for application using unit tests and BDD tests.
+
 # Next technologies and Architecture:
 
 - Mongodb
@@ -43,4 +47,5 @@ The Black Yellow is a open source project written in .NET Core. My idea is learn
 The main influence was a System Architect and MVP Eduardo Pires with your project Equinox.
 
 https://github.com/EduardoPires/EquinoxProject
+
 
