@@ -23,7 +23,7 @@ The Black Yellow is a open source project written in .NET Core. My idea is learn
 
 # News
 
-01/14/2018 - Started a write test for application using unit tests and BDD tests.
+01/14/2018 - Started a write test for application using unit tests and BDD tests, our goal is coverage a 70% the application with tests
 
 # Next technologies and Architecture:
 
