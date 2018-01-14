@@ -19,9 +19,10 @@ namespace BlackYellow.Domain.Entites
         public Profile Profile { get; set; }
 
 
-        //public bool isAdministrator()
-        //{
-
-        //}
+        public bool EmailisValid()
+        {
+            var email = this.Email;
+            return email.Contains("@");
+        }
     }
 }
