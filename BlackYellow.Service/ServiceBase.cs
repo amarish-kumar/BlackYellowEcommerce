@@ -2,7 +2,7 @@
 using BlackYellow.Domain.Interfaces.Services;
 using System.Collections.Generic;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class ServiceBase<T> : IServiceBase<T> where T : class
     {

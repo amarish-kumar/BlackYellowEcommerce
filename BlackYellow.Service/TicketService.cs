@@ -2,7 +2,7 @@
 using BlackYellow.Domain.Entites;
 using BlackYellow.Domain.Interfaces.Services;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class TicketService : IPayment
     {

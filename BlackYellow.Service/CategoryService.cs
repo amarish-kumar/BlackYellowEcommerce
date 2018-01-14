@@ -3,7 +3,7 @@ using BlackYellow.Domain.Interfaces.Services;
 using BlackYellow.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class CategoryService : ServiceBase<Category>, ICategoryService
     {

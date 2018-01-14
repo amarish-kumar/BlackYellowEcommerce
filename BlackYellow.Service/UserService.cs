@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BlackYellow.Domain.Interfaces.Repositories;
 using BlackYellow.Domain.Interfaces.Services;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class UserService : ServiceBase<User> , IUserService
     {

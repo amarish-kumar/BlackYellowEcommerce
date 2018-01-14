@@ -4,7 +4,7 @@ using BlackYellow.Domain.Entites;
 using BlackYellow.Domain.Interfaces.Repositories;
 using System;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class OrderService : IOrderService
     {

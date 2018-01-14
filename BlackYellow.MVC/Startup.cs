@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using BlackYellow.Domain.Interfaces.Services;
-using BlackYellow.MVC.Services;
+using BlackYellow.Service;
 using BlackYellow.Domain.Interfaces.Repositories;
 using BlackYellow.Infrastructure.Repositories;
 using Microsoft.Extensions.FileProviders;

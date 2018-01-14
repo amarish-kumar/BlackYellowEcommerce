@@ -2,11 +2,9 @@
 using BlackYellow.Domain.Interfaces.Services;
 using System.Collections.Generic;
 using BlackYellow.Domain.Interfaces.Repositories;
-using Microsoft.AspNetCore.Http;
 using System.IO;
-using BlackYellow.MVC.Models;
 
-namespace BlackYellow.MVC.Services
+namespace BlackYellow.Service
 {
     public class ProductService : ServiceBase<Product>, IProductService
     {
@@ -45,28 +43,28 @@ namespace BlackYellow.MVC.Services
             return _productRepository.GetProductsImages(id);
         }
 
-        public async void UploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)
-        {
-            if (main_file.Length > 0)
-            {
-                using (var fileStream = new FileStream(Path.Combine(path, main_file.FileName), FileMode.Create))
-                {
-                    await main_file.CopyToAsync(fileStream);
-                }
+        //public async void UploadProductFiles(IFormFile main_file, ICollection<IFormFile> details_files, string path)
+        //{
+        //    if (main_file.Length > 0)
+        //    {
+        //        using (var fileStream = new FileStream(Path.Combine(path, main_file.FileName), FileMode.Create))
+        //        {
+        //            await main_file.CopyToAsync(fileStream);
+        //        }
 
-            }
+        //    }
 
-            foreach (var file in details_files)
-            {
-                if (file.Length > 0)
-                {
-                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                    }
-                }
-            }
-        }
+        //    foreach (var file in details_files)
+        //    {
+        //        if (file.Length > 0)
+        //        {
+        //            using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+        //            {
+        //                await file.CopyToAsync(fileStream);
+        //            }
+        //        }
+        //    }
+        //}
 
         public List<GaleryProduct> GetImages(long id)
         {
