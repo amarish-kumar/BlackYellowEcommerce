@@ -13,4 +13,10 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BDD\" />
+    <Folder Include="FrontEnd\" />
+    <Folder Include="UnitTests\" />
+  </ItemGroup>
+
 </Project>
