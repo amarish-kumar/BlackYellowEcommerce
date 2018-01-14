@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.MVC", "BlackYellow.MVC\BlackYellow.MVC.csproj", "{8748C4F7-1A98-45F5-A822-71AB662DA0C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Tests", "BlackYellow.Tests\BlackYellow.Tests.csproj", "{FF01ABCE-AC87-4BF0-86F3-C57CA6FB3D5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Tests", "BlackYellow.Tests\BlackYellow.Tests.csproj", "{FF01ABCE-AC87-4BF0-86F3-C57CA6FB3D5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Domain", "BlackYellow.Domain\BlackYellow.Domain.csproj", "{8DEE5558-24D7-42B0-AFFD-4B9B1DBF5305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Domain", "BlackYellow.Domain\BlackYellow.Domain.csproj", "{8DEE5558-24D7-42B0-AFFD-4B9B1DBF5305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Infrastructure", "BlackYellow.Infrastructure\BlackYellow.Infrastructure.csproj", "{12762096-F084-48DB-9672-948DFFB75F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Infrastructure", "BlackYellow.Infrastructure\BlackYellow.Infrastructure.csproj", "{12762096-F084-48DB-9672-948DFFB75F61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Infra.CrossCuting.Security", "BlackYellow.Infra.CrossCuting.Security\BlackYellow.Infra.CrossCuting.Security.csproj", "{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Infra.CrossCuting.Security", "BlackYellow.Infra.CrossCuting.Security\BlackYellow.Infra.CrossCuting.Security.csproj", "{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Service", "BlackYellow.Service\BlackYellow.Service.csproj", "{28674AA6-800D-4575-9DA2-45F8631F3F57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28674AA6-800D-4575-9DA2-45F8631F3F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28674AA6-800D-4575-9DA2-45F8631F3F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28674AA6-800D-4575-9DA2-45F8631F3F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28674AA6-800D-4575-9DA2-45F8631F3F57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
