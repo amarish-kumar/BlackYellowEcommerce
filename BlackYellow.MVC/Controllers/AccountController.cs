@@ -152,7 +152,7 @@ namespace BlackYellow.MVC.Controllers
         public async Task<IActionResult> Logout()
         {
             // remove o cookie
-            await HttpContext.Authentication.SignOutAsync("Cookie");
+            await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
