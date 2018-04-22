@@ -39,8 +39,6 @@ namespace BlackYellow.MVC.Controllers
             _userService = userService;
         }
 
-        // Para entender melhor como funciona o AspnetCore Authetication -> https://github.com/blowdart/AspNetAuthorizationWorkshop
-
         public IActionResult Login()
         {
             return View();
@@ -57,20 +55,25 @@ namespace BlackYellow.MVC.Controllers
                 return View();
             }
 
-            var customer = _customerService.GetCustomerByEmailAndPassword(user);
             var userAutenticationService = new UserAutenticationService();
-            ClaimsPrincipal userPrincipal; 
-            if (customer != null)
-            {
-                userPrincipal = userAutenticationService.AddToClaim(customer.FullName, user.Profile.ToString(), user.UserId.ToString());
-            }
-            else
+            ClaimsPrincipal userPrincipal;
+
+            var customer = _customerService.GetCustomerByUserId(user.UserId);
+           
+
+            if(customer == null)
             {
                 userPrincipal = userAutenticationService.AddToClaim(user.Email, user.Profile.ToString(), user.UserId.ToString());
             }
+            else
+            {
+                userPrincipal = userAutenticationService.AddToClaim(customer.FullName, user.Profile.ToString(), user.UserId.ToString());           
+                var str = JsonConvert.SerializeObject(customer);
+                HttpContext.Session.SetString(SessionCustomer, str);
+            }
+       
             await HttpContext.SignInAsync(userPrincipal);
-            var str = JsonConvert.SerializeObject(customer);
-            HttpContext.Session.SetString(SessionCustomer, str);
+           
             return RedirectToAction("Index", "Home");
         }
 
@@ -98,7 +101,7 @@ namespace BlackYellow.MVC.Controllers
             if (User?.Identity.IsAuthenticated ?? false)
                 return RedirectToAction("Update");
 
-           if (_customerService.Insert(customer))
+            if (_customerService.Insert(customer))
                 return await Login(customer.User);
 
             return View();

@@ -17,7 +17,7 @@ namespace BlackYellow.UnitTests
                 Email = "walter.vlopes@gmail.com"
             };
 
-            var isValid = user.EmailisValid();
+            var isValid = user.EmailIsValid();
 
             Assert.IsTrue(isValid);
         }
@@ -30,7 +30,7 @@ namespace BlackYellow.UnitTests
                 Email = "walter.vlopesgmail.com"
             };
 
-            var isValid = user.EmailisValid();
+            var isValid = user.EmailIsValid();
 
             Assert.IsFalse(isValid);
         }

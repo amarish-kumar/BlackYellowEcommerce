@@ -56,16 +56,5 @@ namespace BlackYellow.Service
         {
            return  _customerRepository.GetCustomerByUserId(id);
         }
-
-        public Customer GetCustomerByEmailAndPassword(User user)
-        {
-            var customer = _customerRepository.GetCustomerByUserId((long) user.UserId);
-
-            if (customer == null) return null;
-
-            customer.User = new User();
-            customer.User = user;
-            return customer;
-        }
     }
 }

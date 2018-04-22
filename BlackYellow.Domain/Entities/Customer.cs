@@ -53,7 +53,7 @@ namespace BlackYellow.Domain.Entites
 
         public bool IsValid()
         {
-            return IsValidCpf() && this.User.EmailisValid();
+            return IsValidCpf() && this.User.EmailIsValid();
         }
 
         public bool IsValidCpf()

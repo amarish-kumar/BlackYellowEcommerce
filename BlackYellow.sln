@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Infrastructure"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Infra.CrossCuting.Security", "BlackYellow.Infra.CrossCuting.Security\BlackYellow.Infra.CrossCuting.Security.csproj", "{7656A509-0D20-42AE-B2E6-4E3EA05EEFE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.Service", "BlackYellow.Service\BlackYellow.Service.csproj", "{28674AA6-800D-4575-9DA2-45F8631F3F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.Service", "BlackYellow.Service\BlackYellow.Service.csproj", "{28674AA6-800D-4575-9DA2-45F8631F3F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.UnitTests", "BlackYellow.UnitTests\BlackYellow.UnitTests.csproj", "{63E61A81-4DEF-42F2-866C-619CA6F73BD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackYellow.UnitTests", "BlackYellow.UnitTests\BlackYellow.UnitTests.csproj", "{63E61A81-4DEF-42F2-866C-619CA6F73BD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackYellow.BDD", "BlackYellow.BDD\BlackYellow.BDD.csproj", "{359A0EB2-0237-4DF2-9762-E76575B4FB8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{63E61A81-4DEF-42F2-866C-619CA6F73BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63E61A81-4DEF-42F2-866C-619CA6F73BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63E61A81-4DEF-42F2-866C-619CA6F73BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{359A0EB2-0237-4DF2-9762-E76575B4FB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{359A0EB2-0237-4DF2-9762-E76575B4FB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{359A0EB2-0237-4DF2-9762-E76575B4FB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{359A0EB2-0237-4DF2-9762-E76575B4FB8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

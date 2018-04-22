@@ -25,7 +25,11 @@ namespace BlackYellow.Service
 
         public User GetUserByNamePassword(User user)
         {
-            return _userRepository.GetUserByNamePassword(user);
+            if(user.EmailIsValid())
+            {
+                return _userRepository.GetUserByNamePassword(user);
+            }
+            return null;
         }
 
         public IEnumerable<User> GetAllUserAdmin()

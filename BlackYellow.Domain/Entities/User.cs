@@ -19,10 +19,9 @@ namespace BlackYellow.Domain.Entites
         public Profile Profile { get; set; }
 
 
-        public bool EmailisValid()
+        public bool EmailIsValid()
         {
-            var email = this.Email;
-            return email.Contains("@");
+            return this.Email.Contains("@");
         }
     }
 }
