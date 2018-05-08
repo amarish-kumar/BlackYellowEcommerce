@@ -27,7 +27,6 @@ namespace BlackYellow.Domain.Entites
         [Required(ErrorMessage = "Por favor digite a data de nascimento")]
         public string City { get; set; }
 
-
         public long CustomerId { get; set; }
 
 
