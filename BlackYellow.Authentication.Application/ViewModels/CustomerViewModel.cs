@@ -19,5 +19,26 @@ namespace BlackYellow.Authentication.Application.ViewModels
 
         public string Phone { get; set; }
 
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public string Street { get; set; }
+
+
+        public string Number { get; set; }
+
+
+        public string ZipCode { get; set; }
+
+
+        public string State { get; set; }
+
+
+        public string City { get; set; }
+
+
+
+
     }
 }

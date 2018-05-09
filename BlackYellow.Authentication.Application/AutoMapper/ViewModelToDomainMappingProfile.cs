@@ -12,7 +12,7 @@ namespace BlackYellow.Authentication.Application.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<CustomerViewModel, RegisterNewCustomerCommand>()
-                .ConstructUsing(c => new RegisterNewCustomerCommand(c.FirstName, c.LastName, c.Cpf, c.Phone, c.Birthday, null, null));
+                .ConstructUsing(c => new RegisterNewCustomerCommand(c.FirstName, c.LastName, c.Cpf, c.Phone, c.Birthday, c.Email, c.Password, null));
             CreateMap<CustomerViewModel, UpdateCustomerCommand>()
                 .ConstructUsing(c => new UpdateCustomerCommand(c.Id, c.FirstName,c.LastName, c.Cpf, c.Phone, c.Birthday, null , null));
         }

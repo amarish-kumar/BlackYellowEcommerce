@@ -14,6 +14,12 @@ namespace BlackYellow.Authetication.Data.Repository
         protected readonly CustomerEFContext Db;
         protected readonly DbSet<TEntity> DbSet;
 
+        public Repository(CustomerEFContext context)
+        {
+            Db = context;
+            DbSet = Db.Set<TEntity>();
+        }
+
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);

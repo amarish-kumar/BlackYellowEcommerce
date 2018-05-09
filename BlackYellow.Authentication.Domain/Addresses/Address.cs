@@ -5,9 +5,7 @@ using System;
 namespace BlackYellow.Authentication.Domain.Addresses
 { 
     public class Address : Entity
-    {
-
-        public Guid CustomerId { get; set; }
+    { 
 
         public string Street { get; set; }
 

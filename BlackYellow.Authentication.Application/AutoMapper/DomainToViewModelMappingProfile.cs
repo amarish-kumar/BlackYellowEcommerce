@@ -11,7 +11,9 @@ namespace BlackYellow.Authentication.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Customer, CustomerViewModel>();
+            CreateMap<Customer, CustomerViewModel>()
+                .ForMember(dest => dest.Email,
+                opts => opts.MapFrom(src => src.User.Email));
         }
     }
 }

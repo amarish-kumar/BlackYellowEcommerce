@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 
 namespace BlackYellow.Core.Domain.Notifications
@@ -32,5 +34,7 @@ namespace BlackYellow.Core.Domain.Notifications
         {
             _notifications = new List<DomainNotification>();
         }
+
+       
     }
 }

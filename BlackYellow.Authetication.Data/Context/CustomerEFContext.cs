@@ -1,4 +1,6 @@
-﻿using BlackYellow.Authentication.Domain.Customers;
+﻿using BlackYellow.Authentication.Domain.Addresses;
+using BlackYellow.Authentication.Domain.Customers;
+using BlackYellow.Authentication.Users;
 using BlackYellow.Authetication.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +11,10 @@ namespace BlackYellow.Authetication.Data.Context
     public class CustomerEFContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BlackYellow.Authentication.Application.Interfaces;
 using BlackYellow.Authentication.Application.ViewModels;
 using BlackYellow.Authentication.Domain.Customers;
+using BlackYellow.Core.Domain.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +14,13 @@ namespace BlackYellow.API.Controllers
 {
     [Produces("application/json")]
     [Route("api/Account")]
-    public class AccountController : Controller
+    public class AccountController : ApiController
     {
 
         private readonly ICustomerAppService _customerAppService;
 
-        public AccountController(ICustomerAppService customerAppService)
+        public AccountController(ICustomerAppService customerAppService,
+            INotificationHandler<DomainNotification> notifications) : base(notifications)
         {
             _customerAppService = customerAppService;
         }
@@ -38,9 +41,11 @@ namespace BlackYellow.API.Controllers
         
         // POST: api/Account
         [HttpPost]
-        public void Post(CustomerViewModel customer)
+        public IActionResult Post([FromBody]CustomerViewModel customer)
         {
             _customerAppService.Add(customer);
+
+            return Response(customer);
         }
         
         // PUT: api/Account/5

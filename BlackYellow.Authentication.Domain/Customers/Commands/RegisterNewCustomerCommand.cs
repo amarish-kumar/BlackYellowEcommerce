@@ -7,14 +7,19 @@ namespace BlackYellow.Authentication.Domain.Commands
 {
     public class RegisterNewCustomerCommand : CustomerCommand
     {
-        public RegisterNewCustomerCommand(string firstName, string lastName, string cpf, string phone, DateTime birth, User user, Address address)
+        public RegisterNewCustomerCommand(string firstName, string lastName, string cpf, string phone, DateTime birth, string email, string password, Address address)
         {
             FirstName = firstName;
             LastName = lastName;
             Cpf = cpf;
             Phone = phone;
             Birthday = birth;
-            User = user;
+            User = new User()
+            {   
+                Email = email,
+                Password = password
+            };
+            
             Address = address;
         }
 
